@@ -1,0 +1,154 @@
+\documentclass{surrey_disso_style}
+
+% Write the approved title of your dissertation
+\title{Reinforcement Learning in Pokémon Red to explore complex multi-reward environments}
+
+% Write your full name, as in University records
+\author{Liam O'Driscoll}
+\urn{6640106}
+
+% Write the month and year of your submission
+\date{\today}
+
+% Uncomment the line for the Degree you are registered for
+\degree{Bachelor of Science in Computer Science with a year in placement}
+
+% Write the full name of your supervisor, without any titles
+\supervisor{Sotiris Moschoyiannis}
+
+\raggedbottom
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+This section needs to contain an introduction to the problem, aims and objectives (0.5 pages)
+\par
+[FROM THE HANDBOOK] \newline
+It is designed to help you initially choose a project. During the academic year, it also helps
+you keep track of deliverables; a complete description of each deliverable is provided. Finally,
+this document specifies how the project is assessed, including pointers to marking criteria,
+details on the examination, as well as the process for dealing with complaints
+
+\subsection{Aims}
+
+\begin{itemize}
+   \item [\ding{54}] The aim of this project is to develop a RL agent to play Pokémon Red.
+\end{itemize}
+
+\subsection{Objectives}
+
+\begin{itemize}
+   \item [\ding{169}]Explore and understand the use of RL techniques in a custom game environment.
+   \item [\ding{169}] Design and implement Pokémon Red game to be a suitable RL environment.
+   \item [\ding{169}] Review and critique literature that applies RL to Pokémon.
+   \item [\ding{169}] Evaluate the performance of different RL algorithms used to train agents within the environment.
+   \item [\ding{169}] Evaluate performance of agents to different forms of reward incentive.
+   \item [\ding{169}] Recommend further developments to the project and applications to real world projects.
+\end{itemize}
+
+\subsection{Extension Objectives}
+\begin{itemize}
+   \item [\ding{168}] Implement different methods to improve the agent’s learning and understanding of the environment.
+   \item [\ding{168}] Evaluate performance of the agent when given data in different forms.
+   \item [\ding{168}] Evaluate performance of internal agent to performance of literature.
+\end{itemize}
+
+\section{Literature Review}
+
+\subsection{What other similar work has been done?}
+
+\subsection{What will I introduce that build son other's work?}
+
+\section{Technical overview}
+
+\begin{itemize}
+   \item Hyperparameter tuning to find optimal performance per experiment.
+   \item Comparison of Gradient Descent and Value based models.
+   \begin{itemize}
+      \item Value based:
+         \begin{itemize}
+            \item Proximal Policy Optimization
+         \end{itemize}
+      \item Gradient Descent:
+         \begin{itemize}
+            \item Actor-Critic Methods: A2C 
+            \item Deep Deterministic Policy Gradient
+         \end{itemize}
+   \end{itemize}
+   \item Evaluating change in Q values to learning the optimal model using DQN
+   \item Explore the benefit of applying meta learning.
+\end{itemize}
+
+\section{Workplan}
+
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{8pt}
+
+\begin{center}
+\begin{tabular}{|p{1.6cm}|p{13cm}|}
+   \hline
+   \textbf{Month} & \textbf{Goals}\\
+   \hline
+   October & \begin{itemize}
+      \item Rough structure of the report has been made. 
+      \item Papers surrounding the project have been read (e.g., similar projects, algorithms that will be explored and technologies to be implemented)
+      \item Coding for the project is at its early stages.
+      \item Project Synopsis completed and submitted.
+   \end{itemize} \\
+   \hline
+   Novemebr & 
+      \begin{itemize}
+      \item Research and test which algorithms are applicable for comparison and applicable to project.
+      \item Draft introduction completed with a basic explanation of RL and how it is suitable for my environment.
+      \item Implementation of the Environment is complete
+      \end{itemize}\\
+   \hline
+   December & \begin{itemize}
+      \item Minimum viable product of code is achieved
+      \item Alter reward functions to give different incentives
+      \item Problem Analysis has been written
+      \item Design documentation and choice has been started
+   \end{itemize}\\
+   \hline
+   January & \begin{itemize}
+      \item Hyperparameter train sets of agents per algorithm
+      \item Train agents on different algorithms 
+      \item Complete Design choice 
+      \item Start evaluation of agents
+   \end{itemize}\\
+   \hline
+   February & \begin{itemize}
+      \item Any necessary extra agent training to be compelted
+      \item First version of Report is at a Submittable state
+   \end{itemize}\\
+   \hline
+   March & \begin{itemize}
+      \item Debugging time for any potential issues 
+      \item Review of draft report submission
+   \end{itemize}\\
+   \hline
+   April & \begin{itemize}
+      \item Consider completing Extension Objectives
+      \item Final report completed 
+      \item Time allocated for debugging or potential issues
+   \end{itemize}\\
+   \hline
+   May & \begin{itemize}
+      \item Last final checks on final version of report
+      \item Time allocated for debugging or potential issues
+   \end{itemize}\\
+   \hline
+
+\end{tabular}
+\end{center}
+
+% appendices
+\appendix
+%\include{appenda}
+%\include{appendb}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

@@ -1,4 +1,4 @@
-\ProvidesClass{sj_surrey_article}[2022/10/13]
+\ProvidesClass{surrey_disso_style}[2022/10/13]
 
 \LoadClass[a4paper,10pt,twoside]{article}
 
@@ -11,22 +11,23 @@
 \RequirePackage{setspace}
 \RequirePackage{bold-extra}
 \RequirePackage[centertags,reqno]{amsmath}
-
 \RequirePackage{url}
+\RequirePackage{array}
+\RequirePackage{pifont}
+
 \def\UrlBreaks{\do\/\do-}
 \RequirePackage{breakurl}
 \RequirePackage[breaklinks]{hyperref}
-
 \RequirePackage{parskip}
 
 \setlength{\headheight}{15.2pt}
-\pagestyle{fancy}
 
 \fancyhf{}
-\fancyhf[HRE,HLO]{\textbf{\scshape \@title} | \@type}
-\fancyhf[HLE,HRO]{\@date}
-\fancyhf[FRE,FLO]{\thepage}
-\fancyhf[FLE,FRO]{\@author}
+\fancyhf[HL]{Pokémon Red in RL}
+\fancyhf[HR]{\@date}
+\fancyhf[FR]{\thepage}
+\fancyhf[FL]{\@author}
+
 
 % \pagestyle{headings}
 
@@ -52,7 +53,8 @@
 
     \vspace*{\stretch{1}}
 
-    {\LARGE \scshape \@author}\\
+    {\LARGE \MakeUppercase{\@author}}\\
+    URN: \@urn
 
     \vspace*{\stretch{1.5}}
 
@@ -77,4 +79,23 @@
     \end{titlepage}
 
     \newpage
+    \pagestyle{empty}
+    \vspace*{\stretch{1}}
+    % statement of originality
+    I declare that this dissertation is my own work and that the work of
+    others is acknowledged and indicated by explicit references.\\[12pt]
+    \@author\\
+    \@date
+    \vspace*{\stretch{2}}
+    \newpage
+    \pagestyle{empty}
+    % copyright statement
+    \vspace*{\stretch{1}}
+    \begin{center}
+    \textcopyright\ Copyright \@author, \@date
+    \end{center}
+    \vspace*{\stretch{2}}
+
+    \newpage
+    \pagestyle{fancy}
 }
