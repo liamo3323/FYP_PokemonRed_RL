@@ -23,7 +23,7 @@
 \setlength{\headheight}{15.2pt}
 
 \fancyhf{}
-\fancyhf[HL]{Pokémon Red in RL}
+\fancyhf[HL]{Reinforcement Leanring with Pokémon Red}
 \fancyhf[HR]{\@date}
 \fancyhf[FR]{\thepage}
 \fancyhf[FL]{\@author}

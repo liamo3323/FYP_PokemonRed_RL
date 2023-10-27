@@ -21,46 +21,50 @@
 \begin{document}
 \maketitle
 
+
+
+\subsection{Definitions}
+\begin{itemize}
+   \item [\ding{171}] Agent: The decision making mechanism recieving state information and performing chosen actions.
+   \item [\ding{171}] Environemnt: The world in which the agent interacts with. 
+   \item [\ding{171}] State: A representation of the environment at the current timestep.
+   \item [\ding{171}] Timestep: A value that increments after each action has passed since the start of the episode.
+   \item [\ding{171}] Episode: An instance of the environment that the agent is interacting with.
+   \item [\ding{171}] Action: The choice made by the agent in response to the state.
+   \item [\ding{171}] Reward: The return value when an action is applied to a state.
+   \item [\ding{171}] Reward Function: The mechanism in the environment that indicates how well the selected action is to achieving the goal of the environment.
+   \item [\ding{171}] Policy: The decision making mechanism within the agent that decides the best action to perform given the state.
+\end{itemize}
+\newpage
 \section{Introduction}
-This section needs to contain an introduction to the problem, aims and objectives (0.5 pages)
-\par
-[FROM THE HANDBOOK] \newline
-It is designed to help you initially choose a project. During the academic year, it also helps
-you keep track of deliverables; a complete description of each deliverable is provided. Finally,
-this document specifies how the project is assessed, including pointers to marking criteria,
-details on the examination, as well as the process for dealing with complaints
+The aim of this project is to develop a reinforcement learning agent to play Pokémon Red to compare the effectiveness of different styles of RL algorithms and their effectiveness. RL is an area of machine learning (ML) where agents make decisions and perform actions on states to achieve a goal. 
 
 \subsection{Aims}
 
 \begin{itemize}
-   \item [\ding{54}] The aim of this project is to develop a RL agent to play Pokémon Red.
+   \item [\ding{54}] The aim of this project is to develop a RL agent to play Pokémon Red to compare the effectiveness of different styles of RL algorithms and their effectiveness to learn complex reward functions.
 \end{itemize}
 
 \subsection{Objectives}
 
 \begin{itemize}
-   \item [\ding{169}]Explore and understand the use of RL techniques in a custom game environment.
-   \item [\ding{169}] Design and implement Pokémon Red game to be a suitable RL environment.
-   \item [\ding{169}] Review and critique literature that applies RL to Pokémon.
+   \item [\ding{169}] Research applications of RL to Pokemon and conduct a literature review on them
+   \item [\ding{169}] Implement Pokémon Red game to be a suitable for training of different RL algorithms.
    \item [\ding{169}] Evaluate the performance of different RL algorithms used to train agents within the environment.
-   \item [\ding{169}] Evaluate performance of agents to different forms of reward incentive.
+   \item [\ding{169}] Evaluate performance of agents to different forms of rewards functions.
    \item [\ding{169}] Recommend further developments to the project and applications to real world projects.
 \end{itemize}
 
-\subsection{Extension Objectives}
-\begin{itemize}
-   \item [\ding{168}] Implement different methods to improve the agent’s learning and understanding of the environment.
-   \item [\ding{168}] Evaluate performance of the agent when given data in different forms.
-   \item [\ding{168}] Evaluate performance of internal agent to performance of literature.
-\end{itemize}
-
 \section{Literature Review}
+In RL, the agent learns through experiences and 'trial and error'. Initially, it has a lack in understanding of the environment. However, through random action selection and the reward that it recieves, it is able to learn an understanding of the environemnt. The agent is incentivized to maximise its reward and will aim to find actions that will yield more reward. This constant state, action and reward loop is what helps the agent improve by altering the policy after every cycle. 
+\par
 
-\subsection{What other similar work has been done?}
+RL is different to common traditional machine learning techiniques as it learns "how to map situations to actions-so as to maximize a numerical reward signal." Agent's requirement to learn through experience and actions performed on current states not only affect the present, but also affect future states and actions are two characteristics which distinguishes itself from other forms of ML. It is also what makes Pokémon Red a suitable environment to apply this style of ML to.
+\par
 
-\subsection{What will I introduce that build son other's work?}
+[MUST mention how important markov chains are and how they are applicable to pokemon!]
 
-\section{Technical overview}
+\section{Technical Overview}
 
 \begin{itemize}
    \item Hyperparameter tuning to find optimal performance per experiment.
@@ -80,6 +84,7 @@ details on the examination, as well as the process for dealing with complaints
    \item Explore the benefit of applying meta learning.
 \end{itemize}
 
+\newpage
 \section{Workplan}
 
 \renewcommand{\arraystretch}{1.5}
