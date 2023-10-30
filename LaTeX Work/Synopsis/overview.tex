@@ -1,22 +1,32 @@
 \documentclass{surrey_disso_style}
 
-% Write the approved title of your dissertation
-\title{Reinforcement Learning in Pokémon Red to explore complex multi-reward environments}
+\raggedbottom
 
-% Write your full name, as in University records
+\usepackage[english]{babel} % English language/hyphenation
+
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\usepackage{cleveref}
+
+% numeric
+\usepackage[style=ieee,sorting=none,backend=biber]{biblatex}
+\addbibresource{references.bib}
+
+
+\title{Reinforcement Learning in Pokémon Red to explore complex multi-reward environments}
 \author{Liam O'Driscoll}
 \urn{6640106}
-
-% Write the month and year of your submission
 \date{\today}
-
-% Uncomment the line for the Degree you are registered for
 \degree{Bachelor of Science in Computer Science with a year in placement}
-
-% Write the full name of your supervisor, without any titles
 \supervisor{Sotiris Moschoyiannis}
-
-\raggedbottom
 
 \begin{document}
 \maketitle
@@ -56,13 +66,19 @@ The aim of this project is to develop a reinforcement learning agent to play Pok
 \end{itemize}
 
 \section{Literature Review}
-In RL, the agent learns through experiences and 'trial and error'. Initially, it has a lack in understanding of the environment. However, through random action selection and the reward that it recieves, it is able to learn an understanding of the environemnt. The agent is incentivized to maximise its reward and will aim to find actions that will yield more reward. This constant state, action and reward loop is what helps the agent improve by altering the policy after every cycle. 
+In RL, the decision making agent learns through experiences and 'trial and error'. Initially, it has a lack in understanding of the environment. However, through random action selection and the reward that it recieves, it is able to learn an understanding of the environemnt. The agent is incentivized to maximise its reward and will aim to find actions that will yield more reward. This constant state, action and reward loop is what helps the agent improve by altering the policy after every cycle. 
 \par
 
-RL is different to common traditional machine learning techiniques as it learns "how to map situations to actions-so as to maximize a numerical reward signal." Agent's requirement to learn through experience and actions performed on current states not only affect the present, but also affect future states and actions are two characteristics which distinguishes itself from other forms of ML. It is also what makes Pokémon Red a suitable environment to apply this style of ML to.
+RL is different to common traditional machine learning techiniques as it learns "how to map situations to actions-so as to maximize a numerical reward signal \cite{Sutton1}." Agent's requirement to learn through experience and actions performed on current states not only affect the present, but also affect future states and actions are two characteristics which distinguishes itself from other forms of ML. It is also what makes Pokémon Red a suitable environment to apply this style of ML to. 
 \par
 
-[MUST mention how important markov chains are and how they are applicable to pokemon!]
+RL has only been applied to every Atari game, where it surpassed the human benchmark for every game. However, these games lack long term randomness and present actions influencing future states. The game 'Pokémon Red' is an RPG game filled with various puzzles, non-linear world and a large amount of variance making each play through of the game unique while also require achieving the same goals. In addition, the game has 2 states the players is constantly in, the player is either in an overworld where they control their movement on a map or they are in a battle with another individual, where they control the actions of their monster.
+\par
+
+Other similar works include is by Kalose et al \cite{kalose2018optimal} which applies RL to find the optimal battling strategy. Their work focuses on one aspect of the game and does not have a large enough search space to effectively apply rl techniques. Another similar work by Flaherty, Jimenez and Abbasi \cite{flaherty2021playing} applies Rl algorithms A2C and DQN to play Pokémon Red. However, this piece of work does not go into enough detail about the comparison of different rl techniques to find the best method to train an agent to complete large complex environments with a large search space. I aim to extend their research in applying rl to Pokémon Red by applying more algorithms and various techniques rl that I will go into more detail in section 3.
+\par
+
+I chose to apply rl to this specific environment, Pokémon Red, because of the benefits it holds with trianing and applications of research. This version of the game has the ability to speed-up the environment which allows for more timesteps to be completed and for the agent to experience more states. Another reason I chose to apply rl to this environment is because its complexity. The end goal of Pokémon Red is to defeat all the gym leaders and become the champion. However, to reach this goal the player must complete a series of smaller tasks which are not explicitly specified in the reward function. An example of this would be navigation in a 2-dimensional plane and solving puzzles along the way. The fact that the agent is requried to learn complete these tasks while completing the main goal can be applied and extended to real world applications.
 
 \section{Technical Overview}
 
@@ -148,12 +164,14 @@ RL is different to common traditional machine learning techiniques as it learns 
 \end{tabular}
 \end{center}
 
-% appendices
-\appendix
-%\include{appenda}
-%\include{appendb}
+\newpage
 
-\bibliographystyle{IEEEtran}
-\bibliography{references}
+
+%\bibliography{references}
+%\bibliographystyle{plain}
+
+\section{References}
+\printbibliography[heading=none]
+
 
 \end{document}
