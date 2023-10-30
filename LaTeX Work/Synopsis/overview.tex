@@ -45,6 +45,17 @@
    \item [\ding{171}] Reward Function: The mechanism in the environment that indicates how well the selected action is to achieving the goal of the environment.
    \item [\ding{171}] Policy: The decision making mechanism within the agent that decides the best action to perform given the state.
 \end{itemize}
+
+\subsection{Abbreviation}
+\begin{itemize}
+   \item [\ding{171}] RL - Reinforcement Learning 
+   \item [\ding{171}] AI - Artifical Intelligence
+   \item [\ding{171}] ML - Machine Learning 
+   \item [\ding{171}] RPG - Role Playing Game
+   \item [\ding{171}] A2C - Ascynchronous Actor Critic
+   \item [\ding{171}] DQN - Deep Q Network
+\end{itemize}
+
 \newpage
 \section{Introduction}
 The aim of this project is to develop a reinforcement learning agent to play Pokémon Red to compare the effectiveness of different styles of RL algorithms and their effectiveness. RL is an area of machine learning (ML) where agents make decisions and perform actions on states to achieve a goal. 
@@ -66,19 +77,42 @@ The aim of this project is to develop a reinforcement learning agent to play Pok
 \end{itemize}
 
 \section{Literature Review}
-In RL, the decision making agent learns through experiences and 'trial and error'. Initially, it has a lack in understanding of the environment. However, through random action selection and the reward that it recieves, it is able to learn an understanding of the environemnt. The agent is incentivized to maximise its reward and will aim to find actions that will yield more reward. This constant state, action and reward loop is what helps the agent improve by altering the policy after every cycle. 
+In RL, the decision making agent learns through experiences and 'trial and error'. Initially, it has a lack in understanding of the 
+environment. However, through random action selection and the reward that it recieves, it is able to learn an understanding of the 
+environemnt. The agent is incentivized to maximise its reward and will aim to find actions that will yield more reward. This constant
+ state, action and reward loop is what helps the agent improve by altering the policy after every cycle. 
 \par
 
-RL is different to common traditional machine learning techiniques as it learns "how to map situations to actions-so as to maximize a numerical reward signal \cite{Sutton1}." Agent's requirement to learn through experience and actions performed on current states not only affect the present, but also affect future states and actions are two characteristics which distinguishes itself from other forms of ML. It is also what makes Pokémon Red a suitable environment to apply this style of ML to. 
+RL is different to common traditional machine learning techiniques as it learns "how to map situations to actions-so as to maximize 
+a numerical reward signal \cite{Sutton1}." Agent's requirement to learn through experience and actions performed on current states 
+not only affect the present, but also affect future states and actions are two characteristics which distinguishes itself from other 
+forms of ML. It is also what makes Pokémon Red a suitable environment to apply this style of ML to. 
 \par
 
-RL has only been applied to every Atari game, where it surpassed the human benchmark for every game. However, these games lack long term randomness and present actions influencing future states. The game 'Pokémon Red' is an RPG game filled with various puzzles, non-linear world and a large amount of variance making each play through of the game unique while also require achieving the same goals. In addition, the game has 2 states the players is constantly in, the player is either in an overworld where they control their movement on a map or they are in a battle with another individual, where they control the actions of their monster.
+RL has only been applied to every Atari game, where it surpassed the human benchmark for every game \cite{brockman2016openai}. 
+However, these games lack long term randomness and present actions influencing future states. The game 'Pokémon Red' is an RPG game 
+filled with various puzzles, non-linear world and a large amount of variance making each play through of the game unique while also 
+require achieving the same goals. In addition, the game has 2 states the players is constantly in, the player is either in an 
+overworld where they control their movement on a map or they are in a battle with another individual, where they control the actions 
+of their monster.
 \par
 
-Other similar works include is by Kalose et al \cite{kalose2018optimal} which applies RL to find the optimal battling strategy. Their work focuses on one aspect of the game and does not have a large enough search space to effectively apply rl techniques. Another similar work by Flaherty, Jimenez and Abbasi \cite{flaherty2021playing} applies Rl algorithms A2C and DQN to play Pokémon Red. However, this piece of work does not go into enough detail about the comparison of different rl techniques to find the best method to train an agent to complete large complex environments with a large search space. I aim to extend their research in applying rl to Pokémon Red by applying more algorithms and various techniques rl that I will go into more detail in section 3.
+Other similar works include is by Kalose et al \cite{kalose2018optimal} which applies RL to find the optimal battling strategy. 
+Their work focuses on one aspect of the game and does not have a large enough search space to effectively apply RL techniques. 
+Another similar work by Flaherty, Jimenez and Abbasi \cite{flaherty2021playing} applies RL algorithms A2C and DQN to play Pokémon 
+Red. However, this piece of work does not go into enough detail about the comparison of different RL techniques to find the best
+ method to train an agent to complete large complex environments with a large search space. I aim to extend their research in 
+ applying RL to Pokémon Red by applying more algorithms and various techniques RL that I will go into more detail in section 3.
 \par
 
-I chose to apply rl to this specific environment, Pokémon Red, because of the benefits it holds with trianing and applications of research. This version of the game has the ability to speed-up the environment which allows for more timesteps to be completed and for the agent to experience more states. Another reason I chose to apply rl to this environment is because its complexity. The end goal of Pokémon Red is to defeat all the gym leaders and become the champion. However, to reach this goal the player must complete a series of smaller tasks which are not explicitly specified in the reward function. An example of this would be navigation in a 2-dimensional plane and solving puzzles along the way. The fact that the agent is requried to learn complete these tasks while completing the main goal can be applied and extended to real world applications.
+I chose to apply RL to this environment, Pokémon Red, because of the benefits it holds during trianing and applications of this 
+research. This version of the game has the ability to speed-up the environment which allows for more timesteps to be completed 
+so the agent can experience more states. Another reason is because its complexity. The end goal of Pokémon Red is to defeat all the 
+gym leaders and become the champion. However, to reach this goal the player must complete a series of smaller tasks which are not 
+explicitly specified in the reward function. An example of this would be navigation a 2-dimensional plane, solving puzzles and
+ performing pokemon battles along the way. Getting the agent to learn smaller tasks while completing the main goal of the environment 
+ can be applied and extended to the real world. Compared to other forms of AI, RL never stops learning even when deployed, which makes
+ it a very effective method to adapt to new environments outside of the simulation and constantly learn to improve itself. 
 
 \section{Technical Overview}
 
@@ -100,7 +134,20 @@ I chose to apply rl to this specific environment, Pokémon Red, because of the b
    \item Explore the benefit of applying meta learning.
 \end{itemize}
 
-\newpage
+Details of the environment and technologies used... 
+For the environment, I plan on using a copy of the original game and having RL manually make inputs into the emulation of the game 
+on my computer. This saves on a large amount of time manually recreating the game. Python has a gameboy emulator package called 'PyBoy'
+which I can run the game on and speed up emulation \cite{pyboy}. In addition, there is built-in support for RL training.
+
+
+When comparing algorithms, I will ensure that each algorithm being compared has an equal chance of performing at its best. I will 
+hyperparameter tune each algorithm to find the best weightings for each algorithm's hyperparameter to obtain its best performance 
+for comparison. Hyperparameter tuning is an additional step but has been found to greatly increase the algorithm's performance and 
+efficiency, while also making comparison between algorithms more fair \cite{zhang2021importance}.
+\par
+
+The first comparison of algorithms I will perform is value based methods to gradient descent.
+
 \section{Workplan}
 
 \renewcommand{\arraystretch}{1.5}
