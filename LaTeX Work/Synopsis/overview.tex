@@ -58,7 +58,7 @@
 
 \newpage
 \section{Introduction}
-The aim of this project is to develop a reinforcement learning agent to play Pokémon Red to compare the effectiveness of different styles of RL algorithms and their effectiveness. RL is an area of machine learning (ML) where agents make decisions and perform actions on states to achieve a goal. 
+The aim of this project is to develop a reinforcement learning agent to play Pokémon Red to compare the effectiveness of different styles of RL algorithms. RL is an area of machine learning (ML) where agents make decisions and perform actions on states to achieve a goal. 
 
 \subsection{Aims}
 
@@ -97,8 +97,8 @@ overworld where they control their movement on a map or they are in a battle wit
 of their monster.
 \par
 
-Other similar works include is by Kalose et al \cite{kalose2018optimal} which applies RL to find the optimal battling strategy. 
-Their work focuses on one aspect of the game and does not have a large enough search space to effectively apply RL techniques. 
+Other similar projects which applies RL to find the optimal battling strategy by Kalose et al \cite{kalose2018optimal}. 
+Their work focuses on one aspect of the game and does not have a large enough search space to justify application of RL techniques. 
 Another similar work by Flaherty, Jimenez and Abbasi \cite{flaherty2021playing} applies RL algorithms A2C and DQN to play Pokémon 
 Red. However, this piece of work does not go into enough detail about the comparison of different RL techniques to find the best
  method to train an agent to complete large complex environments with a large search space. I aim to extend their research in 
@@ -116,39 +116,56 @@ explicitly specified in the reward function. An example of this would be navigat
 
 \section{Technical Overview}
 
-\begin{itemize}
-   \item Hyperparameter tuning to find optimal performance per experiment.
-   \item Comparison of Gradient Descent and Value based models.
-   \begin{itemize}
-      \item Value based:
-         \begin{itemize}
-            \item Proximal Policy Optimization
-         \end{itemize}
-      \item Gradient Descent:
-         \begin{itemize}
-            \item Actor-Critic Methods: A2C 
-            \item Deep Deterministic Policy Gradient
-         \end{itemize}
-   \end{itemize}
-   \item Evaluating change in Q values to learning the optimal model using DQN
-   \item Explore the benefit of applying meta learning.
-\end{itemize}
-
-Details of the environment and technologies used... 
 For the environment, I plan on using a copy of the original game and having RL manually make inputs into the emulation of the game 
 on my computer. This saves on a large amount of time manually recreating the game. Python has a gameboy emulator package called 'PyBoy'
 which I can run the game on and speed up emulation \cite{pyboy}. In addition, there is built-in support for RL training.
 
+The implementations of the algorithms that will be used will come from stablebaselines. Stablebaselines' implementation of the algorithms 
+have been well documented and have the ability to change the weightings of parameters used. 
+
+I will be using tensorboard to view the performance of the algorithms after training. Another reason why I am using stablebaselines'
+implementation of the algorithms is because of the integration with tensorboard to view the performance of the trained agent in a graph
+form.
 
 When comparing algorithms, I will ensure that each algorithm being compared has an equal chance of performing at its best. I will 
 hyperparameter tune each algorithm to find the best weightings for each algorithm's hyperparameter to obtain its best performance 
 for comparison. Hyperparameter tuning is an additional step but has been found to greatly increase the algorithm's performance and 
 efficiency, while also making comparison between algorithms more fair \cite{zhang2021importance}.
-\par
 
-The first comparison of algorithms I will perform is value based methods to gradient descent.
+The first comparison of algorithms I will perform is value based methods to gradient descent. To compare the two different types of 
+algorithms, I will use the algorithm A2C for gradient descent methods and PPO as value based methods. I will be aiming to compare each
+algorithm's learning rate, average reward level, losses and when their learning stabilizes.
+
+Another algorithm I plan on testing is the performance of DQN to changes in how much the agent values future rewards. By changing the 
+weighting associated with reward from future states, the agent would perform differently because it would try to move towards states with 
+long term value versus short term high reward.
 
 \section{Workplan}
+
+
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{8pt}
+
+\begin{center}
+\begin{tabular}{|p{6.8cm}|p{6.8cm}|}
+   \hline
+   \textbf{Risks} & \textbf{Solutions}\\
+   \hline
+   Issues with gettign the environment to work  & Give ample time to researching working environments\\
+   \hline
+   Algorithms not supported with environment action space (discrete/continious)  & Research a wide range of algorithms to be implemented\\
+   \hline
+   Agent unable to learn anything within the environment  & Change the weightings for the algorithms or change the reward function of the environment\\
+   \hline
+   Reward function not specific enough   & Research how other individuals implement their reward function and have multiple reward criterias to meet\\
+   \hline
+   All perform too smilarly making it difficult to compare  & Change the weightings of each algorithm to ensure differences or train for longer\\
+   \hline
+
+
+\end{tabular}
+\end{center}
+
 
 \renewcommand{\arraystretch}{1.5}
 \setlength{\tabcolsep}{8pt}
@@ -156,7 +173,7 @@ The first comparison of algorithms I will perform is value based methods to grad
 \begin{center}
 \begin{tabular}{|p{1.6cm}|p{13cm}|}
    \hline
-   \textbf{Month} & \textbf{Goals}\\
+   \textbf{   Month} & \textbf{Goals}\\
    \hline
    October & \begin{itemize}
       \item Rough structure of the report has been made. 
@@ -165,7 +182,7 @@ The first comparison of algorithms I will perform is value based methods to grad
       \item Project Synopsis completed and submitted.
    \end{itemize} \\
    \hline
-   Novemebr & 
+   November & 
       \begin{itemize}
       \item Research and test which algorithms are applicable for comparison and applicable to project.
       \item Draft introduction completed with a basic explanation of RL and how it is suitable for my environment.
@@ -199,12 +216,11 @@ The first comparison of algorithms I will perform is value based methods to grad
    April & \begin{itemize}
       \item Consider completing Extension Objectives
       \item Final report completed 
-      \item Time allocated for debugging or potential issues
    \end{itemize}\\
    \hline
    May & \begin{itemize}
+      \item Extra time for debugging
       \item Last final checks on final version of report
-      \item Time allocated for debugging or potential issues
    \end{itemize}\\
    \hline
 
