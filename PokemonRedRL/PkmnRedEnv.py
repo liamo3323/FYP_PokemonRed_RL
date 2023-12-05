@@ -19,7 +19,6 @@ from gymnasium import Env, spaces
 from pyboy.utils import WindowEvent
 
 class PkmnRedEnv(Env):
-
     def __init__(self, config = None): 
         # Settings required for the env 
 
@@ -97,6 +96,10 @@ class PkmnRedEnv(Env):
     
     def reset(self, seed=None):
         self.seed = seed
+        
+        if self.init_state != None:
+            with open(self.init_state, "rb") as f:
+                self.pyboy.load_state(f)
 
         self.init_knn()
 
