@@ -80,26 +80,26 @@ class PkmnRedEnv(Env):
         self.action_space = spaces.Discrete(len(self.valid_actions))
         self.observation_space = spaces.Box(low=0, high=255, shape=self.output_full, dtype=np.uint8)
 
-        head = 'headless' if config['headless'] else 'SDL2'
+        #! headless = no render, SDL2 = render
+        render = 'headless' if config['headless'] else 'SDL2'
 
         # PyBoy API Config
         self.pyboy = PyBoy(
                 config['gb_path'],
                 debugging=False,
                 disable_input=False,
-                window_type=head,
+                window_type=render,
                 hide_window='--quiet' in sys.argv,
             )
         self.screen = self.pyboy.botsupport_manager().screen()
-        self.pyboy.set_emulation_speed(6)
+        self.pyboy.set_emulation_speed(1) #! make this 6 later
         self.reset() 
     
     def reset(self, seed=None):
         self.seed = seed
-        
-        if self.init_state != None:
-            with open(self.init_state, "rb") as f:
-                self.pyboy.load_state(f)
+ 
+        if self.init_state != null:
+            self.pyboy.load_state(open(self.init_state, "rb"))
 
         self.init_knn()
 
