@@ -1,0 +1,18 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'overview.blg'
+[87] biber:340> INFO - === Mon Dec 11, 2023, 18:46:51
+[102] Biber.pm:419> INFO - Reading 'overview.bcf'
+[161] Biber.pm:979> INFO - Found 6 citekeys in bib section 0
+[180] Biber.pm:4419> INFO - Processing section 0
+[189] Biber.pm:4610> INFO - Looking for bibtex file 'references.bib' for section 0
+[190] bibtex.pm:1713> INFO - LaTeX decoding ...
+[200] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
+[274] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[274] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[274] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[274] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[278] bbl.pm:660> INFO - Writing 'overview.bbl' with encoding 'UTF-8'
+[282] bbl.pm:763> INFO - Output to overview.bbl
+[282] Biber.pm:131> WARN - BibTeX subsystem: /tmp/biber_tmp_PwFm/33e59b5ca9ec342068223d604c3f8d55_53802.utf8, line 6, warning: 149 characters of junk seen at toplevel
+[282] Biber.pm:131> WARN - BibTeX subsystem: /tmp/biber_tmp_PwFm/33e59b5ca9ec342068223d604c3f8d55_53802.utf8, line 52, warning: 26 characters of junk seen at toplevel
+[282] Biber.pm:133> INFO - WARNINGS: 2
