@@ -1,6 +1,35 @@
 \section{Introduction}
+The aim of this project is to develop a reinforcement learning (RL) agent to play Pokémon Red to compare
+the effectiveness of different styles of RL algorithms. RL is an area of machine learning (ML) where
+agents make decisions and perform actions on states to achieve a goal.
+
+%! Do I need to add an abstract at the start?
 
 \subsection{What is Reinforcement Learning}
+
+Decision-making is a recurring activity that every individual faces in their everyday life, leading to short- or long-term consequences with differing levels of satisfaction. When making decisions in uncertain environments, humans have the ability to take previous experiences and apply them to new environments to make decisions grounded in knowledge. This is called sequential decision-making. In the context of machine learning, it refers to a decision-making agent in an observation and action loop, where after a series of actions, its performance can be measured \cite{francon2020effective}. Taking inspiration from biological learning systems, RL is the closest kind of machine learning that learns using observed data to influence the brain's reward system \cite{Sutton1}. 
+
+In RL, the decision-making agent learns through experiences and 'trial and error'. Initially, the agent has no understanding of the environment; however, through random action selection and the reward that it receives, it learns an understanding of the environment it is in. In RL, the agent is an AI that chooses actions by following a set of rules; this set of rules is called a policy. The action chosen by the policy is applied to the environment in which the agent is interacting. The place in which the decision-making agent performs actions and the entity that determines what is right and wrong are called the environment. The environment is everything the agent cannot control but is able to interact with. After the action has been applied to the environment, the change in the environment will be evaluated and return positive or negative feedback to the agent. This positive or negative feedback is called reward value. If the action chosen by the agent satisfied the goal of the environment, a positive reward would be returned. The agent’s aim is to maximize the amount of positive reward it can receive. Therefore, over a long period of time, the agent will learn the perfect set of actions that lead to the highest accumulative reward. 
+
+RL is unique from other traditional AI because it is currently the closest form of natural intelligence \cite{Sutton1}. Through understanding mistakes and trying to maximize correct actions, it never stops learning. The agent is incentivized to maximize its reward and will aim to find actions that will yield more reward. This constant state, action, and reward loop is what teaches the agent improve by making small adjustments to the policy after every cycle. 
+
+RL is different from common traditional machine learning techniques as it learns "how to map situations to actions so as to maximize a numerical reward signal \cite{Sutton1}". Agents' requirement to learn through experience and actions performed on current states not only affect the present but also affect future states and actions are two characteristics that distinguish them from other forms of ML. It is also what makes Pokémon Red a suitable environment to apply this style of ML to.
+
 \subsection{Problem Background}
+
+RL has only been applied to every Atari game, where it surpassed the human benchmark for every game \cite{brockman2016openai}. 
+However, these games lack long term randomness, where present actions influencing future states and future decisions. The game 'Pokémon Red' is an RPG game filled with various puzzles, a non-linear world, and a large amount of variance making each play through of the game unique while keeping consistent goals. In addition, the game has 2 states the players is constantly in, the player is either in an 
+overworld where they control their movement on a map or they are in a battle with another individual, where they control the actions 
+of their monster.
+
+I chose to apply RL to this environment, Pokémon Red, because of the benefits it holds during trianing and applications of this 
+research. This version of the game has the ability to speed-up the environment which allows for more timesteps to be completed 
+so the agent can experience more states. Another reason is because its complexity. The end goal of Pokémon Red is to defeat all the 
+gym leaders and become the champion. However, to reach this goal the player must complete a series of smaller tasks which are not 
+explicitly specified in the reward function. An example of this would be navigation a 2-dimensional plane, solving puzzles and
+ performing pokemon battles along the way. Getting the agent to learn smaller tasks while completing the main goal of the environment 
+ can be applied and extended to the real world. Compared to other forms of AI, RL never stops learning even when deployed, which makes
+ it a very effective method to adapt to new environments outside of the simulation and constantly learn to improve itself. 
+
 \subsection{Aims of the Project}
 \subsection{Report Structure}
