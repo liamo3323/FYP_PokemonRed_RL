@@ -108,6 +108,27 @@
       \field{title}{Reinforcement learning: An introduction}
       \field{year}{2018}
     \endentry
+    \entry{GabrieleDe}{article}{}
+      \name{author}{1}{}{%
+        {{hash=05de4cb4d4e8a9615fb8e916685b77a2}{%
+           family={De},
+           familyi={D\bibinitperiod},
+           given={Gabriele},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{05de4cb4d4e8a9615fb8e916685b77a2}
+      \strng{fullhash}{05de4cb4d4e8a9615fb8e916685b77a2}
+      \strng{bibnamehash}{05de4cb4d4e8a9615fb8e916685b77a2}
+      \strng{authorbibnamehash}{05de4cb4d4e8a9615fb8e916685b77a2}
+      \strng{authornamehash}{05de4cb4d4e8a9615fb8e916685b77a2}
+      \strng{authorfullhash}{05de4cb4d4e8a9615fb8e916685b77a2}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{What Is a Policy in Reinforcement Learning?}
+      \field{year}{2023}
+    \endentry
     \entry{brockman2016openai}{article}{}
       \name{author}{7}{}{%
         {{hash=7ae2a0efeaf9c031f9b420bcb1c19e54}{%
@@ -152,8 +173,8 @@
       \strng{authorbibnamehash}{7758f9195f8d8c34afaf48976e5c555a}
       \strng{authornamehash}{7758f9195f8d8c34afaf48976e5c555a}
       \strng{authorfullhash}{87cdccf072890926f8955924be595134}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{arXiv preprint arXiv:1606.01540}
@@ -184,8 +205,8 @@
       \strng{authorbibnamehash}{40b91dda4f73b17fd28d50bd7d3d7b79}
       \strng{authornamehash}{40b91dda4f73b17fd28d50bd7d3d7b79}
       \strng{authorfullhash}{40b91dda4f73b17fd28d50bd7d3d7b79}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Web: https://web. stanford. edu/class/aa228/reports/2018/final151. pdf}
@@ -231,8 +252,8 @@
       \strng{authorbibnamehash}{b98561f12455a73ecb4d4ae89c91b57c}
       \strng{authornamehash}{130f2908fca3e063971af2875a14c870}
       \strng{authorfullhash}{b98561f12455a73ecb4d4ae89c91b57c}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Playing Pokemon Red with Reinforcement Learning}
