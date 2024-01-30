@@ -1,9 +1,7 @@
 \section{Introduction}
-The aim of this project is to develop a reinforcement learning (RL) agent to play Pokémon Red to compare
-the effectiveness of different styles of RL algorithms. RL is an area of machine learning (ML) where
-agents make decisions and perform actions on states to achieve a goal.
+The aim of this project is to develop a reinforcement learning (RL) agent to play Pokémon Red to compare the effectiveness of different RL algorithms and techniques to solving complex problem spaces. The pokemon red problem space is a videogame targetted at children but is complex due to its large action space and countless decisions which influnce future states.
 
-%! Do I need to add an abstract at the start?
+% Do I need to add an abstract at the start?
 
 \subsection{What is Reinforcement Learning}
 
@@ -23,23 +21,9 @@ The reward signal of an environment defines the problem an agent aims to solve. 
 
 While reward is a measure of how well an action is, in the given state, value is the long term reward of short-term actions. Value is the accumulative reward over a given time, which is more important when judging action choices. A set of actions that lead to a high amount of reward in the short-term is considered to be high in value. However, in the long-term where the chosen actions do no lead to increases in reward would have a low value. Despite of value in achieving the goal of the environment, value must be estimated by the agent over its lifetime while reward is given by the environment. Therefore, value is the most important and influental component of RL to making an optimal policy \cite{Sutton1}. 
 
+The last essential aspect of RL is the model of the environment. The model of the environment is an inferences of how the environment will behave. Given a state action pair, the model would be able to make a prediction of returned reward for the state-action pair and resulting next state given the action. Models are for forward planning and performing actions which will yield further high rewards, which are used in model-based methods of learning, contrasting from trial-and-error methods called model-free learning \cite{Sutton1}.
 
 
-\subsection{Problem Background}
-
-RL has only been applied to every Atari game, where it surpassed the human benchmark for every game \cite{brockman2016openai}. 
-However, these games lack long term randomness, where present actions influencing future states and future decisions. The game 'Pokémon Red' is an RPG game filled with various puzzles, a non-linear world, and a large amount of variance making each play through of the game unique while keeping consistent goals. In addition, the game has 2 states the players is constantly in, the player is either in an 
-overworld where they control their movement on a map or they are in a battle with another individual, where they control the actions 
-of their monster.
-
-I chose to apply RL to this environment, Pokémon Red, because of the benefits it holds during trianing and applications of this 
-research. This version of the game has the ability to speed-up the environment which allows for more timesteps to be completed 
-so the agent can experience more states. Another reason is because its complexity. The end goal of Pokémon Red is to defeat all the 
-gym leaders and become the champion. However, to reach this goal the player must complete a series of smaller tasks which are not 
-explicitly specified in the reward function. An example of this would be navigation a 2-dimensional plane, solving puzzles and
- performing pokemon battles along the way. Getting the agent to learn smaller tasks while completing the main goal of the environment 
- can be applied and extended to the real world. Compared to other forms of AI, RL never stops learning even when deployed, which makes
- it a very effective method to adapt to new environments outside of the simulation and constantly learn to improve itself. 
 
 \subsection{Aims of the Project}
 \subsection{Report Structure}
