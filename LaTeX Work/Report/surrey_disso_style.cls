@@ -1,4 +1,4 @@
-\ProvidesClass{surrey_disso_style}[2022/10/13]
+\ProvidesClass{surrey_disso_style}
 
 \LoadClass[a4paper,10pt,twoside]{article}
 
@@ -16,7 +16,6 @@
 \RequirePackage{pifont}
 
 \def\UrlBreaks{\do\/\do-}
-\RequirePackage{breakurl}
 \RequirePackage[breaklinks]{hyperref}
 \RequirePackage{parskip}
 

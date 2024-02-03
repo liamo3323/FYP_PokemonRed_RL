@@ -2,9 +2,7 @@
 
 \raggedbottom
 
-\usepackage[english]{babel} % English language/hyphenation
-
-
+\usepackage{bookmark}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -14,11 +12,8 @@
     urlcolor=black
 }
 
-\usepackage{cleveref}
-
-% numeric
-\usepackage[style=ieee,sorting=none,backend=biber]{biblatex}
-\addbibresource{references.bib}
+\usepackage[style=ieee,sorting=none,backend=biber, style=numeric]{biblatex}
+\addbibresource{report.bib}
 
 
 \title{Reinforcement Learning in Pokémon Red to explore complex multi-reward environments}
