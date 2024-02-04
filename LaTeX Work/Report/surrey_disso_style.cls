@@ -44,7 +44,7 @@
 
     \vspace*{\stretch{0.5}}
 
-    \textbf{\LARGE \scshape \@title}\\
+    \textbf{\LARGE \scshape \@title}
 
     \vspace*{\stretch{1}}
 
