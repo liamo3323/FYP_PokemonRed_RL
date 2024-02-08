@@ -1,8 +1,9 @@
-PokemonRedRL/PokemonRed.gb
+PokemonRed.gb
 LaTeX Work/Synopsis/overview.pdf 
 LaTex Worl/Report/report.pdf
 LateX Work/Report Example
 PokemonRedExperiments-master.zip
+session*
 .venv
 **/env/
 *.aux
@@ -13,3 +14,8 @@ PokemonRedExperiments-master.zip
 *.dvi
 *.ps
 *.bbl
+*.pdf
+*.state
+__pycache__
+*.out
+*.xml
