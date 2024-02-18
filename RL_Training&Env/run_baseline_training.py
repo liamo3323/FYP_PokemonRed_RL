@@ -27,16 +27,16 @@ def make_env(rank, env_conf, seed=0):
 
 if __name__ == '__main__':
 
-    algorithm = "DQN"
+    algorithm = "PPO"
     batch_size = 512
     n_epochs = 1
     gamma = 0.999
-    learn_steps = 64
-    # <-- this is how long an episode is before it restarts to starting state!
+    learn_steps = 32
 
     sess_path = Path(f'{algorithm}_session_{str(uuid.uuid4())[:8]}')
     num_cpu = 8  # 64 #46  # Also sets the number of episodes per training iteration
-    ep_length = 2048 * 2
+    # <-- this is how long an episode is before it restarts to starting state!
+    ep_length = 2048 * num_cpu
 
     env_config = {
         'headless': True, 'save_final_state': True, 'early_stop': False, 'reward_scale': 0.001,

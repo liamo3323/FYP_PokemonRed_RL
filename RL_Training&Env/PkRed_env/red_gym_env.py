@@ -433,7 +433,8 @@ class RedGymEnv(Env):
 
     def save_and_print_info(self, done, obs_memory):
         if self.print_rewards:
-            prog_string = f'step: {self.step_count:6d}' # <-- maybe input time as well?
+            # <-- maybe input time as well?
+            prog_string = f'step: {self.step_count:6d}'
             for key, val in self.progress_reward.items():
                 prog_string += f' {key}: {val:5.2f}'
             prog_string += f' sum: {self.total_reward:5.2f}'
@@ -547,21 +548,21 @@ class RedGymEnv(Env):
 
         state_scores = {
             'event': self.reward_scale*self.update_max_event_rew(),
-            # 'party_xp': self.reward_scale*0.1*sum(poke_xps),
+            # # 'party_xp': self.reward_scale*0.1*sum(poke_xps),
             'level': self.reward_scale*self.get_levels_reward(),
             'heal': self.reward_scale*self.total_healing_rew,
-            'op_lvl': self.reward_scale*self.update_max_op_level(),
-            'dead': self.reward_scale*-0.1*self.died_count,
-            'badge': self.reward_scale*self.get_badges() * 5,
+            # 'op_lvl': self.reward_scale*self.update_max_op_level(),
+            # 'dead': self.reward_scale*-0.1*self.died_count,
+            # 'badge': self.reward_scale*self.get_badges() * 5,
             # 'op_poke': self.reward_scale*self.max_opponent_poke * 800,
             # 'money': self.reward_scale* money * 3,
             # 'seen_poke': self.reward_scale * seen_poke_count * 400,
             'explore': self.reward_scale * self.get_knn_reward()
         }
 
-        # EXIT CONDITION if a badge is met
-        if state_scores['badge'] == 1:
-            sys.exit()
+        # # EXIT CONDITION if a badge is met
+        # if state_scores['badge'] == 1:
+        #     sys.exit()
 
         return state_scores
 
