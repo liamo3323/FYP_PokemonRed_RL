@@ -498,8 +498,7 @@ class RedGymEnv(Env):
 
         pre_rew = self.explore_weight * 0.005
         post_rew = self.explore_weight * 0.01
-        cur_size = self.knn_index.get_current_count(
-        ) if self.use_screen_explore else len(self.seen_coords)
+        cur_size = self.knn_index.get_current_count() if self.use_screen_explore else len(self.seen_coords)
         base = (self.base_explore if self.levels_satisfied else cur_size) * pre_rew
         post = (cur_size if self.levels_satisfied else 0) * post_rew
         return base + post
