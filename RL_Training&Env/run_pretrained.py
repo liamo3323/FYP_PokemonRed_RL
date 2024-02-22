@@ -43,12 +43,12 @@ if __name__ == '__main__':
     env = make_env(0, env_config)()
 
     # env_checker.check_env(env)
-    
+
     # file_name = 'session_KEEP2/poke_2621440_steps'
     # file_name = 'session_KEEP2/poke_24772608_steps'
     # file_name = 'session_KEEP/poke_131072_steps'
-    file_name = 'session_KEEP/poke_11272192_steps'
-
+    # file_name = 'session_a0ca21b4/poke_12058624_steps'
+    file_name = 'PPO_session_bf0fc098/poke_20471808_steps'
 
     print('\nrunning pretrained model')
     print('\nloading checkpoint')

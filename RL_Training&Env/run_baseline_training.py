@@ -1,13 +1,14 @@
 from os.path import exists
 from pathlib import Path
 import uuid
+import datetime
+from stream_agent_env_wrapper import StreamWrapper
 from PkRed_env.red_gym_env import RedGymEnv
 from stable_baselines3 import A2C, PPO, DQN
 from stable_baselines3.common import env_checker
 from stable_baselines3.common.vec_env import DummyVecEnv, SubprocVecEnv
 from stable_baselines3.common.utils import set_random_seed
-from stable_baselines3.common.callbacks import CheckpointCallback
-
+from stable_baselines3.common.callbacks import CheckpointCallback, CallbackList
 
 def make_env(rank, env_conf, seed=0):
     """
@@ -27,26 +28,41 @@ def make_env(rank, env_conf, seed=0):
 
 if __name__ == '__main__':
 
+    current_datetime_str = datetime.datetime.now().strftime("%m%d%H%M%S")
+
     algorithm = "PPO"
-    batch_size = 512
-    n_epochs = 1
-    gamma = 0.999
+    batch_size = 128
+    n_epochs = 3
+    gamma = 0.997
     learn_steps = 32
 
-    sess_path = Path(f'{algorithm}_session_{str(uuid.uuid4())[:8]}')
-    num_cpu = 8  # 64 #46  # Also sets the number of episodes per training iteration
-    # <-- this is how long an episode is before it restarts to starting state!
-    ep_length = 2048 * num_cpu
+    sess_path = Path(f'Sessions/{algorithm}_Session_{current_datetime_str}')
+    print(sess_path)
+    num_cpu = 16  
+    ep_length = 2048 * 10
 
     env_config = {
-        'headless': True, 'save_final_state': True, 'early_stop': False, 'reward_scale': 0.001,
-        'action_freq': 24, 'init_state': 'RL_Training&Env/has_pokedex_nballs.state', 'max_steps': ep_length,
+        'headless': True, 'save_final_state': True, 'early_stop': False,
+        'action_freq': 24, 'init_state': 'has_pokedex_nballs.state', 'max_steps': ep_length,
         'print_rewards': True, 'save_video': False, 'fast_video': True, 'session_path': sess_path,
-        'gb_path': 'RL_Training&Env/PokemonRed.gb', 'debug': False, 'sim_frame_dist': 2_000_000.0,
-        'use_screen_explore': True, 'extra_buttons': False
+        'gb_path': 'PokemonRed.gb', 'debug': False, 'sim_frame_dist': 2_000_000.0,
+        'use_screen_explore': True, 'extra_buttons': False, 'explore_weight': 3
     }
 
+    print(env_config)
+
+    env = RedGymEnv(env_config)
+
+    env = StreamWrapper(
+                env, 
+                stream_metadata = { # All of this is part is optional
+                    "user": "ReLiam", # choose your own username
+                    "env_id": id, # environment identifier
+                    "color": "#1033ff", # choose your color :)
+                })
+
     env = SubprocVecEnv([make_env(i, env_config) for i in range(num_cpu)])
+    
     checkpoint_callback = CheckpointCallback(save_freq=ep_length, save_path=sess_path,
                                              name_prefix='poke')
 
@@ -66,5 +82,4 @@ if __name__ == '__main__':
         raise Exception('MISSING ALGORITHM!')
 
     for i in range(learn_steps):
-        model.learn(total_timesteps=(ep_length)*num_cpu *
-                    1000, callback=checkpoint_callback)
+        model.learn(total_timesteps=(ep_length)*num_cpu*5000, callback=checkpoint_callback)

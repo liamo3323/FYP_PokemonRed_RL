@@ -26,20 +26,20 @@ def make_env(rank, env_conf, seed=0):
 
 if __name__ == '__main__':
 
-    ep_length = 2048 * 8
-    sess_path = Path(f'session_{str(uuid.uuid4())[:8]}')
+    sess_path = Path(f'Sessions/checkpoint_session_{str(uuid.uuid4())[:8]}')
     learn_steps = 64
-    num_cpu = 8       # Also sets the number of episodes per training iteration
+    num_cpu = 12       # Also sets the number of episodes per training iteration
+    ep_length = 1024 * num_cpu * 2
     file_name = 'session_KEEP/poke_11272192_steps'
 
     if exists(file_name + '.zip'):
-        print("\nLoading Model "+file_name+".zip")
+        print(f"\nLoading Model "+file_name+".zip")
 
     env_config = {
         'headless': True, 'save_final_state': True, 'early_stop': False,
-        'action_freq': 24, 'init_state': 'RL_Training&Env/has_pokedex_nballs.state', 'max_steps': ep_length,
+        'action_freq': 24, 'init_state': 'has_pokedex_nballs.state', 'max_steps': ep_length,
         'print_rewards': True, 'save_video': False, 'fast_video': True, 'session_path': sess_path,
-        'gb_path': 'RL_Training&Env/PokemonRed.gb', 'debug': False, 'sim_frame_dist': 2_000_000.0,
+        'gb_path': 'PokemonRed.gb', 'debug': False, 'sim_frame_dist': 2_000_000.0,
         'use_screen_explore': True, 'extra_buttons': False
     }
 
