@@ -61,18 +61,19 @@ if __name__ == "__main__":
     learn_steps = 32
     sess_path = Path(f'Sessions/{algorithm}_Session_{current_datetime_str}_env2')
     print(sess_path)
-    ep_length = 2048 * 10
+    num_cpu = 12  #! Also sets the number of episodes per training iteration
+    ep_length = 2048 * num_cpu 
 
     env_config = {
                 'headless': True, 'save_final_state': False, 'early_stop': False,
                 'action_freq': 24, 'init_state': 'has_pokedex_nballs.state', 'max_steps': ep_length, 
                 'print_rewards': True, 'save_video': False, 'fast_video': True, 'session_path': sess_path,
-                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 0.5, 'explore_weight': 1
+                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 0.7, 'explore_weight': 0.7
             }
     
     print(env_config)
     
-    num_cpu = 12  #! Also sets the number of episodes per training iteration
+
     env = SubprocVecEnv([make_env(i, env_config) for i in range(num_cpu)])
     
     checkpoint_callback = CheckpointCallback(save_freq=ep_length//2, save_path=sess_path,
@@ -81,7 +82,7 @@ if __name__ == "__main__":
     callbacks = [checkpoint_callback, TensorboardCallback(sess_path)]
 
     # put a checkpoint here you want to start from
-    file_name = "session_8d5a9983/poke_32768000_steps" #"session_9ff8e5f0/poke_21626880_steps"
+    file_name = "session_8d5a9983/poke_32768000_steps"
     train_steps_batch = ep_length
     if exists(file_name + ".zip"):
         print("\nloading checkpoint")

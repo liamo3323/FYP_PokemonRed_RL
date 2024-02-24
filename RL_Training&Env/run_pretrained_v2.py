@@ -1,8 +1,8 @@
 from os.path import exists
 from pathlib import Path
 import uuid
-from PkRed_env.red_gym_env import RedGymEnv
-from stable_baselines3 import A2C, PPO
+from PkRed_env.red_gym_env_v2 import RedGymEnv
+from stable_baselines3 import PPO, A2C, DQN
 from stable_baselines3.common import env_checker
 from stable_baselines3.common.vec_env import DummyVecEnv, SubprocVecEnv
 from stable_baselines3.common.utils import set_random_seed
@@ -27,16 +27,15 @@ def make_env(rank, env_conf, seed=0):
 
 if __name__ == '__main__':
 
-    sess_path = Path(f'session_{str(uuid.uuid4())[:8]}')
-    ep_length = 16000
+    sess_path = Path(f'Sessions/session_{str(uuid.uuid4())[:8]}_Pretrained')
+    ep_length = 2048 
 
     env_config = {
-        'headless': True, 'save_final_state': True, 'early_stop': False, 'reward_scale': 0.001,
-        'action_freq': 24, 'init_state': 'RL_Training&Env/has_pokedex_nballs.state', 'max_steps': ep_length,
-        'print_rewards': True, 'save_video': True, 'fast_video': True, 'session_path': sess_path,
-        'gb_path': 'RL_Training&Env/PokemonRed.gb', 'debug': False, 'sim_frame_dist': 2_000_000.0,
-        'use_screen_explore': True, 'extra_buttons': False
-    }
+                'headless': False, 'save_final_state': True, 'early_stop': False,
+                'action_freq': 24, 'init_state': 'has_pokedex_nballs.state', 'max_steps': ep_length, 
+                'print_rewards': True, 'save_video': True, 'fast_video': True, 'session_path': sess_path,
+                'gb_path': 'PokemonRed.gb', 'debug': False, 'sim_frame_dist': 2_000_000.0, 'extra_buttons': True
+            }
 
     num_cpu = 1  # 64 #46  # Also sets the number of episodes per training iteration
     # SubprocVecEnv([make_env(i, env_config) for i in range(num_cpu)])
@@ -44,21 +43,18 @@ if __name__ == '__main__':
 
     # env_checker.check_env(env)
 
-    # file_name = 'session_KEEP2/poke_2621440_steps'
-    # file_name = 'session_KEEP2/poke_24772608_steps'
-    # file_name = 'session_KEEP/poke_131072_steps'
-    # file_name = 'session_a0ca21b4/poke_12058624_steps'
-    file_name = 'PPO_session_bf0fc098/poke_20471808_steps'
+    file_name = 'Sessions/PPO_Session_0223160349_env2/poke_23961600_steps'
 
-    print('\nrunning pretrained model')
-    print('\nloading checkpoint')
-    model = PPO.load(file_name, env=env)
+    print('\nloading checkpoint pretrained model')
+    model = PPO.load(file_name, env=env, custom_objects={'lr_schedule': 0, 'clip_range': 0})
 
     # keyboard.on_press_key("M", toggle_agent)
     obs, info = env.reset()
     while True:
-        action = 5  # pass action
-        agent_enabled = True
+        try:
+            agent_enabled = True
+        except:
+            agent_enabled = False
         if agent_enabled:
             action, _states = model.predict(obs, deterministic=False)
         obs, rewards, terminated, truncated, info = env.step(action)

@@ -82,8 +82,21 @@ if __name__ == '__main__':
     checkpoint_callback = CheckpointCallback(save_freq=ep_length, save_path=sess_path,
                                              name_prefix='poke')
     
-    model = make_model(algorithm)
+    # put a checkpoint here you want to start from
+    file_name = "session_8d5a9983/poke_32768000_steps"
+    train_steps_batch = ep_length
+    if exists(file_name + ".zip"):
+        print("\nloading checkpoint")
+        model = PPO.load(file_name, env=env)
+        model.n_steps = train_steps_batch
+        model.n_envs = num_cpu
+        model.rollout_buffer.buffer_size = train_steps_batch
+        model.rollout_buffer.n_envs = num_cpu
+        model.rollout_buffer.reset()
+    else:
+        model = make_model(algorithm)
 
+    print(model.policy)
 
     for i in range(learn_steps):
         model.learn(total_timesteps=(ep_length)*num_cpu*5000, callback=checkpoint_callback)
