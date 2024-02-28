@@ -28,7 +28,8 @@ def make_env(rank, env_conf, seed=0):
 if __name__ == '__main__':
 
     sess_path = Path(f'Sessions/session_{str(uuid.uuid4())[:8]}_Pretrained')
-    ep_length = 2048 
+    num_cpu = 11  # 64 #46  # Also sets the number of episodes per training iteration
+    ep_length = 2048 * 3
 
     env_config = {
                 'headless': False, 'save_final_state': True, 'early_stop': False,
@@ -37,13 +38,12 @@ if __name__ == '__main__':
                 'gb_path': 'PokemonRed.gb', 'debug': False, 'sim_frame_dist': 2_000_000.0, 'extra_buttons': True
             }
 
-    num_cpu = 1  # 64 #46  # Also sets the number of episodes per training iteration
     # SubprocVecEnv([make_env(i, env_config) for i in range(num_cpu)])
     env = make_env(0, env_config)()
 
     # env_checker.check_env(env)
 
-    file_name = 'Sessions/PPO_Session_0223160349_env2/poke_23961600_steps'
+    file_name = 'Sessions/PPO_Session_0225123615_env2_2/poke_28002304_steps'
 
     print('\nloading checkpoint pretrained model')
     model = PPO.load(file_name, env=env, custom_objects={'lr_schedule': 0, 'clip_range': 0})
