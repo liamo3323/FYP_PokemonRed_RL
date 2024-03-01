@@ -8,6 +8,16 @@ List of things to cover:
 
 \subsection{Introduction to Pokemon Red}
 
+Pokémon Red is a role-playing game where the player's goal is to defeatt the eight Gym Leaders and the Elite Four. The game is played from a top-down perspective and the player controls the actions of the main character. The player has to navigate the main character around the overworld, interact with non-player characters, and battle with wild Pokémon and other trainers. The game's combat is a turn-based battle system, where the player selects moves for their Pokémon to perform in battle. The game has a large number of items, moves, and abilities that the player can use to their advantage in battle. Therefore, large amount of variance makes each playthrough of the game unique while keeping goals consistent for each play through.
+
+\subsection{Why Pokemon Red?}
+
+RL has only been applied to every Atari game, where it surpassed the human benchmark for every game \cite{brockman2016openai}. However, these games lack long term randomness, where present actions influencing future states and future decisions. Every pokemon game takes at least 30 hours to complete, where every tiny decision made at every minute has an influence on the future. An example of this would be the decision of which pokemon to catch and train or which pokemon you start you journey with. The agent cannot defeat the game if it is able to navigate the map confidently but avoid battling, and on the other hand, the agent cannot complete the game if it chooses to only battle and not explore the map.
+ 
+In addition, other similar projects exist that apply reinforcement learning to pokemon to find the optimal battling strategy by Kalose et al \cite{kalose2018optimal}. 
+Their work focuses on the pokemon battling combat aspect of the game. However, I believe that it does not have a large enough search space to justify application of RL techniques because applying the same set of actions will always lead to very similar states, therefore making it possible for a rule based algorithm to perform pokemon battling optimally. 
+Another similar work by Flaherty, Jimenez and Abbasi \cite{flaherty2021playing} applies reinforcement learning algorithms A2C and DQN to play Pokémon Red. However, this piece of work explores the time it takes to traini the different agents using RAM observations versus image observations. I aim to extend their research by applying and comparing more algorithms and various RL techniques to find the optimal path to complete the game.
+
 \subsection{Why choose RL?}
 
 Within the field of machine learning, there are multiple different forms of learning that can be applied to the environment of pokemon red. However, due to the depth of the action space of the environment, reinforcement learning is the best form of machine learning to explore how to find the optimal path to completing the game. 
@@ -15,29 +25,6 @@ Within the field of machine learning, there are multiple different forms of lear
 The biggest drawback when using supervised or unsupervised learning is the dataset. The dataset would need someone playing the game for countless hours completing the game or reaching a checkpoint in the game before starting another episode of playing the game to provide a more varied dataset. Not only is this method increcible slow, as humans can only play and operate at a certain speed, but the dataset would also never experience actions that are unnatural for a human to perform, as the dataset is bound to the actions a human would take with the human's preconception of how to play the game. This leads onto the other issue, where the dataset of human playing the game is bound by human constaints. Humans are naturally lazy and have short attention spans, which means when the person providing the training data knows one way to solve a puzzle, they are unlikely to experiment other methods in solving the puzzle. Therefore, the agents trained on the human provided data are bound and limited by the performance of the human and will never find a more optimal path. 
 
 RL is the solution to finding the set of action to complete the game as it allows the agent to 'play' the game itself and explore the environment in a sped-up space to find the optimal path without the need of a human to show it how to play, while knowing what the goal is. 
-
-\subsection{Why Pokemon Red?}
-
-RL has only been applied to every Atari game, where it surpassed the human benchmark for every game \cite{brockman2016openai}. 
-However, these games lack long term randomness, where present actions influencing future states and future decisions. The game 'Pokémon Red' is an RPG game filled with various puzzles, a non-linear world, and a large amount of variance making each play through of the game unique while keeping consistent goals. In addition, the game has 2 states the players is constantly in, the player is either in an 
-overworld where they control their movement on a map or they are in a battle with another individual, where they control the actions 
-of their monster.
-
-I chose to apply RL to this environment, Pokémon Red, because of the benefits it holds during trianing and applications of this 
-research. This version of the game has the ability to speed-up the environment which allows for more timesteps to be completed 
-so the agent can experience more states. Another reason is because its complexity. The end goal of Pokémon Red is to defeat all the 
-gym leaders and become the champion. However, to reach this goal the player must complete a series of smaller tasks which are not 
-explicitly specified in the reward function. An example of this would be navigation a 2-dimensional plane, solving puzzles and
- performing pokemon battles along the way. Getting the agent to learn smaller tasks while completing the main goal of the environment 
- can be applied and extended to the real world. Compared to other forms of AI, RL never stops learning even when deployed, which makes
- it a very effective method to adapt to new environments outside of the simulation and constantly learn to improve itself. 
-
-Other similar projects which applies RL to find the optimal battling strategy by Kalose et al \cite{kalose2018optimal}. 
-Their work focuses on one aspect of the game and does not have a large enough search space to justify application of RL techniques. 
-Another similar work by Flaherty, Jimenez and Abbasi \cite{flaherty2021playing} applies RL algorithms A2C and DQN to play Pokémon 
-Red. However, this piece of work does not go into enough detail about the comparison of different RL techniques to find the best
- method to train an agent to complete large complex environments with a large search space. I aim to extend their research in 
- applying RL to Pokémon Red by applying more algorithms and various techniques RL that I will go into more detail in section 3.
 
 \subsection*{Why choose Reinforcement Learning for this problem?}
 
