@@ -26,6 +26,23 @@ The biggest drawback when using supervised or unsupervised learning is the datas
 
 RL is the solution to finding the set of action to complete the game as it allows the agent to 'play' the game itself and explore the environment in a sped-up space to find the optimal path without the need of a human to show it how to play, while knowing what the goal is. 
 
-\subsection*{Why choose Reinforcement Learning for this problem?}
+\subsection{Proximal Policy Optimization (PPO)}
 
-\subsection{RL Algorithms and Methods}
+\subsection{Deep Q Networks (DQN)}
+
+DQN was developed developed by combining reinforcement learning techniques and deep neural networks at scale by enhancing the Q-Learning algorithm with deep neural networks and a technique called experience replay \cite{TFAgentsAuthors2023}. DQN is a value based algorithms that attempts to learn the environment by optimizing a value function, where it expects a high amount of value to be returned in the long term \cite{deepcheckRL}. Therefore, the learned agent will maximise future reward by making assumptions of rewards of future states yet to be experienced. This is an important step in value-based algorithms, as optimal action-value functions obey an important identity known as the Bellman equation \cite{mnih2013playing}. 
+
+Q-Learning is based on the Bellman equation, where the agent learns the optimal action-value function by iteratively updating the Q-values of the state-action pairs \cite{mnih2013playing}. The Q-value of a state-action pair is the expected return of taking the action in the current state, where the value of a state as the sum of the immediate reward and the discounted value of the future states \cite{bellman1958dynamic}.  However, it is impractical to explore the Q-values of every state-action pair in a table, as the state space of the environment is too large to store in memory \cite{mnih2013playing}. Instead, a function approximator is used to estimate the Q-values. Q-learning is an off-policy algorithm, meaning that is has a seperate behavior policy for interacting with the environment. In DQN, the behavior policy is an epsilon-greedy policy, where the agent selects the action with the highest Q-value with probability 1 - epsilon and selects a random action with probability epsilon with the intent of finding a better action \cite{TFAgentsAuthors2023}.
+
+Despite value based algorithms theoretically being able to find the optimal policy, value based algorithms have a few weaknesses when deployed for real world use outside of the simulated environment. One weakness value based algorithms have is the ability to generalise to new situations beyond the environment \cite{OdelTruxillo2023}. This is considered the reality gap, where there is a mismatch between the training environment of the policy and the real-world environment in which the trained agent is deployed in \cite{tobin2017domain}. Transfer learning is a technique that can be used to mitigate the reality gap, where the agent is trained in a simulated environment and then transferred to the real world environment \cite{OdelTruxillo2023}. However, transfer learning is not always possible, as the real world environment may be too complex to simulate accurately as the real-world is constantly changing and dynamic and most environments are static and stochastic \cite{OdelTruxillo2023}. 
+
+Another weakness of value based algorithms is the environment they are trained in. Value based algorithms are able to converge towards the optimal policy by finding the set of actions which reward the most amount of value \cite{OdelTruxillo2023}. However, the environment the agent is trained in must be fully observable, where the agent is able to see the entire state of the environment at every timestep. This is a weakness and dependency on complete complete and whole information, as most real world environments are partially observable, where the agent is unable to see the entire state of the environment at every time step and would be forced to make informed decisions on partial information \cite{dulac2021challenges}. 
+
+\subsection{Advantage Actor-Critic (A2C)}
+
+A2C is an algorithm that combines aspects of policy gradient algorithms and value-based methods, where the policy (actor) selects actions and the value function, critic, is trained to estimate the expected reward \cite{mnih2013playing}. Value-based Algorithms, such as DQN, attempted to approximate the optimal value fucntion for a set of action and expected value (cite AI SUmmer ActorCritic). 
+
+
+\subsection{Algorithm Choice}
+
+The algorithms I plan on using are Proximal Policy Optimization (PPO), Advanrage Actor-Critic (A2C), and Deep Q Networks(DQN). These algorithms are commonly used algorithms used in the field of reinforcement learning for research purposes. The reason why I chose these algorithms is because my environment holds a discrete action space, where each action input is mapped to a possible button press on the gameboy.
