@@ -28,10 +28,6 @@ RL is the solution to finding the set of action to complete the game as it allow
 
 \subsection{Proximal Policy Optimization (PPO)}
 
-- Need to explain policy based algorithms 
-- Need to explain advantage 
-- Need to explain on policy and off policy 
-
 Reinforcement learning's training data is dependent on the policy generating its own training dataset, which is dependent on the training of its policy to provide valuable data \cite{XanderSteenbrugge2019ppo}. This means that the distribution of observations and training is constantly changing as the policy is constantly being updated, which brings about instability during training. Therefore, there is a need to stabilize the policy updates during training to avoid the a high learning rate to push the policy into a space where the next batch of data is learned under a poor policy further destabilizing the policy \cite{XanderSteenbrugge2019ppo}.
 
 \begin{quote}
@@ -43,8 +39,7 @@ PPO aims to keep the data efficiency and reliable of algorithm TRPO, while only 
 
 PPO is a policy based algorithm, where the policy is trained to get the most reward in the future by doing actions in each state \cite{deepcheckRL}. In comparison to value based algorithms, policy based algorithms are better at converging towards the optimum policy within stochastic environments \cite{mnih2015human}. 
 
-Policy Gradient methods work by estimating the policy gradient  
-%! https://www.youtube.com/watch?v=5P7I-xPq8u8 XanderSteenbrugge2019ppo 
+As mentioned in the Proximal Policy Optimization paper, "Policy gradient methods work by computing an estimator of the policy gradient and plugging it into a stochastic gradient ascent algorithm" \cite{schulman2017proximal}. This means that the policy, which is a neural network that takes the observed states as an input and suggests actions to take, is multiplied by the advantage function to determine the best action to take in a given state \cite{schulman2017proximal}. The advantage is the discounted sum of rewards that the agent expects to recieve in the future. The discount factor, is the scale between 0 and 0.99 used when calculating the discounted reward of how much the agent values future rewards \cite{XanderSteenbrugge2019ppo}. The higher the discount factor, the more the agent values future rewards. 
 
 \subsection{Deep Q Networks (DQN)}
 
@@ -68,10 +63,4 @@ One advantage of combining value-based and policy-based algorithms by using Acto
 
 The algorithms I plan on using are Proximal Policy Optimization (PPO), Advanrage Actor-Critic (A2C), and Deep Q Networks(DQN). These algorithms are commonly used algorithms used in the field of reinforcement learning for research purposes. The reason why I chose these algorithms is because my environment holds a discrete action space, where each action input is mapped to a possible button press on the gameboy.
 
-Policy based algorithms converge towards the optimal policy faster for continious and stochastic environments, while value based algorithms are more sample efficient and steady \cite{SergiosKaragiannakos2018}.
-
-(Comparison of On-Policy Deep Reinforcement Learning A2C with Off-Policy DQN in Irrigation Optimization: A Case Study at a Site in Portugal <-- can be a good reference to find the differences between the two algorithms)
-
-compare on-policy and off-policy algorithm (DQN vs A2C)
-
-On-policy algortihms evaluate adn improve its policy while using the same policy to make decisions on actions taken. Off-policy algorithms have a seperate behaviour policy from its action selection policy, where the behavior policy learns from experiences generated (find a source)
+I chose to compare these algorithms because they offer a spread of different reinforcement learning algorithm techniques so that I can determine which techniques are best suited for the multi-objective environment. I aim to compare techniques such as on and off policy algorithms, value and policy based algorithms and how actor-critic methods, which use both value and policy based methods, compare to the other algorithms.

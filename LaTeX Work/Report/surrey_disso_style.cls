@@ -2,6 +2,7 @@
 
 \LoadClass[a4paper,10pt,twoside]{article}
 
+\RequirePackage{multicol}
 \RequirePackage[left=1.0in,right=1.0in,bottom=1.0in]{geometry}
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
