@@ -39,4 +39,3 @@ class TensorboardCallback(BaseCallback):
             self.logger.record("trajectory/image", Image(images_row, "HWC"), exclude=("stdout", "log", "json", "csv"))
 
         return True
-

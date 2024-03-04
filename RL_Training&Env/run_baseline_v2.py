@@ -37,17 +37,17 @@ def make_env(rank, env_conf, seed=0):
 def make_model(algorithm):
     if algorithm == ("PPO"):
         model = PPO('MultiInputPolicy', env, verbose=1, n_steps=ep_length,
-                    batch_size=batch_size, n_epochs=n_epochs, gamma=gamma)
+                    batch_size=batch_size, n_epochs=n_epochs, gamma=gamma
+                    , tensorboard_log=sess_path)
 
     elif algorithm == ("A2C"):
         model = A2C('MultiInputPolicy', env, verbose=1,
-                    n_steps=ep_length, gamma=gamma)
+                    n_steps=ep_length, gamma=gamma, tensorboard_log=sess_path)
 
     elif algorithm == ("DQN"):
-        model = DQN('MultiInputPolicy', env, verbose=1, gamma=gamma)
+        model = DQN('MultiInputPolicy', env, verbose=1, gamma=gamma, tensorboard_log=sess_path)
 
     else:
-        # Don't! If you catch, likely to hide bugs.
         raise Exception('MISSING ALGORITHM!')
 
     return model
@@ -61,12 +61,16 @@ if __name__ == "__main__":
     gamma = 0.998
     learn_steps = 32
     sess_id = str(uuid.uuid4())[:8]
+
+    #! REMEMBERT TO SET IF ITS NEW SESSION OR TRAINING FROM CHECKPOINT
     sess_path = Path(f'Sessions/{algorithm}_Session_{current_datetime_str}_{sess_id}_env2_1')
     # sess_path = Path(f'Sessions/PPO_Session_0226082405_env2_2')
     print(sess_path)
+
+
     num_cpu = 11 #! cannot go any higher than 12 <- also crashes after 3-4 hours
     ep_length = 2048 * num_cpu 
-    total_timesteps = (ep_length)*10
+    total_timesteps = (ep_length)*1000
 
     env_config = {
                 'headless': True, 'save_final_state': False, 'early_stop': False,
@@ -114,13 +118,12 @@ if __name__ == "__main__":
     else:
         print("\nloading new model!")
         model = make_model(algorithm)
-
-    print(model.policy)
+        print(model.policy)
 
     print(f"trianing for {total_timesteps/num_cpu} steps...")
 
-    model.learn(total_timesteps=total_timesteps, callback=CallbackList(callbacks), tb_log_name="poke_ppo")
-
+    model.learn(total_timesteps=total_timesteps, callback=CallbackList(callbacks), tb_log_name=f"poke_{algorithm}")
 
     if use_wandb_logging:
+        print("!!!!COMPLETED!!!")
         run.finish()
