@@ -1,10 +1,4 @@
-PokemonRed.gb
-LaTeX Work/Synopsis/overview.pdf 
-LaTex Worl/Report/report.pdf
-LateX Work/Report Example
-PokemonRedExperiments-master.zip
-*session*
-*Sessions*
+*essions*
 .venv
 **/env/
 *.aux
@@ -21,4 +15,7 @@ __pycache__
 *.outX
 *.xml
 v2-env
-wandb
+*wandb*
+tempCodeRunner*
+P_Whidden_Red_Env
+*.gz
