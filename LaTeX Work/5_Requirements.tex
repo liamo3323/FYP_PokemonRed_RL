@@ -1,0 +1,76 @@
+\section{Requirements}
+
+\subsection{Software Requirements}
+
+\subsubsection*{Software requirements for this project include:}
+
+
+\begin{itemize}
+    \item Python 3.10
+    \item Pyboy
+    \item Stablebaselines3
+    \item Tensorboard
+    \item Wandb
+    \item Git
+    \item LaTeX
+    \item Pokemon Red Rom
+\end{itemize}
+
+\subsubsection*{Python}
+Python is the main programming language used for this project. Python is a high-level, general-purpose programming language that is widely used in the field of machine learning. Python is used for the implementation of the environment using the gymnasium package, the agents were created using the Stablebaselines3 implementation of A2C, DQN, and PPO, and the training of the agents was written in a short python script.
+
+\subsubsection*{Pyboy}
+Pyboy is a Gameboy emulator written in Python. Pyboy is used to run the Pokemon Red ROM and to interact with the game. Each button in the Gameboy emulator was mapped to a key on the keyboard which the environment was able to map to a selectable action for the agent. Pyboy is used to create the environment by wrapping it around a gymnasium environment, where the information of the state of the environment is taken from Pyboy via RAM readings or information on the screen.
+
+\subsubsection*{Stablebaselines3}
+Stablebaselines3 is a library of reinforcement learning algorithms implementated in Python. Stablebaselines3 is used to create agents that interact with the environment and was specifically chosen as it was a very straight forward to use library that worked will with the gymnasium environment library.
+
+\subsubsection*{Tensorboard}
+Tensorboard is a tool used to visualize the training of the agents through the use of graphing measurable metric. It was used to compare the performance of the trained models. Tensorboard was not necessary for this project but it was a very useful tool to visualize the progression of the training of the agents. Tensorboard was also a recommended tool that was supported by both stablebaselines3 algorithms and gymnasium environments.
+
+\subsubsection*{Wandb}
+Wandb is another tool used to visualize the training of the agents similarly to tensorboard. Wandb is able to do everything tensorboard does with the added benefit of being able to save console logs, code used to run the script, track hardware performance during training and more. It was used in tandom with tensorboard for the purpose of documenting my research.
+
+\subsubsection*{Git}
+Git is a version control system used to track changes and to keep a backup of the code onto github where there is a link to the project repository. It served no core purpose to this project but is a programming standard. 
+
+\subsubsection*{LaTeX}
+LaTeX is a typesetting system that is widely used for the publication of documents. LaTeX is used to create the final report of this research project.
+
+\subsubsection*{Pokemon Red Rom}
+The Pokemon Red Rom is the game that is loaded into Pyboy which makes the environment the agent interacts with. The Rom is not included in the repository and must be downloaded separately. A legal copy of the game is owned by the author of this project prior to the start of this research.
+
+
+\subsubsection*{Python Package requirements for this project include: }
+
+\begin{multicols}{2}
+\begin{itemize}
+    \item uuid
+    \item json
+    \item pathlib
+    \item numpy
+    \item skimage
+    \item matplotlib
+    \item pyboy
+    \item mediapy
+    \item gymnasium
+    \item asyncio
+    \item websockets
+    \item os
+    \item datetime
+    \item stable-baselines3
+    \item tensorboard
+    \item wandb
+    \item einops
+\end{itemize}
+\end{multicols}
+
+\subsection{Hardware Requirements}
+
+Hardware used for this project includes:
+\begin{itemize}
+    \item Linux: Arch Kde Plasma 5.23.3, 64 GB RAM, AMD Ryzen 7 7700X, Nvidia RTX 4070 ti
+    \item 64 GB RAM minimum to run 11 parallel agents training on the environment per episode
+
+\end{itemize}
+

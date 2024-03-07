@@ -55,7 +55,7 @@ def make_model(algorithm):
 if __name__ == "__main__":
     current_datetime_str = datetime.datetime.now().strftime("%m%d%H%M%S")
     use_wandb_logging = True
-    algorithm = "A2C"
+    algorithm = "PPO"
     batch_size = 128
     n_epochs = 3
     gamma = 0.998
@@ -69,8 +69,9 @@ if __name__ == "__main__":
 
 
     num_cpu = 11 #! cannot go any higher than 12 <- also crashes after 3-4 hours
-    ep_length = 2048 * num_cpu 
-    total_timesteps = (ep_length)*10000
+    episode_length_per_cpu = 2000 #? each episode will be 2000 steps long 
+    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 22,000
+    total_timesteps = (ep_length)*1000 #? TOTAL TRAINING TIME WILL BE 22,000,000
 
     env_config = {
                 'headless': True, 'save_final_state': False, 'early_stop': False,
@@ -120,7 +121,7 @@ if __name__ == "__main__":
         model = make_model(algorithm)
         print(model.policy)
 
-    print(f"trianing for {total_timesteps/num_cpu} steps...")
+    print(f"training for {total_timesteps/num_cpu} steps...")
 
     model.learn(total_timesteps=total_timesteps, callback=CallbackList(callbacks), tb_log_name=f"poke_{algorithm}")
 

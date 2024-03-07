@@ -404,7 +404,9 @@ class RedGymEnv(Env):
 
     def check_if_done(self):
         done = self.step_count >= self.max_steps - 1
-        # done = self.read_hp_fraction() == 0 # end game on loss
+        
+        done = any(state['badge'] == 1 for state in self.agent_stats)
+
         return done
 
     def save_and_print_info(self, done, obs):

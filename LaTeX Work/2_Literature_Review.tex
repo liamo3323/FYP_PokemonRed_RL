@@ -1,10 +1,6 @@
 \section{Literature Review}
 
-List of things to cover:
-
-- justify research: -> what is pkmn and RPG games \& why did I chose pkmn red
-
-- up-to-date with relevant literature: -> the algorithms I plan on using and why?
+Within the literature review, I will be introducing the game Pokemon Red, why I chose Pokemon Red, and the reason why I chose to conduct this research using reinforcement learning. Lastly, I will be explaining the three algorithms I chose to compare the performance of and why I chose them.
 
 \subsection{Introduction to Pokemon Red}
 
@@ -12,7 +8,7 @@ Pokémon Red is a role-playing game where the player's goal is to defeatt the ei
 
 \subsection{Why Pokemon Red?}
 
-RL has only been applied to every Atari game, where it surpassed the human benchmark for every game \cite{brockman2016openai}. However, these games lack long term randomness, where present actions influencing future states and future decisions. Every pokemon game takes at least 30 hours to complete, where every tiny decision made at every minute has an influence on the future. An example of this would be the decision of which pokemon to catch and train or which pokemon you start you journey with. The agent cannot defeat the game if it is able to navigate the map confidently but avoid battling, and on the other hand, the agent cannot complete the game if it chooses to only battle and not explore the map.
+RL has only been applied to every Atari game, where it surpassed the human benchmark for every game \cite{brockman2016openai}. However, these games lack long term randomness, where present actions influencing future states and future decisions. Every pokemon game takes at least 25 hours to complete, where every tiny decision made at every minute has an influence on the future \cite{howlongtobeat}. An example of this would be the decision of which pokemon to catch and train or which pokemon you start you journey with. The agent cannot defeat the game if it is able to navigate the map confidently but avoid battling, and on the other hand, the agent cannot complete the game if it chooses to only battle and not explore the map.
  
 In addition, other similar projects exist that apply reinforcement learning to pokemon to find the optimal battling strategy by Kalose et al \cite{kalose2018optimal}. Their work focuses on finding an optimal pokemon battling strategy using model-free reinforcement learning strategies \cite{kalose2018optimal}. Not only does their work only focus on one aspect of the pokemon game which turn-based battling in video games is present in many other video games outside of the pokemon franchise, but also only focuses on researching different model-free strategies. I believe that the environment the research was conducted does not have a large enough search space and is not stochastic enough to justify application of RL techniques. This is because applying the same action to a set state between different episodes almost always lead to the same state, therefore making it possible for a rule based algorithm to optimize pokemon battling. 
 
