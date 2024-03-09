@@ -15,6 +15,8 @@
 \RequirePackage{url}
 \RequirePackage{array}
 \RequirePackage{pifont}
+\RequirePackage{float}
+
 
 \def\UrlBreaks{\do\/\do-}
 \RequirePackage[breaklinks]{hyperref}

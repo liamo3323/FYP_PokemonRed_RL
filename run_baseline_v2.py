@@ -63,15 +63,15 @@ if __name__ == "__main__":
     sess_id = str(uuid.uuid4())[:8]
 
     #! REMEMBERT TO SET IF ITS NEW SESSION OR TRAINING FROM CHECKPOINT
-    # sess_path = Path(f'Sessions/{algorithm}_Session_{current_datetime_str}_{sess_id}_env2_1')
-    sess_path = Path(f'Sessions/PPO_Session_0307161249_7602f77b_env2_2')
+    sess_path = Path(f'Sessions/{algorithm}_Session_{current_datetime_str}_{sess_id}_env2_1')
+    # sess_path = Path(f'Sessions/PPO_Session_0307161249_7602f77b_env2_2')
     print(sess_path)
 
 
     num_cpu = 11 #! cannot go any higher than 12 <- also crashes after 3-4 hours
-    episode_length_per_cpu = 2000 #? each episode will be 2000 steps long 
-    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 22,000
-    total_timesteps = (ep_length)*1000 #? TOTAL TRAINING TIME WILL BE 22,000,000
+    episode_length_per_cpu = 1000 #? each episode will be 1000 steps long 
+    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 11,000
+    total_timesteps = (ep_length)*1000 #? TOTAL TRAINING TIME WILL BE 11,000,000
 
     env_config = {
                 'headless': True, 'save_final_state': False, 'early_stop': False,
@@ -105,7 +105,8 @@ if __name__ == "__main__":
         callbacks.append(WandbCallback())
 
     # put a checkpoint here you want to start from
-    file_name = f"Sessions/PPO_Session_0307161249_7602f77b_env2_1/poke_4235000_steps"
+    # file_name = f"Sessions/PPO_Session_0307161249_7602f77b_env2_1/poke_4235000_steps"
+    file_name = f"blank"
 
     train_steps_batch = ep_length
     if exists(file_name + ".zip"):
