@@ -38,7 +38,7 @@
 \newcommand{\urn}[1]{\def\@urn{#1}}
 
 \renewcommand{\maketitle}{
-    \singlespacing
+    \singlespacing 
     \begin{titlepage}
     \begin{center}
     \vspace*{\stretch{1.5}}

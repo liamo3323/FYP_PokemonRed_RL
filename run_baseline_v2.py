@@ -63,8 +63,8 @@ if __name__ == "__main__":
     sess_id = str(uuid.uuid4())[:8]
 
     #! REMEMBERT TO SET IF ITS NEW SESSION OR TRAINING FROM CHECKPOINT
-    sess_path = Path(f'Sessions/{algorithm}_Session_{current_datetime_str}_{sess_id}_env2_1')
-    # sess_path = Path(f'Sessions/PPO_Session_0226082405_env2_2')
+    # sess_path = Path(f'Sessions/{algorithm}_Session_{current_datetime_str}_{sess_id}_env2_1')
+    sess_path = Path(f'Sessions/PPO_Session_0307161249_7602f77b_env2_2')
     print(sess_path)
 
 
@@ -105,13 +105,13 @@ if __name__ == "__main__":
         callbacks.append(WandbCallback())
 
     # put a checkpoint here you want to start from
-    file_name = "Sessions"
+    file_name = f"Sessions/PPO_Session_0307161249_7602f77b_env2_1/poke_4235000_steps"
 
     train_steps_batch = ep_length
     if exists(file_name + ".zip"):
         print("\nloading checkpoint")
         model = PPO.load(file_name, env=env)
-        model.n_steps = train_steps_batch
+        model.n_steps = train_steps_batch #? Essentially save frequency
         model.n_envs = num_cpu
         model.rollout_buffer.buffer_size = train_steps_batch
         model.rollout_buffer.n_envs = num_cpu
