@@ -1,6 +1,6 @@
 \section{Literature Review}
 
-Within the literature review, I will be introducing the game Pokemon Red, why I chose Pokemon Red, and the reason why I chose to conduct this research using RL. Lastly, I will be explaining the three algorithms I chose to compare the performance of and why I chose them.
+The literature review section will cover a few important topics necessary to understand the research being conducted. The video game environment will be introduced, along with why it was chosen for this research. Following will be an explanation of each algorithm chosen and why they were chosen.
 
 \subsection{Introduction to Pokemon Red}
 
@@ -10,9 +10,9 @@ Pokémon Red is a role-playing game where the player's goal is to defeat the eig
 
 RL has only been applied to every Atari game, where it surpassed the human benchmark for every game \cite{brockman2016openai}. However, these games lack long term randomness, where present actions influencing future states and future decisions. Every pokemon game takes at least 25 hours to complete, where every tiny decision made at every minute has an influence on the future \cite{howlongtobeat}. An example of this would be the decision of which pokemon to catch and train or which pokemon you start you journey with. The agent cannot defeat the game if it is able to navigate the map confidently but avoid battling, and on the other hand, the agent cannot complete the game if it chooses to only battle and not explore the map.
  
-In addition, other similar projects exist that apply RL to pokemon to find the optimal battling strategy by Kalose et al \cite{kalose2018optimal}. Their work focuses on finding an optimal pokemon battling strategy using model-free RL strategies \cite{kalose2018optimal}. Not only does their work only focus on one aspect of the pokemon game which turn-based battling in video games is present in many other video games outside of the pokemon franchise, but also only focuses on researching different model-free strategies. I believe that the environment the research was conducted does not have a large enough search space and is not stochastic enough to justify application of RL techniques. This is because applying the same action to a set state between different episodes almost always lead to the same state, therefore making it possible for a rule based algorithm to optimize pokemon battling. 
+In addition, other similar projects exist that apply RL to pokemon to find the optimal battling strategy by Kalose et al \cite{kalose2018optimal}. Their work focuses on finding an optimal pokemon battling strategy using model-free RL strategies \cite{kalose2018optimal}. Not only does their work only focus on one aspect of the pokemon game which turn-based battling in video games is present in many other video games outside of the pokemon franchise, but also only focuses on researching different model-free strategies. However, the environment the research was conducted does not have a large enough search space and is not stochastic enough to justify application of RL techniques. This is because applying the same action to a set state between different episodes almost always lead to the same state, therefore making it possible for a rule based algorithm to optimize pokemon battling. 
 
-Another similar work by Flaherty, Jimenez and Abbasi \cite{flaherty2021playing} applies RL algorithms A2C and DQN to play Pokémon Red. Their work focuses on comparing A2C to DQN to see if RAM observations was better than image observations for training agents \cite{flaherty2021playing}. Their work is  closely related to what I am to achieve with this project, as I am also comparing the performance of A2c and DQN. However, my research aims to combine RAM and image observations during training to determine which style of algorithm is best suited for multi-objective RL. I aim to extend their research by applying and comparing more algorithms and various RL techniques to find the optimal method to complete the game.
+Another similar work by Flaherty, Jimenez and Abbasi \cite{flaherty2021playing} applies RL algorithms A2C and DQN to play Pokémon Red. Their work focuses on comparing A2C to DQN to see if RAM observations was better than image observations for training agents \cite{flaherty2021playing}. Their work is  closely related to the research of this project, as the performance of A2c and DQN are being compared. However, my research aims to combine RAM and image observations during training to determine which style of algorithm is best suited for multi-objective RL. This research paper will extend upon their research by applying and comparing more algorithms and various RL techniques to find the optimal method to complete the game.
 
 \subsection{Why choose RL?}
 
@@ -21,22 +21,6 @@ Within the field of machine learning, there are multiple different forms of lear
 The biggest drawback when using supervised or unsupervised learning is the dataset. The dataset would need someone playing the game for countless hours completing the game or reaching a checkpoint in the game before starting another episode of playing the game to provide a more varied dataset \cite{XanderSteenbrugge2019intro}. Not only is this method increcible slow, as humans can only play and operate at a certain speed, but the dataset would also never experience actions that are unnatural for a human to perform, as the dataset is bound to the actions a human would take with the human's preconception of how to play the game. This leads onto the other issue, where the dataset of human playing the game is bound by human constaints. Humans are naturally lazy and have short attention spans, which means when the person providing the training data knows one way to solve a puzzle, they are unlikely to experiment other methods in solving the puzzle \cite{XanderSteenbrugge2019intro}. Therefore, the agents trained on the human provided data are bound and limited by the performance of the human and will never find a more optimal path. 
 
 RL is the solution to finding the set of action to complete the game as it allows the agent to 'play' the game itself and explore the environment in a sped-up space to find the optimal path without the need of a human to show it how to play, while knowing what the goal is. 
-
-\subsection{Important Terms}
-
-Before explaining the theory behind the algorithms chosen, some important terms must be defined and explained before going into the theory of the algorithms.
-
-Within the field of RL, there are two main types of algorithms, policy based and value based. Policy based algorithms are algorithms that learn the optimal policy by selecting the best action to take in a given state. Value based algorithms are algorithms that learn the optimal policy by selecting the best action to take in a given state by estimating the value of the state \cite{deepcheckRL}.
-
-on and off policy 
-
-Policy gradient
-
-Advantage and Q learning 
-
-Monte Carlo Sampling 
-
-
 
 \subsection{Proximal Policy Optimization (PPO)}
 
@@ -79,6 +63,8 @@ One advantage of combining value-based and policy-based algorithms by using Acto
 
 %! ADD MORE DETAIL
 
-The algorithms I plan on using are Proximal Policy Optimization (PPO), Advanrage Actor-Critic (A2C), and Deep Q Networks(DQN). These algorithms are commonly used algorithms used in the field of RL for research purposes. The reason why I chose these algorithms is because my environment holds a discrete action space, where each action input is mapped to a possible button press on the gameboy.
+The algorithms chosen to be compared are Proximal Policy Optimization (PPO), Advanrage Actor-Critic (A2C), and Deep Q Networks(DQN). These algorithms are commonly used algorithms used in the field of RL for research purposes. These algorithms were chose because the environment used to conduct this research holds a discrete action space, where each action input is mapped to a possible button press on the gameboy. Therefore, the chosen algorithms had to support a discrete action space and not a continious action space.
 
-I chose to compare these algorithms because they offer a spread of different RL algorithm techniques so that I can determine which techniques are best suited for the multi-objective environment. I aim to compare techniques such as on and off policy algorithms, value and policy based algorithms and how actor-critic methods, which use both value and policy based methods, compare to the other algorithms.
+In addition, these algorithms offer a spread of different RL algorithm techniques to determine which techniques are best suited for the multi-objective environment. Techniques such as comparing on and off policy algorithms, value and policy based algorithms, and how actor-critic methods, which use both value and policy based methods, compare to the other algorithms.
+
+Another reason why these algorithms were chosen is because PPO was the original algorithm used to train on this environment which can be used as a baseline to compare the other algorithms to. 
