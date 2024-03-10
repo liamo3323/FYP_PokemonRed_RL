@@ -1,6 +1,6 @@
 \section{Implementation}
 
-While implementing the project, I broke down the large task of making a reinforcement learning agent to play pokemon red into smaller tasks. The first step was to create or find an environment that was an accurate depiction or an environment wrapping around the pokemon game itself. After finding the environment, I would have check the details of the environment and make sure it was compatible with the different algorithms I would be using. Once an environment and reinforcement learning algorithm was chosen, I was able to achieve a minimum viable product by training a single agent to play the game and defeat the first gym. After this, I would be able to scale up the project by finding methods to accelerate the training of the agent without sacrificing the quality of the agent's performance and amount of timesteps it was training for. 
+While implementing the project, I broke down the large task of making a RL agent to play pokemon red into smaller tasks. The first step is to create or find an environment that with an accurate depiction or an environment wrapping around the pokemon game itself. After finding the environment, I would have check the details of the environment and make sure it is compatible with the different algorithms I would be using. Once an environment and RL algorithm is chosen, I will able to achieve a minimum viable product by training a single agent to play the game and defeat the first gym. After this, I will be able to scale up the project by finding methods to accelerate the training of the agent without sacrificing the quality of the agent's performance and amount of timesteps it is training for. 
 
 \subsection{Environment}
 
@@ -8,9 +8,21 @@ While implementing the project, I broke down the large task of making a reinforc
 
 \subsection{Reward Function}
 
+One issue that was encountered while training the agent was getting the agent to increase its confidence with navigating towards the first gym and initiating the battle with the first gym leader. The agent was able to navigate from the starting area at the start of the episode to the zone which held the first gym leader. In addition, the agent was able to swiftly defeat the gym leader, which suggests that it was able to understand battling and the optimum policy to defeat the gym leader the swiftest. However, it had difficulty even navigating within the few tiles around the gym leader. One potential solution to this problem was to increase the reward for completing the first gym, which would indicate to the agent that the gym leader was an important objective and take actions to get there faster. Another solution to this problem would be to increase the discount factor so that the agent was further future sighted and valued high rewarding future states more. 
+
 \subsection{Navigation}
 
-\subsection{Combat}
+One issue that arose while training the agent was learning to navigate beyond the starting zone. This was an issue because of the way in which the exploration function was written in the environment. The algorithm would recieve state information through a mixture of screen information and RAM information. The algorithm would then read the screen information and compare the recieved pixel information if it matches or is similar to any previously experienced screen information. Any newly discovered screen information would be rewarded an exploration reward. 
+
+The issue with this method of exploration, within an environment that has to be in sync with the emulation, is that non-static images would give a false positive and reward the agent with exploration due to the new screen information. This was an issue that arose during early training. 
+
+Due to the starting area having some non-static images of moving flowers and water tiles, the agent would be rewarded for staying in the starting area. In addition, the screen images were further varied by the fact that there were randomly moving non-player characters within the same screen. Therefore, the agent was receiving new screen information from the non-static images and moving non-player characters without any action input, which resulted in the agent not learning correctly.
+
+\subsection{Battling}
+
+
+
+-Mention reward for leveling pokemon in team was valued too high, as the reward is scalled to total level in the team but couldnt go beyond a certain value that was hardset which resulted in 'capped'amount of reward for leveling up pokemon -> imples that at some point the agent would stop battling and keep exploring 
 
 \subsection{Agent training}
 
@@ -45,5 +57,5 @@ While training the agent, the hardware component that was bottlenecking further 
 
 From the three figures above, it can be seen that the GPU Utilization was low, with a maximum of 42.47\% peak usage. The CPU usage was also low, with a maximum of 4.71\% peak usage, while the Total RAM usage while training the agent was quite high, with a maximum of 75.82\% peak usage. The values provided in the figures above were taken from the wandb system monitor that was running while trianing the agents. In addition, these values have the possibility of being marginally skewed as the hardware running the training the agents was also running visual studio code and other system operating system essential processes. However, it is very evident that RAM was the bottleneck in training the agents. It was possible to train with an additional instance of the environment making the total instances 12, however there was a high chance that the system would crash. This occured while training the agent using the PPO algorithm after 4-5 hour. 
 
-\subsection{data recording}
+\subsection{Data Recording}
 

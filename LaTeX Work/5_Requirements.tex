@@ -23,7 +23,7 @@ Python is the main programming language used for this project. Python is a high-
 Pyboy is a Gameboy emulator written in Python. Pyboy is used to run the Pokemon Red ROM and to interact with the game. Each button in the Gameboy emulator was mapped to a key on the keyboard which the environment was able to map to a selectable action for the agent. Pyboy is used to create the environment by wrapping it around a gymnasium environment, where the information of the state of the environment is taken from Pyboy via RAM readings or information on the screen.
 
 \subsubsection*{Stablebaselines3}
-Stablebaselines3 is a library of reinforcement learning algorithms implementated in Python. Stablebaselines3 is used to create agents that interact with the environment and was specifically chosen as it was a very straight forward to use library that worked will with the gymnasium environment library.
+Stablebaselines3 is a library of RL algorithms implementated in Python. Stablebaselines3 is used to create agents that interact with the environment and was specifically chosen as it was a very straight forward to use library that worked will with the gymnasium environment library.
 
 \subsubsection*{Tensorboard}
 Tensorboard is a tool used to visualize the training of the agents through the use of graphing measurable metric. It was used to compare the performance of the trained models. Tensorboard was not necessary for this project but it was a very useful tool to visualize the progression of the training of the agents. Tensorboard was also a recommended tool that was supported by both stablebaselines3 algorithms and gymnasium environments.
@@ -74,3 +74,11 @@ Hardware used for this project includes:
 
 \end{itemize}
 
+\subsection{Recreateability of Research}
+
+%! place link somewhere
+Experiments mentioned in this research can be prepared by pulling the github repo mentioned and placing the ``PokemonRed.gb'' file in the root directory. 
+
+The agent can be trained running the ``run\_baseline\_v2.py'' in the root directory. The option to train an agent from scratch or to load a pre-trained model is available. The trained model will then be saved within the ``sessions'' directory.
+
+Wandb visualization can be enabled within the ``run\_baseline\_v2.py'' file and tensorboard metrics will saved within the model's directory.

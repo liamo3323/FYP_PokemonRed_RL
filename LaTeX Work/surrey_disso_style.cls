@@ -17,7 +17,6 @@
 \RequirePackage{pifont}
 \RequirePackage{float}
 
-
 \def\UrlBreaks{\do\/\do-}
 \RequirePackage[breaklinks]{hyperref}
 \RequirePackage{parskip}
@@ -25,7 +24,7 @@
 \setlength{\headheight}{15.2pt}
 
 \fancyhf{}
-\fancyhf[HL]{Reinforcement Leanring with Pokémon Red}
+\fancyhf[HL]{Reinforcement Learning with Pokémon Red}
 \fancyhf[HR]{\@date}
 \fancyhf[FR]{\thepage}
 \fancyhf[FL]{\@author}
