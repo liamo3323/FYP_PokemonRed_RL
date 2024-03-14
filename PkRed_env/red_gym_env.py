@@ -44,7 +44,7 @@ MONEY_ADDRESS_2 = 0xD348
 MONEY_ADDRESS_3 = 0xD349
 
 
-class RedGymEnv(Env):
+class RedGym(Env):
 
 
     def __init__(

@@ -32,9 +32,6 @@ class RedGymEnv(Env):
         self.explore_weight = (
             1 if "explore_weight" not in config else config["explore_weight"]
         )
-        self.level_weight = (
-            1 if "level_weight" not in config else config["level_weight"]
-        )
         self.reward_scale = (
             1 if "reward_scale" not in config else config["reward_scale"]
         )
@@ -227,7 +224,7 @@ class RedGymEnv(Env):
 
         obs = self._get_obs()
 
-        # self.save_and_print_info(step_limit_reached, obs)
+        self.save_and_print_info(step_limit_reached, obs)
 
         # create a map of all event flags set, with names where possible
         #if step_limit_reached:
@@ -244,6 +241,8 @@ class RedGymEnv(Env):
                             print(f"could not find key: {key}")
 
         self.step_count += 1
+        if step_limit_reached: 
+            print(f"step limit reached, total reward: {self.new_reward}  ")
 
         return obs, new_reward, False, step_limit_reached, {}
     
@@ -384,6 +383,7 @@ class RedGymEnv(Env):
 
     def update_reward(self):
         # compute reward
+        
         self.progress_reward = self.get_game_state_reward()
         new_total = sum(
             [val for _, val in self.progress_reward.items()]
@@ -528,11 +528,11 @@ class RedGymEnv(Env):
         # https://github.com/pret/pokered/blob/91dc3c9f9c8fd529bb6e8307b58b96efa0bec67e/constants/event_constants.asm
         state_scores = {
             "event": self.reward_scale * self.update_max_event_rew() * 4,
-            "level": self.reward_scale * self.level_weight * self.get_levels_reward(),
+            "level": self.reward_scale * self.get_levels_reward(),
             "heal": self.reward_scale * self.total_healing_rew * 5,
             "op_lvl": self.reward_scale * self.update_max_op_level() * 0.2,
             "dead": self.reward_scale * self.died_count * -0.1,
-            "badge": self.reward_scale * self.get_badges() * 7, # use to be 5
+            "badge": self.reward_scale * self.get_badges() * 5,
             "explore": self.reward_scale * self.explore_weight * len(self.seen_coords) * 0.1,
         }
 

@@ -43,7 +43,7 @@ if __name__ == '__main__':
 
     # env_checker.check_env(env)
 
-    file_name = 'Sessions/PPO_Session_0225123615_env2_2/poke_28002304_steps'
+    file_name = 'Sessions/DQN_Session_0304104144_383a6664_env2_1/poke_22426624_steps'
 
     print('\nloading checkpoint pretrained model')
     model = PPO.load(file_name, env=env, custom_objects={'lr_schedule': 0, 'clip_range': 0})

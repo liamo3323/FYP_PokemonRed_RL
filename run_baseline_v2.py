@@ -57,8 +57,8 @@ if __name__ == "__main__":
     use_wandb_logging = True
     algorithm = "PPO"
     batch_size = 128
-    n_epochs = 3
     gamma = 0.998
+    n_epochs = 3
     learn_steps = 32
     sess_id = str(uuid.uuid4())[:8]
 
@@ -74,10 +74,11 @@ if __name__ == "__main__":
     total_timesteps = (ep_length)*1000 #? TOTAL TRAINING TIME WILL BE 11,000,000
 
     env_config = {
-                'headless': True, 'save_final_state': False, 'early_stop': False,
+                'headless': True, 'save_final_state': True, 'early_stop': False,
                 'action_freq': 24, 'init_state': 'has_pokedex_nballs.state', 'max_steps': ep_length, 
                 'print_rewards': True, 'save_video': False, 'fast_video': True, 'session_path': sess_path,
-                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 1, 'explore_weight': 0.7, 'level_weight': 1.2
+                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 1, 'explore_weight': 2.5,
+                'use_screen_explore': True, 'extra_buttons': False, 'sim_frame_dist': 2_000_000.0,
             }
     
     print(env_config)
@@ -85,10 +86,10 @@ if __name__ == "__main__":
 
     env = SubprocVecEnv([make_env(i, env_config) for i in range(num_cpu)])
     
-    checkpoint_callback = CheckpointCallback(save_freq=ep_length//2, save_path=sess_path,
+    checkpoint_callback = CheckpointCallback(save_freq=ep_length, save_path=sess_path,
                                      name_prefix="poke")
     
-    callbacks = [checkpoint_callback, TensorboardCallback()]
+    callbacks = [checkpoint_callback, TensorboardCallback(f"{sess_path}/poke_{algorithm}")]
 
     # log to wandb
     if use_wandb_logging:

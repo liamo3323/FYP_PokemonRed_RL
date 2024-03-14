@@ -21,5 +21,6 @@ P_Whidden_Red_Env
 *.gz
 *.gb
 report.bbl-SAVE-ERROR
+*.fdb_latexmkW
 *.fdb_latexmk
 *.fls
