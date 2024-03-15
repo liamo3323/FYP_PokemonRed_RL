@@ -224,7 +224,7 @@ class RedGymEnv(Env):
 
         obs = self._get_obs()
 
-        self.save_and_print_info(step_limit_reached, obs)
+        # self.save_and_print_info(step_limit_reached, obs)
 
         # create a map of all event flags set, with names where possible
         #if step_limit_reached:
@@ -241,8 +241,6 @@ class RedGymEnv(Env):
                             print(f"could not find key: {key}")
 
         self.step_count += 1
-        if step_limit_reached: 
-            print(f"step limit reached, total reward: {self.new_reward}  ")
 
         return obs, new_reward, False, step_limit_reached, {}
     
@@ -383,7 +381,6 @@ class RedGymEnv(Env):
 
     def update_reward(self):
         # compute reward
-        
         self.progress_reward = self.get_game_state_reward()
         new_total = sum(
             [val for _, val in self.progress_reward.items()]
@@ -404,9 +401,7 @@ class RedGymEnv(Env):
 
     def check_if_done(self):
         done = self.step_count >= self.max_steps - 1
-        
-        done = any(state['badge'] == 1 for state in self.agent_stats)
-
+        # done = self.read_hp_fraction() == 0 # end game on loss
         return done
 
     def save_and_print_info(self, done, obs):

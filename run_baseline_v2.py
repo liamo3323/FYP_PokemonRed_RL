@@ -77,7 +77,7 @@ if __name__ == "__main__":
                 'headless': True, 'save_final_state': True, 'early_stop': False,
                 'action_freq': 24, 'init_state': 'has_pokedex_nballs.state', 'max_steps': ep_length, 
                 'print_rewards': True, 'save_video': False, 'fast_video': True, 'session_path': sess_path,
-                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 1, 'explore_weight': 2.5,
+                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 1.5, 'explore_weight': 1.5,
                 'use_screen_explore': True, 'extra_buttons': False, 'sim_frame_dist': 2_000_000.0,
             }
     
@@ -89,7 +89,7 @@ if __name__ == "__main__":
     checkpoint_callback = CheckpointCallback(save_freq=ep_length, save_path=sess_path,
                                      name_prefix="poke")
     
-    callbacks = [checkpoint_callback, TensorboardCallback(f"{sess_path}/poke_{algorithm}")]
+    callbacks = [checkpoint_callback, TensorboardCallback()]
 
     # log to wandb
     if use_wandb_logging:
