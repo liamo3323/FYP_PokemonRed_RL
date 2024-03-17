@@ -32,6 +32,9 @@ class RedGymEnv(Env):
         self.explore_weight = (
             1 if "explore_weight" not in config else config["explore_weight"]
         )
+        self.battle_weight = (
+            1 if "battle_weight" not in config else config["battle_weight"]
+        )
         self.reward_scale = (
             1 if "reward_scale" not in config else config["reward_scale"]
         )
@@ -523,10 +526,10 @@ class RedGymEnv(Env):
         # https://github.com/pret/pokered/blob/91dc3c9f9c8fd529bb6e8307b58b96efa0bec67e/constants/event_constants.asm
         state_scores = {
             "event": self.reward_scale * self.update_max_event_rew() * 4,
-            "level": self.reward_scale * self.get_levels_reward(),
+            "level": self.reward_scale * self.battle_weight * self.get_levels_reward(),
             "heal": self.reward_scale * self.total_healing_rew * 5,
-            "op_lvl": self.reward_scale * self.update_max_op_level() * 0.2,
-            "dead": self.reward_scale * self.died_count * -0.1,
+            # "op_lvl": self.reward_scale * self.update_max_op_level() * 0.2,
+            "dead": self.reward_scale * self.died_count * -1,
             "badge": self.reward_scale * self.get_badges() * 5,
             "explore": self.reward_scale * self.explore_weight * len(self.seen_coords) * 0.1,
         }
