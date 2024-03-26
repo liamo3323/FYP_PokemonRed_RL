@@ -28,8 +28,7 @@ def make_env(rank, env_conf, seed=0):
 if __name__ == '__main__':
 
     sess_path = Path(f'Sessions/session_{str(uuid.uuid4())[:8]}_Pretrained')
-    num_cpu = 11  # 64 #46  # Also sets the number of episodes per training iteration
-    ep_length = 2500 * 3
+    ep_length = 1250
 
     env_config = {
                 'headless': False, 'save_final_state': True, 'early_stop': False,
@@ -43,7 +42,7 @@ if __name__ == '__main__':
 
     # env_checker.check_env(env)
 
-    file_name = 'Sessions/PPO_Session_0323004141_33a564a8_env2_1/poke_21780000_steps'
+    file_name = 'Sessions/PPO_Session_0326005639_88963f05_env2_1/poke_22022000_steps'
     print('\nloading checkpoint pretrained model')
     model = PPO.load(file_name, env=env, custom_objects={'lr_schedule': 0, 'clip_range': 0})
 

@@ -62,16 +62,15 @@ if __name__ == "__main__":
     learn_steps = 32
     sess_id = str(uuid.uuid4())[:8]
 
-    #! REMEMBERT TO SET IF ITS NEW SESSION OR TRAINING FROM CHECKPOINT
     sess_path = Path(f'Sessions/{algorithm}_Session_{current_datetime_str}_{sess_id}_env2_1')
     # sess_path = Path(f'Sessions/PPO_Session_0307161249_7602f77b_env2_2')
     print(sess_path)
 
 
-    num_cpu = 11 #! cannot go any higher than 12 <- also crashes after 3-4 hours
-    episode_length_per_cpu = 1000 #? each episode will be 1000 steps long 
-    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 2,750
-    total_timesteps = (ep_length)*2000 #? TOTAL TRAINING TIME WILL BE 22,000,000
+    num_cpu = 14  #! cannot go any higher than 12 <- also crashes after 3-4 hours
+    episode_length_per_cpu = 1250 #? each episode will be 1250 steps long 
+    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 17,500
+    total_timesteps = (ep_length)*1714 #? TOTAL TRAINING TIME WILL BE 30,000,000 (approx)
 
     env_config = {
                 'headless': True, 'save_final_state': True, 'early_stop': False,
@@ -82,7 +81,6 @@ if __name__ == "__main__":
             }
     
     print(env_config)
-    
 
     env = SubprocVecEnv([make_env(i, env_config) for i in range(num_cpu)])
     
@@ -128,5 +126,6 @@ if __name__ == "__main__":
     model.learn(total_timesteps=total_timesteps, callback=CallbackList(callbacks), tb_log_name=f"poke_{algorithm}")
 
     if use_wandb_logging:
-        print("!!!!COMPLETED!!!")
+        current_time_str = datetime.datetime.now().strftime("%d%H%M")
+        print(f"!!!!COMPLETED at {current_time_str}!!!")
         run.finish()

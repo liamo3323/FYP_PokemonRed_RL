@@ -141,6 +141,7 @@ class RedGymEnv(Env):
         self.levels_satisfied = False
         self.base_explore = 0
         self.max_opponent_level = 0
+        self.opponent_level = 0
         self.max_event_rew = 0
         self.max_level_rew = 0
         self.last_health = 1
@@ -536,12 +537,12 @@ class RedGymEnv(Env):
             "event": self.reward_scale * self.update_max_event_rew() * 5,
             "level": self.reward_scale * self.battle_weight * self.get_levels_reward(),
             "heal": self.reward_scale * self.total_healing_rew * 5,
-            "op_lvl": self.reward_scale * self.update_max_op_level() * 0.5, #- opponent pokemon level
-            # "dead": self.reward_scale * self.died_count * -1, #? experimenting no loss for death to encourage it more
+            "op_highest_lvl": self.reward_scale * self.update_max_op_level() * 0.7, #- Highest level of opponent pokemon
+            "op_total_lvl": self.reward_scale * self.battling_opponent() * 0.5, # - Total level of opponent pokemon
+            "dead": self.reward_scale * self.died_count * -1, #? experimenting no loss for death to encourage it more
             "badge": self.reward_scale * self.get_badges() * 10,
             "explore": self.reward_scale * self.explore_weight * len(self.seen_coords) * 0.1,
         }
-
         return state_scores
 
     def update_max_op_level(self):
@@ -555,6 +556,11 @@ class RedGymEnv(Env):
         )
         self.max_opponent_level = max(self.max_opponent_level, opponent_level)
         return self.max_opponent_level
+    
+    def battling_opponent(self):
+        opponent_level = ([0xD8C5, 0xD8F1, 0xD91D, 0xD949, 0xD975, 0xD9A1])
+        self.opponent_level = sum(opponent_level)
+        return self.opponent_level
 
     def update_max_event_rew(self):
         cur_rew = self.get_all_events_reward()
