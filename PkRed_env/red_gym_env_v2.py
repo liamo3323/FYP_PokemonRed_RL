@@ -274,6 +274,7 @@ class RedGymEnv(Env):
         ]
         self.agent_stats.append(
             {
+                "total_reward": self.total_reward,
                 "step": self.step_count,
                 "x": x_pos,
                 "y": y_pos,
@@ -482,23 +483,30 @@ class RedGymEnv(Env):
 
     def get_levels_sum(self):
         min_poke_level = 2
-        starter_additional_levels = 4
+        starter_additional_levels = 4 # agent will always have and keep their starter pkmn
         poke_levels = [
             max(self.read_m(a) - min_poke_level, 0)
             for a in [0xD18C, 0xD1B8, 0xD1E4, 0xD210, 0xD23C, 0xD268]
         ]
         return max(sum(poke_levels) - starter_additional_levels, 0)
 
+    def get_gym_level(self):
+        # gym levels from https://bulbapedia.bulbagarden.net/wiki/Gym_Leader#Kanto
+        # Brock, Misty, Lt. Surge, Erika, Koga, Sabrina, Blaine, Giovanni, Champion
+        return [12, 21, 24, 29, 33, 43, 47, 50, 60][self.get_badges()]
+
     def get_levels_reward(self):
-        explore_thresh = 22
-        scale_factor = 4
-        level_sum = self.get_levels_sum()
+        explore_thresh = self.get_gym_level() # level sum below this will encourage more exploration #! originally 22 
+        scale_factor = 4 # scale factor to divide reward by once explore_thresh is met #! originally 4
+        level_sum = self.get_levels_sum() # return party sum minus starter starting level
         if level_sum < explore_thresh:
             scaled = level_sum
         else:
-            scaled = (level_sum - explore_thresh) / scale_factor + explore_thresh
+            scaled = (level_sum - explore_thresh) / scale_factor
         self.max_level_rew = max(self.max_level_rew, scaled)
         return self.max_level_rew
+
+
 
     def get_badges(self):
         return self.bit_count(self.read_m(0xD356))
@@ -525,12 +533,12 @@ class RedGymEnv(Env):
         # addresses from https://datacrystal.romhacking.net/wiki/Pok%C3%A9mon_Red/Blue:RAM_map
         # https://github.com/pret/pokered/blob/91dc3c9f9c8fd529bb6e8307b58b96efa0bec67e/constants/event_constants.asm
         state_scores = {
-            "event": self.reward_scale * self.update_max_event_rew() * 4,
+            "event": self.reward_scale * self.update_max_event_rew() * 5,
             "level": self.reward_scale * self.battle_weight * self.get_levels_reward(),
             "heal": self.reward_scale * self.total_healing_rew * 5,
-            # "op_lvl": self.reward_scale * self.update_max_op_level() * 0.2,
-            "dead": self.reward_scale * self.died_count * -1,
-            "badge": self.reward_scale * self.get_badges() * 5,
+            "op_lvl": self.reward_scale * self.update_max_op_level() * 0.5, #- opponent pokemon level
+            # "dead": self.reward_scale * self.died_count * -1, #? experimenting no loss for death to encourage it more
+            "badge": self.reward_scale * self.get_badges() * 10,
             "explore": self.reward_scale * self.explore_weight * len(self.seen_coords) * 0.1,
         }
 

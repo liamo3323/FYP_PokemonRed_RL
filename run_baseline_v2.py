@@ -69,17 +69,16 @@ if __name__ == "__main__":
 
 
     num_cpu = 11 #! cannot go any higher than 12 <- also crashes after 3-4 hours
-    episode_length_per_cpu = 2000 #? each episode will be 2000 steps long 
-    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 22,000
-    total_timesteps = (ep_length)*1000 #? TOTAL TRAINING TIME WILL BE 22,000,000
+    episode_length_per_cpu = 1000 #? each episode will be 1000 steps long 
+    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 2,750
+    total_timesteps = (ep_length)*2000 #? TOTAL TRAINING TIME WILL BE 22,000,000
 
     env_config = {
                 'headless': True, 'save_final_state': True, 'early_stop': False,
                 'action_freq': 24, 'init_state': 'has_pokedex_nballs.state', 'max_steps': ep_length, 
                 'print_rewards': True, 'save_video': False, 'fast_video': True, 'session_path': sess_path,
-                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 1, 'explore_weight': 3,
+                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 1.3, 'explore_weight': 2, 'battle_weight': 2,
                 'use_screen_explore': True, 'extra_buttons': False, 'sim_frame_dist': 2_000_000.0,
-                'battle_weight': 2,
             }
     
     print(env_config)

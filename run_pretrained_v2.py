@@ -29,7 +29,7 @@ if __name__ == '__main__':
 
     sess_path = Path(f'Sessions/session_{str(uuid.uuid4())[:8]}_Pretrained')
     num_cpu = 11  # 64 #46  # Also sets the number of episodes per training iteration
-    ep_length = 2048 * 3
+    ep_length = 2500 * 3
 
     env_config = {
                 'headless': False, 'save_final_state': True, 'early_stop': False,
@@ -43,18 +43,14 @@ if __name__ == '__main__':
 
     # env_checker.check_env(env)
 
-    file_name = 'Sessions/DQN_Session_0304104144_383a6664_env2_1/poke_22426624_steps'
-
+    file_name = 'Sessions/PPO_Session_0323004141_33a564a8_env2_1/poke_21780000_steps'
     print('\nloading checkpoint pretrained model')
     model = PPO.load(file_name, env=env, custom_objects={'lr_schedule': 0, 'clip_range': 0})
 
     # keyboard.on_press_key("M", toggle_agent)
     obs, info = env.reset()
     while True:
-        try:
-            agent_enabled = True
-        except:
-            agent_enabled = False
+        agent_enabled = True
         if agent_enabled:
             action, _states = model.predict(obs, deterministic=False)
         obs, rewards, terminated, truncated, info = env.step(action)
