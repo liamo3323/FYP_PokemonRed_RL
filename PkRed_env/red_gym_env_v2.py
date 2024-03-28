@@ -284,7 +284,7 @@ class RedGymEnv(Env):
                 "max_map_progress": self.max_map_progress,
                 "last_action": action,
                 "pcount": self.read_m(0xD163),
-                "levels": levels,
+                "levels": self.progress_reward["level"],
                 "levels_sum": sum(levels),
                 "ptypes": self.read_party(),
                 "hp": self.read_hp_fraction(),
@@ -292,6 +292,8 @@ class RedGymEnv(Env):
                 "deaths": self.died_count,
                 "badge": self.get_badges(),
                 "event": self.progress_reward["event"],
+                "op_highest_lvl": self.progress_reward["op_highest_lvl"],
+                "op_total_lvl": self.progress_reward["op_total_lvl"],
                 "healr": self.total_healing_rew,
             }
         )

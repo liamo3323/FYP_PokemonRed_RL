@@ -66,7 +66,6 @@ if __name__ == "__main__":
     # sess_path = Path(f'Sessions/PPO_Session_0307161249_7602f77b_env2_2')
     print(sess_path)
 
-
     num_cpu = 14  #! cannot go any higher than 12 <- also crashes after 3-4 hours
     episode_length_per_cpu = 1250 #? each episode will be 1250 steps long 
     ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 17,500
@@ -76,7 +75,7 @@ if __name__ == "__main__":
                 'headless': True, 'save_final_state': True, 'early_stop': False,
                 'action_freq': 24, 'init_state': 'has_pokedex_nballs.state', 'max_steps': ep_length, 
                 'print_rewards': True, 'save_video': False, 'fast_video': True, 'session_path': sess_path,
-                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 1.3, 'explore_weight': 2, 'battle_weight': 2,
+                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 1.2, 'explore_weight': 1, 'battle_weight': 1,
                 'use_screen_explore': True, 'extra_buttons': False, 'sim_frame_dist': 2_000_000.0,
             }
     
