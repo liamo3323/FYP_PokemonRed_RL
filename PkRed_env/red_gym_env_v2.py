@@ -491,7 +491,8 @@ class RedGymEnv(Env):
             max(self.read_m(a) - min_poke_level, 0)
             for a in [0xD18C, 0xD1B8, 0xD1E4, 0xD210, 0xD23C, 0xD268]
         ]
-        return max(sum(poke_levels) - starter_additional_levels, 0)
+        return (0xD18C)
+        return max(sum(poke_levels) - starter_additional_levels, 0) #! <-- use this if fix doesnt work
 
     def get_gym_level(self):
         # gym levels from https://bulbapedia.bulbagarden.net/wiki/Gym_Leader#Kanto
