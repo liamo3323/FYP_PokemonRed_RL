@@ -69,7 +69,7 @@ if __name__ == "__main__":
     # sess_path = Path(f'Sessions/PPO_Session_0307161249_7602f77b_env2_2')
     print(sess_path)
 
-    num_cpu = 14  #! cannot go any higher than 12 <- also crashes after 3-4 hours
+    num_cpu = 10  #! cannot go any higher than 12 <- also crashes after 3-4 hours
     episode_length_per_cpu = 1500 #? each episode will be 1250 steps long 
     mil_timestep = 40
     target_total_timesteps = mil_timestep * 1000 * 1000 # Approx how many timesteps in the total training 
