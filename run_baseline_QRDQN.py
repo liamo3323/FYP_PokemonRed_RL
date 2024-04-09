@@ -5,7 +5,7 @@ import uuid
 from PkRed_env.red_gym_env_v2 import RedGymEnv
 from PkRed_env.stream_agent_wrapper import StreamWrapper
 from stable_baselines3 import PPO, A2C, DQN
-from sb3_contrib import QRDQN, ARS
+from sb3_contrib import QRDQN
 from dopamine.agents.rainbow import rainbow_agent
 from stable_baselines3.common.vec_env import SubprocVecEnv
 from stable_baselines3.common.utils import set_random_seed
@@ -50,8 +50,6 @@ def make_model(algorithm):
 
     elif algorithm == ("QRDQN"):
         model = QRDQN('MultiInputPolicy', env, verbose=1, gamma=gamma, tensorboard_log=sess_path)
-    
-
 
     else:
         raise Exception('MISSING ALGORITHM!')
@@ -61,7 +59,7 @@ def make_model(algorithm):
 if __name__ == "__main__":
     current_datetime_str = datetime.datetime.now().strftime("%m%d%H%M%S")
     use_wandb_logging = True
-    algorithm = "ARS"
+    algorithm = "QRDQN"
     batch_size = 64 #! was 128
     gamma = 0.998
     n_epochs = 3
