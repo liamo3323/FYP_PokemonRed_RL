@@ -14,10 +14,14 @@ Something else that helped with the most time consuming aspect of the research p
 
 \subsection{Challenges}
 
-- The reward function was difficult to implement and required a lot of trial and error to get right
-- Number of timesteps for the experiment was difficult 
-- Steps per episode 
-- Getting the agent to balance navigation and battling 
+While conducting this research, a quite a few issues arose that made the project more difficult to complete but were still able to be solved. The largest issue and main objective of this research was to find the correct reward function so that it was feasible for the agent to reach the goal of the firsy gym in order to compare their performances. The reward function of the multi-objective environment was difficult to implement correctly by balancing battling and navigation. The correct values were eventually discovered after countless agents being trained and tested, all of which can be found in the evaluation section of the report. However, being able to train an agent once during the day and once during the night sped up the process. 
+
+The difficulty of tuning the reward function was contributed by the inital reward function that was provided by the environment. The environment had very simple rewards that were not enough to train an agent to complete the first gym, it was deigned to constantly train a singular agent till it eventually reached the goal. For example, the reward to encourage battling was static and would stop increasing the amount of reward given to the agent after reaching a certain level, which would result in the agent stopping to battle after reaching a certain point in the game. Another example was the reward for navigation, which would give a reward for ever new screen. However, this could be exploited by the agent by navigating through menus and not actually moving the character in the game. Instead, reward would only be given when a new screen is experienced and coordinates are updated. 
+
+In addition, finding the correct number of total timesteps for the experiment was also difficult because it needed the value function to be corrected before further experimentation on an appropriate number of timesteps could be conducted. Initally, a value of 20 million timesteps was chosen, but was later increased to 40 million to ensure that the agents had enough time to learn the environment and reach the first gym more consistently. However, it was a time consuming task and required trial and error and lots of training time.
+
+Another challenge that was faced during the research project was getting the inital algorithm script to work correctly. There were multiple examples of the algorithms being implemented in the stablebaselines3 library working with gym environments, however, the environment for this research was a custom gym environment and had to support multiple agents training on multiple instances of the environment, which is an added challenge. 
+
 - The amount of time it took to determine the effectiveness of reward values
 
 \subsection{Improvements}

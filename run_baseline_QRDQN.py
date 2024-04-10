@@ -66,6 +66,10 @@ if __name__ == "__main__":
     learn_steps = 32
     sess_id = str(uuid.uuid4())[:8]
 
+    reward_scale = 1
+    explore_weight = 0.5
+    battle_weight = 4
+
     sess_path = Path(f'Sessions/{algorithm}_Session_{current_datetime_str}_{sess_id}_env2_1')
     # sess_path = Path(f'Sessions/PPO_Session_0307161249_7602f77b_env2_2')
     print(sess_path)
@@ -103,14 +107,15 @@ if __name__ == "__main__":
         import wandb
         from wandb.integration.sb3 import WandbCallback
         run = wandb.init(
-            project="pokemon-red-train",
-            id=sess_id,
+            project="FYP-RL-DATA",
+            id=f"{algorithm}-{mil_timestep}m-{episode_length_per_cpu}EP-rewS({reward_scale})_expS({explore_weight})_batS({battle_weight})_{sess_id}", #PPO-40m-1500EP-rewS:1.0_expS:0.5_batS:4
             config=env_config,
             sync_tensorboard=True,  
             monitor_gym=True,  
             save_code=True,
         )
         callbacks.append(WandbCallback())
+
 
     # put a checkpoint here you want to start from
     # file_name = f"Sessions/PPO_Session_0307161249_7602f77b_env2_1/poke_4235000_steps"

@@ -43,7 +43,7 @@ def make_model(algorithm):
 
     elif algorithm == ("A2C"):
         model = A2C('MultiInputPolicy', env, verbose=1,
-                    n_steps=ep_length, gamma=gamma, tensorboard_log=sess_path)
+                    n_steps=ep_length, gamma=gamma, tensorboard_log=sess_path, non_blocking=False, pin_memory=False)
 
     elif algorithm == ("DQN"):
         model = DQN('MultiInputPolicy', env, verbose=1, gamma=gamma, tensorboard_log=sess_path)
@@ -61,7 +61,7 @@ def make_model(algorithm):
 if __name__ == "__main__":
     current_datetime_str = datetime.datetime.now().strftime("%m%d%H%M%S")
     use_wandb_logging = True
-    algorithm = "ARS"
+    algorithm = "A2C"
     batch_size = 64 #! was 128
     gamma = 0.998
     n_epochs = 3
