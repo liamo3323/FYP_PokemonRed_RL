@@ -35,10 +35,16 @@ While reward is a measure of how well an action is, in the given state, value is
 The last essential aspect of RL is the model of the environment. The model of the environment is an inferences of how the environment will behave. Given a state action pair, the model would be able to make a prediction of returned reward for the state-action pair and resulting next state given the action. Models are for forward planning and performing actions which will yield further high rewards, which are used in model-based methods of learning, contrasting from trial-and-error methods called model-free learning \cite{Sutton1}.
 
 \subsection{Multi-Objective Environments}
-Currently RL research has shown that it is effective at solving single-objective environments, where the goal is to maximize a single reward. However, within multi-objective environments, the multiple rewards must be maximized which might include sacrificing reward in one objective to maximize reward in another.  
+
+Currently RL research has shown that it is effective at solving single-objective environments, where the goal is to maximize a single reward. This is because of RL's effectiveness at solving optimization problems. However, within multi-objective environments, multiple rewards must be maximized which may include sacrificing reward in one objective to maximize reward in another. The requirement to balance multiple objectives requires the RL agent to perform a cost benefit analysis of the actions it takes. This is a complex problem as the agent must learn to balance the objectives and make decisions that are not only beneficial in the short-term but also in the long-term to find the optimal policy in solving the problem presented in the environment \cite{hayes2022practical}. 
+
+Despite the potential of multi-objective environments to be applied to real world problems, there is a lack of research in the area. In addition, as mentioned by \cite{hayes2022practical}, the current research in multi-objective environments is limited to a few algorithms and environments. This is in part due to single-objective methods being applied to multi-objective problems by nature, which either exclude the multi-objective aspect of the problem or summate the objectives into a reward value. This has resulted in a lack of research in the area of multi-objective environments, which leads to a lack of datasets and benchmarks to test the effectiveness of multi-objective algorithms and solutions \cite{hayes2022practical}.
 
 \subsection{Experiment Environment - Pokémon Red}
-Pokémon Red is a role-playing game developed by Game Freak and published by Nintendo in 1996 \cite{HubZ_1998}. 
+Pokémon Red is a role-playing game developed by Game Freak and published by Nintendo in 1996 \cite{HubZ_1998}. Within the game, the player controls a character who navigates through the world of Pokémon catching, battling and training pet like creatures called pokemon. One of the game's main objectives is to defeat the 8 pokemon gym leaders. 
+
+
+The pokemon videogame series are a series of games developed on handheld consoles marketed towards kids. 
 
 None of the details of the game have been altered from the original release of the game to ensure that the agents are tested on a realistic scenario. This is to ensure that the agents are tested in a real-world scenario and not a curated environment. In addition, the results of each agent may differ due to the difficulty of the project and the complexity of the game.  
 

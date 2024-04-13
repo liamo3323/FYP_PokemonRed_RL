@@ -30,6 +30,10 @@ Value based algorithms, such as DQN, learn the environment by optimizing a value
 
 Value based algorithms are theoretically able to find the optimal policy, but have a few weaknesses when deployed for real world use outside of the simulated environment. One weakness of value based algorithms is the ability to generalise to new situations beyond the environment \cite{OdelTruxillo2023}. This is considered the reality gap, where there is a mismatch between the environment the policy is trained in and the real-world environment in which the agent is deployed in \cite{tobin2017domain}. Transfer learning is a technique that can be used to mitigate the reality gap, where the agent is trained in a simulated environment and then transferred to the real world environment \cite{OdelTruxillo2023}. However, transfer learning is not always possible, as the real world is complex to simulate accurately due to stochastic nature \cite{OdelTruxillo2023}. 
 
+\subsection{Quantile Regression DQN (QR-DQN)}
+
+Quantile Regression Deep Q Networks (QR-DQN) is an extension of DQN but instead aims to approximate the average future reward \cite{dabney2018distributional}. QRDQN, like DQN, is still a value based off-policy algorithm. In addition, it still uses the epsilon-greedy policy to balance exploration and exploitation. However, QRDQN was designed to be an improvement on DQN by focusing to learn certain quantiles of the distribution instead of trying to approximate the entire distribution of state-action pairs \cite{dabney2018distributional}. In doing so, QRDQN attempts to avoid the overestimation of Q-values that DQN is prone to by employing a model-based approach to finding the optimal policy.
+
 \subsection{Proximal Policy Optimization (PPO)}
 
 PPO is an on-policy, policy based algorithm trained to maximize reward in the future by choosing the best actions in each state \cite{deepcheckRL}. PPO was designed to improve the training stability of the policy by limiting the change made to the policy at each training epoch \cite{ThomasSimonini2022A2C}. On-policy algorithms, compared to off-policy algorithms, only use a singular policy to make decisions.

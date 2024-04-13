@@ -72,7 +72,9 @@ This was solved by increasing the reward for battling and by creating a dynamic 
 
 \subsection{Algorithm Implementation}
 
-As specified in the literature review and project design, stablebaselines3's implementation of the algorithms will be used for this research project. However, when implementing the ``A2C'' algorithm, memory and cuda memory issues were encountered. This meant that only PPO, DQN and QRDQN algorithms will be in the model evaluation. 
+As specified in the literature review and project design, stablebaselines3's implementation of the algorithms will be used for this research project. However, when implementing the $A2C$ algorithm, memory and cuda memory issues were encountered. This meant that only PPO, DQN and QRDQN algorithms will be in the model evaluation. 
+
+When attempting to apply the $A2C$ algorithm to the environment, due to the algorithms actor and critic models operating in tandom, the amount of memory required to train the agent were relatively higher than any other algorithm. This led to the system crashing due to memory issues while training. In addition, when lowering the number of instances of the environment being trained in parallel and lowering the batch-size of the agent, the algorithm then had cuda memory issues. This was never encountered while training the agent with the other algorithms nor did any other algorithm require any noticable amounts of cuda memory while training.
 
 \subsection{Speeding up agent training}
 
