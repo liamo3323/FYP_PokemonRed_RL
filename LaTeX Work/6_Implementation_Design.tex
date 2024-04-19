@@ -2,11 +2,15 @@
 
 The first step was to create or find an environment that with an accurate depiction or an environment wrapping around the pokémon game itself. After finding the environment, the details of the environment had to be checked ensure compatible with different algorithms intended to be used. Once an environment and RL algorithm is chosen, a minimum viable product can be achieved by training an agent to play the game and defeat the first gym. After this,  the project can be scaped up by using methods to accelerate the training of the agent without sacrificing the quality of the agent's performance and amount of timesteps it is training for. 
 
+\subsection{Algorithm Implmentation}
+
+The implementation of the algorithms used to conduct the experiments for this research project were taken from stable-baselines3 and stable-contrib. The algorithms used to conduct the experiments for this research project were: Proximal Policy Optimization (PPO) , Deep Q-Network (DQN), and Quantile Regression DQN (QRDQN) \cite{stablebaselines3}. 
+
 \subsection{Environment}
 
 The implementation of the environment will be broken down into smaller sections that make up the most important aspects of the RL environment. The environment will be implemented using the 'gymnasium' library, which is a popular python library for building RL environments.
 
-The environment to conduct the experiments for this research project was originally written by Peter Whidden and the basis code used for the environment was taken from their github repository and modified to better fit the objectives of the research project. 
+The environment to conduct the experiments for this research project was originally written by Peter Whidden and the basis code used for the environment was taken from their github repository and modified to better fit the objectives of the research project. This is the link to the github repository: \url{https://github.com/PWhiddy/PokemonRedExperiments} that was used as the basis for the environment before implementing my own changes and improvements \cite{PWhiddy2023}.
 
 \subsection{Sparse Reward Function}
 
