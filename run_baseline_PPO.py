@@ -56,7 +56,7 @@ if __name__ == "__main__":
     current_datetime_str = datetime.datetime.now().strftime("%m%d%H%M%S")
     use_wandb_logging = True
     algorithm = "PPO"
-    batch_size = 128
+    batch_size = 64
     gamma = 0.998
     n_epochs = 3
     learn_steps = 32

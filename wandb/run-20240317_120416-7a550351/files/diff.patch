@@ -1,0 +1,54 @@
+diff --git a/PkRed_env/red_gym_env_v2.py b/PkRed_env/red_gym_env_v2.py
+index 5fa7782..db16a86 100644
+--- a/PkRed_env/red_gym_env_v2.py
++++ b/PkRed_env/red_gym_env_v2.py
+@@ -32,6 +32,9 @@ class RedGymEnv(Env):
+         self.explore_weight = (
+             1 if "explore_weight" not in config else config["explore_weight"]
+         )
++        self.battle_weight = (
++            1 if "battle_weight" not in config else config["battle_weight"]
++        )
+         self.reward_scale = (
+             1 if "reward_scale" not in config else config["reward_scale"]
+         )
+@@ -523,10 +526,10 @@ class RedGymEnv(Env):
+         # https://github.com/pret/pokered/blob/91dc3c9f9c8fd529bb6e8307b58b96efa0bec67e/constants/event_constants.asm
+         state_scores = {
+             "event": self.reward_scale * self.update_max_event_rew() * 4,
+-            "level": self.reward_scale * self.get_levels_reward(),
++            "level": self.reward_scale * self.battle_weight * self.get_levels_reward(),
+             "heal": self.reward_scale * self.total_healing_rew * 5,
+-            "op_lvl": self.reward_scale * self.update_max_op_level() * 0.2,
+-            "dead": self.reward_scale * self.died_count * -0.1,
++            # "op_lvl": self.reward_scale * self.update_max_op_level() * 0.2,
++            "dead": self.reward_scale * self.died_count * -1,
+             "badge": self.reward_scale * self.get_badges() * 5,
+             "explore": self.reward_scale * self.explore_weight * len(self.seen_coords) * 0.1,
+         }
+diff --git a/run_baseline_v2.py b/run_baseline_v2.py
+index f563c15..55c1ae4 100644
+--- a/run_baseline_v2.py
++++ b/run_baseline_v2.py
+@@ -69,16 +69,17 @@ if __name__ == "__main__":
+ 
+ 
+     num_cpu = 11 #! cannot go any higher than 12 <- also crashes after 3-4 hours
+-    episode_length_per_cpu = 1000 #? each episode will be 1000 steps long 
+-    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 11,000
+-    total_timesteps = (ep_length)*1000 #? TOTAL TRAINING TIME WILL BE 11,000,000
++    episode_length_per_cpu = 2000 #? each episode will be 2000 steps long 
++    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 22,000
++    total_timesteps = (ep_length)*1000 #? TOTAL TRAINING TIME WILL BE 22,000,000
+ 
+     env_config = {
+                 'headless': True, 'save_final_state': True, 'early_stop': False,
+                 'action_freq': 24, 'init_state': 'has_pokedex_nballs.state', 'max_steps': ep_length, 
+                 'print_rewards': True, 'save_video': False, 'fast_video': True, 'session_path': sess_path,
+-                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 1.5, 'explore_weight': 1.5,
++                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 1, 'explore_weight': 3,
+                 'use_screen_explore': True, 'extra_buttons': False, 'sim_frame_dist': 2_000_000.0,
++                'battle_weight': 2,
+             }
+     
+     print(env_config)

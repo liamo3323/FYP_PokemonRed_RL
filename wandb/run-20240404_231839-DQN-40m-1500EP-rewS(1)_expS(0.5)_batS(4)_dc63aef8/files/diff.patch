@@ -1,0 +1,55 @@
+diff --git a/run_baseline_Eval.py b/run_baseline_Eval.py
+index 29d5be1..07d3e24 100644
+--- a/run_baseline_Eval.py
++++ b/run_baseline_Eval.py
+@@ -42,7 +42,7 @@ def make_model(algorithm):
+ 
+     elif algorithm == ("A2C"):
+         model = A2C('MultiInputPolicy', env, verbose=1,
+-                    n_steps=ep_length, gamma=gamma, tensorboard_log=sess_path)
++                    n_steps=episode_length_per_cpu, gamma=gamma, tensorboard_log=sess_path)
+ 
+     elif algorithm == ("DQN"):
+         model = DQN('MultiInputPolicy', env, verbose=1, gamma=gamma, tensorboard_log=sess_path)
+@@ -55,11 +55,10 @@ def make_model(algorithm):
+ if __name__ == "__main__":
+     current_datetime_str = datetime.datetime.now().strftime("%m%d%H%M%S")
+     use_wandb_logging = True
+-    algorithm = "A2C"
++    algorithm = "DQN"
+     batch_size = 128
+     gamma = 0.998
+     n_epochs = 3
+-    learn_steps = 32
+     sess_id = str(uuid.uuid4())[:8]
+ 
+     reward_scale = 1
+@@ -70,11 +69,16 @@ if __name__ == "__main__":
+     # sess_path = Path(f'Sessions/PPO_Session_0307161249_7602f77b_env2_2')
+     print(sess_path)
+ 
+-    num_cpu = 13  #! cannot go any higher than 12 <- also crashes after 3-4 hours
++    num_cpu = 10  #! cannot go any higher than 12 <- also crashes after 3-4 hours
+     episode_length_per_cpu = 1500 #? each episode will be 1250 steps long 
+-    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 19,500
+-    total_timesteps = (ep_length)*2051 #? TOTAL TRAINING TIME WILL BE 40,000,000 (approx)
++    mil_timestep = 40
++    target_total_timesteps = mil_timestep * 1000 * 1000 # Approx how many timesteps in the total training 
+ 
++
++    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH <- episode for each cpu * num_cpu
++    num_runs_total = round(target_total_timesteps/ep_length) # the number of training batches all CPUs must complete
++    total_timesteps = ep_length*num_runs_total #? TOTAL TRAINING TIME WILL BE 40,000,000 (approx)
++    print(f"\n CPUs: {num_cpu} \n Episode Length per CPU: {episode_length_per_cpu} \n Total Batches: {num_runs_total} \n Total Timesteps: {total_timesteps}")
+     env_config = {
+             'headless': True, 'save_final_state': True, 'early_stop': False,
+             'action_freq': 24, 'init_state': 'has_pokedex_nballs.state', 'max_steps': ep_length, 
+@@ -98,7 +102,7 @@ if __name__ == "__main__":
+         from wandb.integration.sb3 import WandbCallback
+         run = wandb.init(
+             project="FYP-RL-DATA",
+-            id=f"{algorithm}-{total_timesteps}m-{episode_length_per_cpu}EP-rewS|{reward_scale}_expS|{explore_weight}_batS|{battle_weight}", #PPO-40m-1500EP-rewS:1.0_expS:0.5_batS:4
++            id=f"{algorithm}-{mil_timestep}m-{episode_length_per_cpu}EP-rewS({reward_scale})_expS({explore_weight})_batS({battle_weight})_{sess_id}", #PPO-40m-1500EP-rewS:1.0_expS:0.5_batS:4
+             config=env_config,
+             sync_tensorboard=True,  
+             monitor_gym=True,  

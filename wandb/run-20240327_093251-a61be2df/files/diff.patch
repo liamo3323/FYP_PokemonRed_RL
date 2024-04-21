@@ -1,0 +1,47 @@
+diff --git a/PkRed_env/red_gym_env_v2.py b/PkRed_env/red_gym_env_v2.py
+index 6c60d3e..fba07d8 100644
+--- a/PkRed_env/red_gym_env_v2.py
++++ b/PkRed_env/red_gym_env_v2.py
+@@ -284,7 +284,7 @@ class RedGymEnv(Env):
+                 "max_map_progress": self.max_map_progress,
+                 "last_action": action,
+                 "pcount": self.read_m(0xD163),
+-                "levels": levels,
++                "levels": self.progress_reward["level"],
+                 "levels_sum": sum(levels),
+                 "ptypes": self.read_party(),
+                 "hp": self.read_hp_fraction(),
+@@ -292,6 +292,8 @@ class RedGymEnv(Env):
+                 "deaths": self.died_count,
+                 "badge": self.get_badges(),
+                 "event": self.progress_reward["event"],
++                "op_highest_lvl": self.progress_reward["op_highest_lvl"],
++                "op_total_lvl": self.progress_reward["op_total_lvl"],
+                 "healr": self.total_healing_rew,
+             }
+         )
+diff --git a/run_baseline_v2.py b/run_baseline_v2.py
+index 8fd0c06..e57205e 100644
+--- a/run_baseline_v2.py
++++ b/run_baseline_v2.py
+@@ -66,7 +66,6 @@ if __name__ == "__main__":
+     # sess_path = Path(f'Sessions/PPO_Session_0307161249_7602f77b_env2_2')
+     print(sess_path)
+ 
+-
+     num_cpu = 14  #! cannot go any higher than 12 <- also crashes after 3-4 hours
+     episode_length_per_cpu = 1250 #? each episode will be 1250 steps long 
+     ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 17,500
+diff --git a/run_pretrained_v2.py b/run_pretrained_v2.py
+index 805eb1a..b9cd187 100644
+--- a/run_pretrained_v2.py
++++ b/run_pretrained_v2.py
+@@ -42,7 +42,7 @@ if __name__ == '__main__':
+ 
+     # env_checker.check_env(env)
+ 
+-    file_name = 'Sessions/PPO_Session_0326005639_88963f05_env2_1/poke_22022000_steps'
++    file_name = 'Sessions/PPO_Session_0327003932_87239f48_env2_1/poke_30135000_steps'
+     print('\nloading checkpoint pretrained model')
+     model = PPO.load(file_name, env=env, custom_objects={'lr_schedule': 0, 'clip_range': 0})
+ 

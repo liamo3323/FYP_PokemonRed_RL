@@ -1,0 +1,91 @@
+wandb_version: 1
+
+headless:
+  desc: null
+  value: true
+save_final_state:
+  desc: null
+  value: true
+early_stop:
+  desc: null
+  value: false
+action_freq:
+  desc: null
+  value: 24
+init_state:
+  desc: null
+  value: has_pokedex_nballs.state
+max_steps:
+  desc: null
+  value: 15000
+print_rewards:
+  desc: null
+  value: true
+save_video:
+  desc: null
+  value: false
+fast_video:
+  desc: null
+  value: true
+session_path:
+  desc: null
+  value: Sessions/DQN_Session_0404231151_7d7ec627_env2_1
+gb_path:
+  desc: null
+  value: PokemonRed.gb
+debug:
+  desc: null
+  value: false
+reward_scale:
+  desc: null
+  value: 1
+explore_weight:
+  desc: null
+  value: 0.5
+battle_weight:
+  desc: null
+  value: 4
+use_screen_explore:
+  desc: null
+  value: true
+extra_buttons:
+  desc: null
+  value: false
+sim_frame_dist:
+  desc: null
+  value: 2000000.0
+_wandb:
+  desc: null
+  value:
+    code_path: code/run_baseline_Eval.py
+    python_version: 3.11.7
+    cli_version: 0.15.12
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: true
+    start_time: 1712268717.178024
+    t:
+      1:
+      - 1
+      - 2
+      - 3
+      - 12
+      - 55
+      2:
+      - 1
+      - 2
+      - 3
+      - 12
+      - 55
+      3:
+      - 14
+      - 16
+      - 22
+      - 23
+      - 35
+      4: 3.11.7
+      5: 0.15.12
+      8:
+      - 2
+      - 5
+      13: linux-x86_64

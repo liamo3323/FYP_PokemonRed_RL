@@ -1,0 +1,44 @@
+diff --git a/run_baseline_v2.py b/run_baseline_v2.py
+index 6a8a831..56384f8 100644
+--- a/run_baseline_v2.py
++++ b/run_baseline_v2.py
+@@ -62,14 +62,13 @@ if __name__ == "__main__":
+     learn_steps = 32
+     sess_id = str(uuid.uuid4())[:8]
+ 
+-    #! REMEMBERT TO SET IF ITS NEW SESSION OR TRAINING FROM CHECKPOINT
+     sess_path = Path(f'Sessions/{algorithm}_Session_{current_datetime_str}_{sess_id}_env2_1')
+     # sess_path = Path(f'Sessions/PPO_Session_0307161249_7602f77b_env2_2')
+     print(sess_path)
+ 
+ 
+-    num_cpu = 11 #! cannot go any higher than 12 <- also crashes after 3-4 hours
+-    episode_length_per_cpu = 1000 #? each episode will be 1000 steps long 
++    num_cpu = 14  #! cannot go any higher than 12 <- also crashes after 3-4 hours
++    episode_length_per_cpu = 1250 #? each episode will be 1000 steps long 
+     ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 2,750
+     total_timesteps = (ep_length)*2000 #? TOTAL TRAINING TIME WILL BE 22,000,000
+ 
+diff --git a/run_pretrained_v2.py b/run_pretrained_v2.py
+index f590a70..805eb1a 100644
+--- a/run_pretrained_v2.py
++++ b/run_pretrained_v2.py
+@@ -28,8 +28,7 @@ def make_env(rank, env_conf, seed=0):
+ if __name__ == '__main__':
+ 
+     sess_path = Path(f'Sessions/session_{str(uuid.uuid4())[:8]}_Pretrained')
+-    num_cpu = 11  # 64 #46  # Also sets the number of episodes per training iteration
+-    ep_length = 2500 * 3
++    ep_length = 1250
+ 
+     env_config = {
+                 'headless': False, 'save_final_state': True, 'early_stop': False,
+@@ -43,7 +42,7 @@ if __name__ == '__main__':
+ 
+     # env_checker.check_env(env)
+ 
+-    file_name = 'Sessions/PPO_Session_0323004141_33a564a8_env2_1/poke_21780000_steps'
++    file_name = 'Sessions/PPO_Session_0326005639_88963f05_env2_1/poke_22022000_steps'
+     print('\nloading checkpoint pretrained model')
+     model = PPO.load(file_name, env=env, custom_objects={'lr_schedule': 0, 'clip_range': 0})
+ 

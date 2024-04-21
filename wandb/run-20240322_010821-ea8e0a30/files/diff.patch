@@ -1,0 +1,158 @@
+diff --git a/LaTeX Work/2_Literature_Review.tex b/LaTeX Work/2_Literature_Review.tex
+index 29d4bda..86e713e 100644
+--- a/LaTeX Work/2_Literature_Review.tex	
++++ b/LaTeX Work/2_Literature_Review.tex	
+@@ -20,34 +20,31 @@ Within the field of machine learning, there are multiple different forms of lear
+ 
+ The biggest drawback when using supervised or unsupervised learning is the dataset. The dataset would need someone playing the game for countless hours completing the game or reaching a checkpoint in the game before starting another episode of playing the game to provide a more varied dataset \cite{XanderSteenbrugge2019intro}. Not only is this method increcible slow, as humans can only play and operate at a certain speed, but the dataset would also never experience actions that are unnatural for a human to perform, as the dataset is bound to the actions a human would take with the human's preconception of how to play the game. This leads onto the other issue, where the dataset of human playing the game is bound by human constaints. Humans are naturally lazy and have short attention spans, which means when the person providing the training data knows one way to solve a puzzle, they are unlikely to experiment other methods in solving the puzzle \cite{XanderSteenbrugge2019intro}. Therefore, the agents trained on the human provided data are bound and limited by the performance of the human and will never find a more optimal path. 
+ 
+-RL is the solution to finding the set of action to complete the game as it allows the agent to 'play' the game itself and explore the environment in a sped-up space to find the optimal path without the need of a human to show it how to play, while knowing what the goal is. 
++RL is the solution to finding the set of actihroon to complete the game as it allows the agent to 'play' the game itself and explore the environment in a sped-up space to find the optimal path without the need of a human to show it how to play, while knowing what the goal is. 
+ 
+-\subsection{Proximal Policy Optimization (PPO)}
++\subsection{Deep Q Networks (DQN)}
+ 
+-RL's training data is dependent on the policy generating its own training dataset, which is dependent on the training of its policy to provide valuable data \cite{XanderSteenbrugge2019ppo}. This means that the distribution of observations and training is constantly changing as the policy is constantly being updated, which brings about instability during training. Therefore, there is a need to stabilize the policy updates during training to avoid the policy being pushed into a space where the next batch of data is learned under a poor policy further destabilizing the policy \cite{XanderSteenbrugge2019ppo}.
++DQN is a value based off-policy algorithm that learns by optimizing a value function to maximize reward in the long term. DQN was developed developed by combining RL techniques and deep neural networks at scale by enhancing the Q-Learning algorithm with deep neural networks and a technique called experience replay \cite{TFAgentsAuthors2023}.
+ 
+-\begin{quote}
+-    The idea with Proximal Policy Optimization (PPO) is that we want to improve the training stability of the policy by limiting the change you make to the policy at each training epoch: we want to avoid having too large of a policy update.
+-    \end{quote}
+-    \hspace*{\fill} \textit{Thomas Simonini, 2022}
++Q-Learning is based on the Bellman equation, where the agent learns the optimal action-value function by iteratively updating the Q-values of the state-action pairs \cite{mnih2013playing}. The Q-value of a state-action pair is the expected return of taking the action in the current state, where the value of a state is the sum of the immediate reward and the discounted value of the future states \cite{bellman1958dynamic}. It is impractical to explore the Q-values of every state-action pair, as the state space of the environment is too large to computationally check \cite{mnih2013playing}. Instead, a function approximator such as a deep neural network is used to estimate unexperienced Q-values. 
+ 
+-PPO aims to keep the data efficiency and reliable of algorithm TRPO, while only using first-order optimizations. The soltion to this problem was to make pessimistic estimations of the performance of the policy \cite{schulman2017proximal}. By limiting the amount the policy can update by per episode, it can stabilize the policy during training. Policy optimization is done by alternating between samplinig data from the policy and performing multiple epochs of optimization on the sampled data \cite{schulman2017proximal}. 
++Q-learning is an off-policy algorithm, meaning that there is a seperate behavior policy for interacting with the environment. In DQN, the behavior policy is an epsilon-greedy policy. The episolon-greedy policy selects the action with the highest Q-value with a probability of $1 - epsilon$ and selects a random action with $epsilon$ probability \cite{TFAgentsAuthors2023}. The epsilon-greedy policy is used to balance the exploration and exploitation of the agent within the environment, as exploration and exploitation is what determines how often the agent should enter unexperienced observations and therefore fill out the Q-table. Balancing out exploration and exploitation is important as exploitation is dependent on the current known best set of  action and exploration is required to enter new states and discover states yielding higher reward \cite{TFAgentsAuthors2023}.
+ 
+-PPO is a policy based algorithm, where the policy is trained to get the most reward in the future by doing actions in each state \cite{deepcheckRL}. In comparison to value based algorithms, policy based algorithms are better at converging towards the optimum policy within stochastic environments \cite{mnih2015human}. This implies that policy based algorithms are better at adapting when deployed in a real world example outside of the environment because of the stochastic nature of reality. 
++Value based algorithms, such as DQN, learn the environment by optimizing a value function, where it expects a high amount of value to be returned in the long term \cite{deepcheckRL}. Therefore, the learned agent will maximise future reward by making assumptions of rewards of future states yet to be experienced. This is an important step in value-based algorithms, as optimal action-value functions obey an important identity known as the Bellman equation \cite{mnih2013playing}. 
+ 
+-As mentioned in the Proximal Policy Optimization paper, "Policy gradient methods work by computing an estimator of the policy gradient and plugging it into a stochastic gradient ascent algorithm" \cite{schulman2017proximal}. This means that the policy, which is a neural network that takes the observed states as an input and suggests actions to take, is multiplied by the advantage function to determine the best action to take in a given state \cite{schulman2017proximal}. The advantage is the discounted sum of rewards that the agent expects to recieve in the future. The discount factor, is the scale between 0 and 0.99 used when calculating the discounted reward of how much the agent values future rewards \cite{XanderSteenbrugge2019ppo}. The higher the discount factor, the more the agent values future rewards. 
++Value based algorithms are theoretically able to find the optimal policy, but have a few weaknesses when deployed for real world use outside of the simulated environment. One weakness of value based algorithms is the ability to generalise to new situations beyond the environment \cite{OdelTruxillo2023}. This is considered the reality gap, where there is a mismatch between the environment the policy is trained in and the real-world environment in which the agent is deployed in \cite{tobin2017domain}. Transfer learning is a technique that can be used to mitigate the reality gap, where the agent is trained in a simulated environment and then transferred to the real world environment \cite{OdelTruxillo2023}. However, transfer learning is not always possible, as the real world is complex to simulate accurately due to stochastic nature \cite{OdelTruxillo2023}. 
+ 
+-\subsection{Deep Q Networks (DQN)}
++\subsection{Proximal Policy Optimization (PPO)}
+ 
+-DQN was developed developed by combining RL techniques and deep neural networks at scale by enhancing the Q-Learning algorithm with deep neural networks and a technique called experience replay \cite{TFAgentsAuthors2023}. DQN is a value based algorithms that attempts to learn the environment by optimizing a value function, where it expects a high amount of value to be returned in the long term \cite{deepcheckRL}. Therefore, the learned agent will maximise future reward by making assumptions of rewards of future states yet to be experienced. This is an important step in value-based algorithms, as optimal action-value functions obey an important identity known as the Bellman equation \cite{mnih2013playing}. 
++PPO is an on-policy, policy based algorithm trained to maximize reward in the future by choosing the best actions in each state \cite{deepcheckRL}. PPO was designed to improve the training stability of the policy by limiting the change made to the policy at each training epoch \cite{ThomasSimonini2022A2C}. On-policy algorithms, compared to off-policy algorithms, only use a singular policy to make decisions.
+ 
+-Q-Learning is based on the Bellman equation, where the agent learns the optimal action-value function by iteratively updating the Q-values of the state-action pairs \cite{mnih2013playing}. The Q-value of a state-action pair is the expected return of taking the action in the current state, where the value of a state is the sum of the immediate reward and the discounted value of the future states \cite{bellman1958dynamic}. However, it is impractical to explore the Q-values of every state-action pair, as the state space of the environment is too large to computationally check \cite{mnih2013playing}. Instead, a function approximator such as a deep neural network is used to estimate unexperienced Q-values. 
++Due to how RL is dependent on the policy generating its own training dataset, the quality of the training data is dependent on the actions selected by the policy, which initially is via random action selectioin \cite{XanderSteenbrugge2019ppo}. Therefore. the distribution of observations and training is constantly changing as the policy is constantly being updated, which brings about instability during training. PPO aims to solve this problem by stabilizing the policy update during training by making small updates to the policy at the end of each episode \cite{XanderSteenbrugge2019intro}. This avoids the potential issue of the policy being pushed into a space where the next batch of data is learned under a poor policy further destabilizing the policy \cite{XanderSteenbrugge2019ppo}.
+ 
+-Q-learning is an off-policy algorithm, meaning that there is a seperate behavior policy for interacting with the environment. In DQN, the behavior policy is an epsilon-greedy policy, where the agent selects the action with the highest Q-value with probability 1 - epsilon and selects a random action with probability epsilon \cite{TFAgentsAuthors2023}. The epsilon-greedy policy is used to balance the exploration and exploitation of the agent within the environment, as exploitation is dependent on current known best action and exploration is required to find an even better action.
++As mentioned in the Proximal Policy Optimization paper, "Policy gradient methods work by computing an estimator of the policy gradient and plugging it into a stochastic gradient ascent algorithm" \cite{schulman2017proximal}. This means that the policy, which is a neural network that takes the observed states as an input and suggests actions to take, is multiplied by the advantage function to determine the best action to take in a given state \cite{schulman2017proximal}. The advantage is the discounted sum of rewards that the agent expects to recieve in the future. The discount factor, is the scale between 0 and 0.99 used when calculating the discounted reward of how much the agent values future rewards \cite{XanderSteenbrugge2019ppo}. The higher the discount factor, the more the agent values future rewards. 
+ 
+-Value based algorithms are theoretically able to find the optimal policy, but have a few weaknesses when deployed for real world use outside of the simulated environment. One weakness of value based algorithms is the ability to generalise to new situations beyond the environment \cite{OdelTruxillo2023}. This is considered the reality gap, where there is a mismatch between the environment the policy is trained in and the real-world environment in which the agent is deployed in \cite{tobin2017domain}. Transfer learning is a technique that can be used to mitigate the reality gap, where the agent is trained in a simulated environment and then transferred to the real world environment \cite{OdelTruxillo2023}. However, transfer learning is not always possible, as the real world is complex to simulate accurately due to stochastic nature \cite{OdelTruxillo2023}. 
++In comparison to value based algorithms, policy based algorithms are better at converging towards the optimum policy within stochastic environments \cite{mnih2015human}. This implies that policy based algorithms are better at adapting when deployed in a real world example outside of the environment because of the stochastic nature of reality. 
+ 
+-Another weakness of value based algorithms is the environment they are trained in. Value based algorithms are able to converge towards the optimal policy by finding the set of actions which reward the most amount of value \cite{OdelTruxillo2023}. However, in some cases, the environment the agent is trained in must be fully observable, where the agent is able to see the entire state of the environment at every timestep. This will be a weakness for the agent because of its dependency on complete and whole information, as most real world environments are partially observable. When deployed to the real world, the agent will be unable to see the entire state of the environment at every time step and would be forced to make decisions on partial information \cite{dulac2021challenges}. 
++PPO aims to keep the data efficiency and reliable of algorithm TRPO, while only using first-order optimizations. The soltion to this problem was to make pessimistic estimations of the performance of the policy \cite{schulman2017proximal}. By limiting the amount the policy can update by per episode, it can stabilize the policy during training. Policy optimization is done by alternating between samplinig data from the policy and performing multiple epochs of optimization on the sampled data \cite{schulman2017proximal}. 
+ 
+ \subsection{Advantage Actor-Critic (A2C)}
+ 
+diff --git a/run_baseline_v2.py b/run_baseline_v2.py
+index 55c1ae4..ae7d5a4 100644
+--- a/run_baseline_v2.py
++++ b/run_baseline_v2.py
+@@ -69,17 +69,96 @@ if __name__ == "__main__":
+ 
+ 
+     num_cpu = 11 #! cannot go any higher than 12 <- also crashes after 3-4 hours
+-    episode_length_per_cpu = 2000 #? each episode will be 2000 steps long 
+-    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 22,000
+-    total_timesteps = (ep_length)*1000 #? TOTAL TRAINING TIME WILL BE 22,000,000
++    episode_length_per_cpu = 2500 #? each episode will be 2500 steps long 
++    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 27,500
++    total_timesteps = (ep_length)*800 #? TOTAL TRAINING TIME WILL BE 22,000,000
+ 
+     env_config = {
+                 'headless': True, 'save_final_state': True, 'early_stop': False,
+                 'action_freq': 24, 'init_state': 'has_pokedex_nballs.state', 'max_steps': ep_length, 
+                 'print_rewards': True, 'save_video': False, 'fast_video': True, 'session_path': sess_path,
+-                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 1, 'explore_weight': 3,
++                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 1.5, 'explore_weight': 1.5, 'battle_weight': 3,
++                'use_screen_explore': True, 'extra_buttons': False, 'sim_frame_dist': 2_000_000.0,
++            }
++    
++    print(env_config)
++    
++
++    env = SubprocVecEnv([make_env(i, env_config) for i in range(num_cpu)])
++    
++    checkpoint_callback = CheckpointCallback(save_freq=ep_length, save_path=sess_path,
++                                     name_prefix="poke")
++    
++    callbacks = [checkpoint_callback, TensorboardCallback()]
++
++    # log to wandb
++    if use_wandb_logging:
++        import wandb
++        from wandb.integration.sb3 import WandbCallback
++        run = wandb.init(
++            project="pokemon-red-train",
++            id=sess_id,
++            config=env_config,
++            sync_tensorboard=True,  
++            monitor_gym=True,  
++            save_code=True,
++        )
++        callbacks.append(WandbCallback())
++
++    # put a checkpoint here you want to start from
++    # file_name = f"Sessions/PPO_Session_0307161249_7602f77b_env2_1/poke_4235000_steps"
++    file_name = f"blank"
++
++    train_steps_batch = ep_length
++    if exists(file_name + ".zip"):
++        print("\nloading checkpoint")
++        model = PPO.load(file_name, env=env)
++        model.n_steps = train_steps_batch #? Essentially save frequency
++        model.n_envs = num_cpu
++        model.rollout_buffer.buffer_size = train_steps_batch
++        model.rollout_buffer.n_envs = num_cpu
++        model.rollout_buffer.reset()
++    else:
++        print("\nloading new model!")
++        model = make_model(algorithm)
++        print(model.policy)
++
++    print(f"training for {total_timesteps/num_cpu} steps...")
++
++    model.learn(total_timesteps=total_timesteps, callback=CallbackList(callbacks), tb_log_name=f"poke_{algorithm}")
++
++    if use_wandb_logging:
++        print("!!!!COMPLETED!!!")
++        run.finish()
++
++    ###----- SECOND TRAINING SESSION -----###
++        
++    current_datetime_str = datetime.datetime.now().strftime("%m%d%H%M%S")
++    use_wandb_logging = True
++    algorithm = "PPO"
++    batch_size = 128
++    gamma = 0.998
++    n_epochs = 3
++    learn_steps = 32
++    sess_id = str(uuid.uuid4())[:8]
++
++    #! REMEMBERT TO SET IF ITS NEW SESSION OR TRAINING FROM CHECKPOINT
++    sess_path = Path(f'Sessions/{algorithm}_Session_{current_datetime_str}_{sess_id}_env2_1')
++    # sess_path = Path(f'Sessions/PPO_Session_0307161249_7602f77b_env2_2')
++    print(sess_path)
++
++
++    num_cpu = 11 #! cannot go any higher than 12 <- also crashes after 3-4 hours
++    episode_length_per_cpu = 2500 #? each episode will be 2500 steps long 
++    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 27,500
++    total_timesteps = (ep_length)*800 #? TOTAL TRAINING TIME WILL BE 22,000,000
++
++    env_config = {
++                'headless': True, 'save_final_state': True, 'early_stop': False,
++                'action_freq': 24, 'init_state': 'has_pokedex_nballs.state', 'max_steps': ep_length, 
++                'print_rewards': True, 'save_video': False, 'fast_video': True, 'session_path': sess_path,
++                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 2, 'explore_weight': 1.5, 'battle_weight': 3,
+                 'use_screen_explore': True, 'extra_buttons': False, 'sim_frame_dist': 2_000_000.0,
+-                'battle_weight': 2,
+             }
+     
+     print(env_config)

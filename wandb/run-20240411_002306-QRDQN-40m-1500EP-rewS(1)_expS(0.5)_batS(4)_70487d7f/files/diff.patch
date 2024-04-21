@@ -1,0 +1,24 @@
+diff --git a/LaTeX Work/6_Implementation_Design.tex b/LaTeX Work/6_Implementation_Design.tex
+index f690a71..264ee32 100644
+--- a/LaTeX Work/6_Implementation_Design.tex	
++++ b/LaTeX Work/6_Implementation_Design.tex	
+@@ -70,6 +70,10 @@ Due to the agent's policy determining that there is a higher amount of value in
+ 
+ This was solved by increasing the reward for battling and by creating a dynamic reward function. Battling would be encouraged slightly more than exploration, but the amount of reward for battling would be capped when reaching a certain level. This was designed so that the agent would be encouraged to match the level of the pokemon of the gym leader it has to defeat next, which allowed the agent to eventually defeat any pokemon it encounters and unlock more regions of the game and recieve more reward for unsceen tiles.
+ 
++\subsection{Algorithm Implementation}
++
++As specified in the literature review and project design, stablebaselines3's implementation of the algorithms will be used for this research project. However, when implementing the ``A2C'' algorithm, memory and cuda memory issues were encountered. This meant that only PPO, DQN and QRDQN algorithms will be in the model evaluation. 
++
+ \subsection{Speeding up agent training}
+ 
+ In order to scale up the project to accelerate the training of the agent, the emulation speed was increased without the loss of any information. This was done using Pyboy's emulation speed-up function and editing the rate at which screen information and RAM was read to stay in sync with the emulation. This allowed the agent to train at a faster rate, without making any sacrifices to the quality of the agent's training. The emulation was sped up by a rate of 6 times because this was the fastest rate at which the environment was able to stay in sync with the emulation. Due to the environment not being a recreation of the original game and instead operates by extracting information every $n$ miliseconds, the environment and emulation had to stay in sync so that information was being observations extracted and actions inputted at the correct times.
+@@ -78,7 +82,7 @@ Another technique used to accelerate the training of the agent was to train the
+ 
+ \subsection{Memory issues during training}
+ 
+-The length of each episode and the algorithm used influenced the amount of RAM needed to be allocated per training session. Each instance of the agent being trained had its own instance of the environment, which would store its own training data before all the instances come together to update the policy. ALl of this important data would be stored in RAM. Therefore, the longer the episode the more data needs to be kept within RAM before updating the policy. When training an agent on the PPO algorithm, 60 gigabytes of RAM were used up when training 11 instances in parallel for 2,000 steps per episode or 14 instances for 1,500 steps per episode. For the graphs displayed below, the episode length of each episode was set to 2000 steps. %! SAY IF IT WILL BE USED IN THE FINAL FINDINGS OR NOT 
++The length of each episode and the algorithm used influenced the amount of RAM needed to be allocated per training session. Each instance of the agent being trained has its own instance of the environment, which would store its own training data before all the instances come together to update the policy. ALl of this important data would be stored in RAM. Therefore, the longer the episode the more data needs to be kept within RAM before updating the policy. When training an agent on the PPO algorithm, 60 gigabytes of RAM were used up when training 11 instances in parallel for 2,000 steps per episode or 14 instances for 1,500 steps per episode. For the graphs displayed below, the episode length of each episode was set to 2000 steps. The chosen amount of steps per episode and how many agent instances were used during training will be specified in the evaluation section of the research. 
+ 
+ Using gymnasium's 'headless' function allowed the agent to train without the need to render the game, which lowered the system requirements to train. Lowering the hardware requirements to train the agent allows the potential of more instances of the environment to be trained in parallel, which would allow the agent to complete training at a faster rate.
+ 

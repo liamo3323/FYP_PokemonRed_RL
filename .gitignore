@@ -15,7 +15,7 @@ __pycache__
 *.outX
 *.xml
 v2-env
-*wandb*
+*wandb*d
 tempCodeRunner*
 P_Whidden_Red_Env
 *.gz

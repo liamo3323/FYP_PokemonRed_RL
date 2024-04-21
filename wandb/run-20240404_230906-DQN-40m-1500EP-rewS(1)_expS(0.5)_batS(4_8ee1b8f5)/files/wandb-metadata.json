@@ -1,0 +1,128 @@
+{
+    "os": "Linux-6.6.19-1-MANJARO-x86_64-with-glibc2.39",
+    "python": "3.11.7",
+    "heartbeatAt": "2024-04-04T22:09:06.861747",
+    "startedAt": "2024-04-04T22:09:06.338628",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/home/liamo/Vscode/FYP_PokemonRed_RL/run_baseline_Eval.py",
+    "codePathLocal": "run_baseline_Eval.py",
+    "codePath": "run_baseline_Eval.py",
+    "git": {
+        "remote": "git@github.com:liamo3323/FYP_PokemonRed_RL.git",
+        "commit": "add65d7b784561bb42cfe0fa4dcad8a3d2f72ee5"
+    },
+    "email": "liam3323@gmail.com",
+    "root": "/home/liamo/Vscode/FYP_PokemonRed_RL",
+    "host": "re-manjaro",
+    "username": "liamo",
+    "executable": "/home/liamo/Vscode/FYP_PokemonRed_RL/.venv/bin/python",
+    "cpu_count": 8,
+    "cpu_count_logical": 16,
+    "cpu_freq": {
+        "current": 5272.096374999999,
+        "min": 400.0,
+        "max": 5573.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 5439.341,
+            "min": 400.0,
+            "max": 5573.0
+        },
+        {
+            "current": 5458.685,
+            "min": 400.0,
+            "max": 5573.0
+        },
+        {
+            "current": 3819.6,
+            "min": 400.0,
+            "max": 5573.0
+        },
+        {
+            "current": 5479.709,
+            "min": 400.0,
+            "max": 5573.0
+        },
+        {
+            "current": 5478.371,
+            "min": 400.0,
+            "max": 5573.0
+        },
+        {
+            "current": 5433.442,
+            "min": 400.0,
+            "max": 5573.0
+        },
+        {
+            "current": 5448.614,
+            "min": 400.0,
+            "max": 5573.0
+        },
+        {
+            "current": 5321.224,
+            "min": 400.0,
+            "max": 5573.0
+        },
+        {
+            "current": 5438.516,
+            "min": 400.0,
+            "max": 5573.0
+        },
+        {
+            "current": 5456.196,
+            "min": 400.0,
+            "max": 5573.0
+        },
+        {
+            "current": 4625.806,
+            "min": 400.0,
+            "max": 5573.0
+        },
+        {
+            "current": 5205.181,
+            "min": 400.0,
+            "max": 5573.0
+        },
+        {
+            "current": 5499.635,
+            "min": 400.0,
+            "max": 5573.0
+        },
+        {
+            "current": 5350.195,
+            "min": 400.0,
+            "max": 5573.0
+        },
+        {
+            "current": 5447.344,
+            "min": 400.0,
+            "max": 5573.0
+        },
+        {
+            "current": 5451.683,
+            "min": 400.0,
+            "max": 5573.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 457.0881042480469,
+            "used": 331.3394241333008
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 4070 Ti",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 4070 Ti",
+            "memory_total": 12878610432
+        }
+    ],
+    "memory": {
+        "total": 61.96844482421875
+    }
+}

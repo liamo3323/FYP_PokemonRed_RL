@@ -1,0 +1,26 @@
+diff --git a/run_baseline_v2.py b/run_baseline_v2.py
+index f563c15..70bd746 100644
+--- a/run_baseline_v2.py
++++ b/run_baseline_v2.py
+@@ -68,16 +68,16 @@ if __name__ == "__main__":
+     print(sess_path)
+ 
+ 
+-    num_cpu = 11 #! cannot go any higher than 12 <- also crashes after 3-4 hours
+-    episode_length_per_cpu = 1000 #? each episode will be 1000 steps long 
+-    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 11,000
+-    total_timesteps = (ep_length)*1000 #? TOTAL TRAINING TIME WILL BE 11,000,000
++    num_cpu = 16 #! cannot go any higher than 12 <- also crashes after 3-4 hours
++    episode_length_per_cpu = 20000 #? each episode will be 20000 steps long 
++    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 320,000
++    total_timesteps = (ep_length)*100 #? TOTAL TRAINING TIME WILL BE 32,000,000
+ 
+     env_config = {
+                 'headless': True, 'save_final_state': True, 'early_stop': False,
+                 'action_freq': 24, 'init_state': 'has_pokedex_nballs.state', 'max_steps': ep_length, 
+                 'print_rewards': True, 'save_video': False, 'fast_video': True, 'session_path': sess_path,
+-                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 1.5, 'explore_weight': 1.5,
++                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 1.5, 'explore_weight': 2,
+                 'use_screen_explore': True, 'extra_buttons': False, 'sim_frame_dist': 2_000_000.0,
+             }
+     

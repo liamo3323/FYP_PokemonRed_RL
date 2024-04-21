@@ -1,0 +1,12 @@
+diff --git a/LaTeX Work/report.tex b/LaTeX Work/report.tex
+index 7d1ed98..97023c2 100644
+--- a/LaTeX Work/report.tex	
++++ b/LaTeX Work/report.tex	
+@@ -15,7 +15,6 @@
+ \usepackage[style=ieee,sorting=none,backend=biber, style=numeric]{biblatex}
+ \addbibresource{report.bib}
+ 
+-
+ \title{Reinforcement Learning in Pokémon Red to explore multi-objective environments}
+ \author{Liam O'Driscoll}
+ \urn{6640106}

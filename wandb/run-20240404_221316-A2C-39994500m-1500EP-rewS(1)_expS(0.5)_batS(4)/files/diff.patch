@@ -1,0 +1,13 @@
+diff --git a/run_baseline_Eval.py b/run_baseline_Eval.py
+index 29d5be1..2a20581 100644
+--- a/run_baseline_Eval.py
++++ b/run_baseline_Eval.py
+@@ -98,7 +98,7 @@ if __name__ == "__main__":
+         from wandb.integration.sb3 import WandbCallback
+         run = wandb.init(
+             project="FYP-RL-DATA",
+-            id=f"{algorithm}-{total_timesteps}m-{episode_length_per_cpu}EP-rewS|{reward_scale}_expS|{explore_weight}_batS|{battle_weight}", #PPO-40m-1500EP-rewS:1.0_expS:0.5_batS:4
++            id=f"{algorithm}-{total_timesteps}m-{episode_length_per_cpu}EP-rewS({reward_scale})_expS({explore_weight})_batS({battle_weight})", #PPO-40m-1500EP-rewS:1.0_expS:0.5_batS:4
+             config=env_config,
+             sync_tensorboard=True,  
+             monitor_gym=True,  

@@ -1,0 +1,68 @@
+diff --git a/PkRed_env/red_gym_env_v2.py b/PkRed_env/red_gym_env_v2.py
+index fba07d8..2b60109 100644
+--- a/PkRed_env/red_gym_env_v2.py
++++ b/PkRed_env/red_gym_env_v2.py
+@@ -491,7 +491,8 @@ class RedGymEnv(Env):
+             max(self.read_m(a) - min_poke_level, 0)
+             for a in [0xD18C, 0xD1B8, 0xD1E4, 0xD210, 0xD23C, 0xD268]
+         ]
+-        return max(sum(poke_levels) - starter_additional_levels, 0)
++        return (0xD18C)
++        return max(sum(poke_levels) - starter_additional_levels, 0) #! <-- use this if fix doesnt work
+ 
+     def get_gym_level(self):
+         # gym levels from https://bulbapedia.bulbagarden.net/wiki/Gym_Leader#Kanto
+diff --git a/run_baseline_v2.py b/run_baseline_v2.py
+index 21137f8..a397f74 100644
+--- a/run_baseline_v2.py
++++ b/run_baseline_v2.py
+@@ -66,18 +66,26 @@ if __name__ == "__main__":
+     # sess_path = Path(f'Sessions/PPO_Session_0307161249_7602f77b_env2_2')
+     print(sess_path)
+ 
+-    num_cpu = 14  #! cannot go any higher than 12 <- also crashes after 3-4 hours
+-    episode_length_per_cpu = 1250 #? each episode will be 1250 steps long 
+-    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 17,500
+-    total_timesteps = (ep_length)*1714 #? TOTAL TRAINING TIME WILL BE 30,000,000 (approx)
++    num_cpu = 13  #! cannot go any higher than 12 <- also crashes after 3-4 hours
++    episode_length_per_cpu = 1500 #? each episode will be 1250 steps long 
++    ep_length = num_cpu * episode_length_per_cpu #? EPISODE LENGTH WILL BE 19,500
++    total_timesteps = (ep_length)*1539 #? TOTAL TRAINING TIME WILL BE 30,000,000 (approx)
++
++    # env_config = {
++    #             'headless': True, 'save_final_state': True, 'early_stop': False,
++    #             'action_freq': 24, 'init_state': 'has_pokedex_nballs.state', 'max_steps': ep_length, 
++    #             'print_rewards': True, 'save_video': False, 'fast_video': True, 'session_path': sess_path,
++    #             'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 4, 'explore_weight': 3, 'battle_weight': 1,
++    #             'use_screen_explore': True, 'extra_buttons': False, 'sim_frame_dist': 2_000_000.0,
++    #         }
+ 
+     env_config = {
+-                'headless': True, 'save_final_state': True, 'early_stop': False,
+-                'action_freq': 24, 'init_state': 'has_pokedex_nballs.state', 'max_steps': ep_length, 
+-                'print_rewards': True, 'save_video': False, 'fast_video': True, 'session_path': sess_path,
+-                'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 1.2, 'explore_weight': 1, 'battle_weight': 1,
+-                'use_screen_explore': True, 'extra_buttons': False, 'sim_frame_dist': 2_000_000.0,
+-            }
++            'headless': True, 'save_final_state': True, 'early_stop': False,
++            'action_freq': 24, 'init_state': 'has_pokedex_nballs.state', 'max_steps': ep_length, 
++            'print_rewards': True, 'save_video': False, 'fast_video': True, 'session_path': sess_path,
++            'gb_path': 'PokemonRed.gb', 'debug': False, 'reward_scale': 1.2, 'explore_weight': 1.5, 'battle_weight': 5,
++            'use_screen_explore': True, 'extra_buttons': False, 'sim_frame_dist': 2_000_000.0,
++        }
+     
+     print(env_config)
+ 
+diff --git a/run_pretrained_v2.py b/run_pretrained_v2.py
+index b9cd187..4a43a76 100644
+--- a/run_pretrained_v2.py
++++ b/run_pretrained_v2.py
+@@ -42,7 +42,7 @@ if __name__ == '__main__':
+ 
+     # env_checker.check_env(env)
+ 
+-    file_name = 'Sessions/PPO_Session_0327003932_87239f48_env2_1/poke_30135000_steps'
++    file_name = 'Sessions/PPO_Session_0329012833_bf5ce811_env2_1/poke_30135000_steps'
+     print('\nloading checkpoint pretrained model')
+     model = PPO.load(file_name, env=env, custom_objects={'lr_schedule': 0, 'clip_range': 0})
+ 
