@@ -17,19 +17,19 @@
 \end{itemize}
 
 \subsubsection*{Python}
-Python is the main programming language used for this project. Python is a high-level, general-purpose programming language that is widely used in the field of machine learning. Python is used for the implementation of the environment using the gymnasium package, the agents were created using the Stablebaselines3 implementation of A2C, DQN, and PPO, and the training of the agents was written in a short python script.
+Python is the main programming language used for this project. Python is a high-level, general-purpose programming language that is widely used in the field of machine learning. The implementation of the environment using the gymnasium package was written in python, where the agents were created using the Stablebaselines3 implementation of A2C, DQN, and PPO.
 
 \subsubsection*{Pyboy}
-Pyboy is a Gameboy emulator written in Python. Pyboy is used to run the Pokémon Red ROM and to interact with the game. Each button in the Gameboy emulator was mapped to a key on the keyboard which the environment was able to map to a selectable action for the agent. Pyboy is used to create the environment by wrapping it around a gymnasium environment, where the information of the state of the environment is taken from Pyboy via RAM readings or information on the screen.
+Pyboy is a gameboy emulator written in Python. Pyboy is used to run the Pokémon Red ROM to interact with the game, where each button in the gameboy emulator was mapped to a key on the keyboard. Pyboy is used to create the environment by wrapping it around a gymnasium environment, where the information of the state of the environment is taken from Pyboy via RAM readings or information on the screen. Pyboy was chosen as the gameboy emulator within python as it was the most well documented gameboy emulator.
 
 \subsubsection*{Stablebaselines3}
-Stablebaselines3 is a library of RL algorithms implementated in Python. Stablebaselines3 is used to create agents that interact with the environment and was specifically chosen as it was a very straight forward to use library that worked will with the gymnasium environment library.
+Stablebaselines3 is a library of RL algorithms implementated in Python. Stablebaselines3 is used to create agents that interact with the environment and was specifically chosen because it was a very straight forward to use library that worked will with the gymnasium environment library.
 
 \subsubsection*{Tensorboard}
 Tensorboard is a tool used to visualize the training of the agents through the use of graphing measurable metric. It was used to compare the performance of the trained models. Tensorboard was not necessary for this project but it was a very useful tool to visualize the progression of the training of the agents. Tensorboard was also a recommended tool that was supported by both stablebaselines3 algorithms and gymnasium environments.
 
 \subsubsection*{Wandb}
-Wandb is another tool used to visualize the training of the agents similarly to tensorboard. Wandb is able to do everything tensorboard does with the added benefit of being able to save console logs, code used to run the script, track hardware performance during training and more. It was used in tandom with tensorboard for the purpose of documenting my research.
+Wandb is another tool used to visualize the training of the agents similarly to tensorboard. Wandb is able to do everything tensorboard does with the added benefit of being able to save console logs, code used to run the script, and track hardware performance during training. It was used together with tensorboard for the purpose of documenting my research.
 
 \subsubsection*{Git}
 Git is a version control system used to track changes and to keep a backup of the code onto github where there is a link to the project repository. It served no core purpose to this project but is a programming standard. 
@@ -78,7 +78,7 @@ Hardware used for this project includes:
 
 Public GitHub repository for the project: \url{https://github.com/liamo3323/FYP_PokémonRed_RL}
 
-Experiments mentioned in this research can be prepared by pulling the github repo mentioned and placing the ``PokémonRed.gb'' file in the root directory. 
+Experiments mentioned in this research can be prepared by pulling the github repo mentioned and placing the ``PokemonRed.gb'' file in the root directory. The ``PokemonRed.gb'' file was not included in the repository due to legal reasons. 
 
 The agent can be trained running the ``run\_baseline\_v2.py'' in the root directory. The option to train an agent from scratch or to load a pre-trained model is available. The trained model will then be saved within the ``sessions'' directory.
 
