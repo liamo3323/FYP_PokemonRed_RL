@@ -50,6 +50,15 @@ None of the details of the game have been altered from the original release of t
 
 \subsection{Aims of the Project}
 
-This project aims to train multiple agents using different RL algorithms to compare each of their performance in the multi-objective environments. These agents will be hyperparameter tuned to ensure that each algorithm is performing at its best to the environment. The agents trained on differnet algorithms will be trained for a set number of timesteps and then evaluated on their ability to solve the goal of the environment. Each model will be evaluated by comparing the cumulative reward, learning speed and stability \cite{Sutton1}. 
+The aims of this project include the following:
+
+\begin{itemize}
+    \item Create a custom environment using the OpenAI Gymnasium framework to train the agents.
+    \item Train the agents to collect the first of eight gym badges in Pokémon Red.
+    \item Train multiple agents using different RL algorithms to compare each of their performance in the multi-objective environments.
+    \item Hyperparameter tune each agent to ensure that each algorithm is performing at its best to the environment.
+    \item Evaluate each model by comparing the cumulative reward, learning speed and stability.
+
+\end{itemize}
 
 Within the environment of pokémon red, the goal of the environment is to complete the game. However, due to the complexity of the game, and minimum length of 25+ hours requried to complete the game, a smaller more achieveable goal was set \cite{howlongtobeat}. This was done in order to gain a strong understanding of how well each algorithm could potentially perform in a more achieveable space. The goal of the agent for this research paper is to collect the first of eight gym badge. Within the game, collecting pokémon badge is an essential step to completing the game, which is why it is a good guage of the models potential to complete the game. Despite this scaled down goal, the agents will still need to learn to balance both navigation and battling in order to defeat the first gym leader.
