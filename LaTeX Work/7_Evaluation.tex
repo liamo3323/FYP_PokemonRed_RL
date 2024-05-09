@@ -12,111 +12,234 @@ It was mentioned previously that each algorithm would be hyperparameter tuned so
 
 \subsection{DQN}
 
+\begin{center}
+\begin{tabular}{ |c|c| } 
+ \hline
+ Hyperparameter & Value \\ 
+ \hline
+ Total Timesteps & 40,00,500 \\
+ Number of Episodes &  2,667 \\
+ Episode Length & 1,500 \\ 
+ Parallel Instances & 10 \\
+ Policy Model & MultiInputPolicy \\
+ Gamma & 0.99 \\  
+ Batch Size & 64 \\
+ \hline
+\end{tabular}
+\end{center}
+
 The training script used to train all 4 agents can be found within the research paper's GitHub repository under ``run\_baseline\_DQN.py''. A total of 10 parallel instances of the environment was trained at the same time to train for 2,667 episodes total, where each episode is 1,500 steps long. This totals up to 40,00,500 steps in total. The performance of the 4 agents can be seen on figure \ref{fig:agent_eval_all_dqn}. 
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/DQN_TotalReward.png}
-    \caption{Total Reward of All DQN Agents}
-    \label{fig:agent_eval_all_dqn}
-\end{figure}
 
-Figure \ref{fig:agent_eval_all_dqn} shows the performance of all 4 DQN agents of total\_reward against episode. The figure shows all 4 performing agents did not show signs of reaching the optimal policy as the total reward did not reach a plateau nor did the total reward show a dramatic difference from the start of training to the end of training. Moreover, the graph displays the average total reward of 10 episodes, which is why the x-axis is not in steps or go up till the 2,667 episodes that the agents were trained for.
+\subsubsection*{Total Reward}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/DQN-1_TotalReward.png}
-    \caption{Total Reward of DQN Agent 1}
-    \label{fig:agent_eval_dqn_1}
+    \subfigure[DQN-1]{\includegraphics[width=0.49\textwidth]{figures/DQN/DQN1_Total_Reward.png}} 
+    \subfigure[DQN-2]{\includegraphics[width=0.49\textwidth]{figures/DQN/DQN2_Total_Reward.png}} 
+    \subfigure[DQN-3]{\includegraphics[width=0.49\textwidth]{figures/DQN/DQN3_Total_Reward.png}}
+    \subfigure[DQN-4]{\includegraphics[width=0.49\textwidth]{figures/DQN/DQN4_Total_Reward.png}}
+    \caption{Total Reward of all DQN Agents}
+    \label{fig:DQN_total_reward}
 \end{figure}
 
-Figure \ref{fig:agent_eval_dqn_1} shows the performance of the first DQN agent of total\_reward against episode. The figure shows that the agent did not show signs of reaching the optimal policy as the performance of the agent peaked at around 150 episodes followed by a sharp fall in performance. This suggests that the agent was still exploring the environment and was not ready to start exploiting the environment using its already known information, as the sharp fall in performance was below the starting performance of the agent.
+Figure \ref{fig:DQN_total_reward} shows the performance of all 4 DQN agents of total reward against global steps. The figure shows all 4 performing agents did not show signs of reaching the optimal policy as the total reward show a dramatic difference from the start of training to the end of training. The agents were not able to reach a consistent amount of reward throughout training, which suggests that the agents were still exploring the environment and were not able to exploit the environment using its already known information. However, given that the agents were trained for 40 million timesteps, it is possible that further training would not have resulted in a better performance.
+
+Figure \ref{fig:DQN_total_reward} (a) shows the performance of DQN-1, which shows that the agent did not show signs of reaching the optimal policy as the performance of the agent peaked at around 150 episodes followed by a sharp fall in performance. This suggests that the agent was still exploring the environment and was not ready to start exploiting the environment using its already known information, as the sharp fall in performance was below the starting performance of the agent.
+
+Figure \ref{fig:DQN_total_reward} (b) shows the performance of DQN-2, which shows that the agent did show signs of significant amount of exploration, as there was a range of episodes where the agent had high and low performance. This suggests that the agent was still exploring the environment. However, the agent did have a consistently high amount of performance between episodes 170 and 210.
+
+Figure \ref{fig:DQN_total_reward} (c) shows the performance of DQN-3, which shows that the agent did show signs of exploration, as the training of the agent started with a low amount of performance and gradually increased in performance between episode 10 and 150. This suggests that the agent was able to slowly learn the environment that was trained on and shows signs of gradual learning. Moreover, the agent was able to reach a peak performance at around episode 150 and is the best performing agent out of the DQN agents so far due to its consistently high performance. 
+
+Figure \ref{fig:DQN_total_reward} (d) shows the performance of DQN-4, which shows that the agent shows weak signs of an understanding of the environment due to its low performance throughout the training. The agent did not show any signs of consistently high performance as drops in performance always followed high peaks. This highly suggests that the agent was still exploring the environment and never reached a point where it was able to exploit the environment using its already known information.
+
+\subsubsection*{Loss}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/DQN-2_TotalReward.png}
-    \caption{Total Reward of DQN Agent 2}
-    \label{fig:agent_eval_dqn_2}
+    \subfigure[DQN-1]{\includegraphics[width=0.49\textwidth]{figures/DQN/DQN1_Training_Loss.png}} 
+    \subfigure[DQN-2]{\includegraphics[width=0.49\textwidth]{figures/DQN/DQN2_Training_Loss.png}} 
+    \subfigure[DQN-3]{\includegraphics[width=0.49\textwidth]{figures/DQN/DQN3_Training_Loss.png}}
+    \subfigure[DQN-4]{\includegraphics[width=0.49\textwidth]{figures/DQN/DQN4_Training_Loss.png}}
+    \caption{Training Loss of all DQN Agents}
+    \label{fig:DQN_training_loss}
 \end{figure}
 
-Figure \ref{fig:agent_eval_dqn_2} shows the performance of the second DQN agent of total\_reward against episode. The figure shows that the agent did show signs of significant amount of exploration, as there was a range of episodes where the agent had high and low performance. This suggests that the agent was still exploring the environment. However, the agent did have a consistently high amount of performance between episodes 170 and 210.
+Figure \ref{fig:DQN_training_loss} shows the training loss of each agent and shows that all 4 agents had low loss values throughout the training. However, all had massive spikes at random intervals. Althrough, it can be said that DQN-1, DQN-3 and DQN-4 has more consistent low loss values compared to DQN-2. This suggests that DQN-2 had a more inconsistent training process compared to the other agents. This is evident from the total reward of DQN-2, which showed a more speratic amount of performance compared to the other agents.
+
+\subsubsection*{Badge Count}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/DQN-3_TotalReward.png}
-    \caption{Total Reward of DQN Agent 3}
-    \label{fig:agent_eval_dqn_3}
+    \subfigure[DQN-1]{\includegraphics[width=0.49\textwidth]{figures/DQN/DQN1_Badge_Count.png}} 
+    \subfigure[DQN-2]{\includegraphics[width=0.49\textwidth]{figures/DQN/DQN2_Badge_Count.png}} 
+    \subfigure[DQN-3]{\includegraphics[width=0.49\textwidth]{figures/DQN/DQN3_Badge_Count.png}}
+    \subfigure[DQN-4]{\includegraphics[width=0.49\textwidth]{figures/DQN/DQN4_Badge_Count.png}}
+    \caption{Badge Count of all DQN Agents}
+    \label{fig:DQN_badge_count}
 \end{figure}
 
-Figure \ref{fig:agent_eval_dqn_3} shows the performance of the third DQN agent of total\_reward against episode. The figure shows that the agent did show signs of exploration, as the training of the agent started with a low amount of performance and gradually increased in performance between episode 10 and 150. This suggests that the agent was able to slowly learn the environment that was trained on and shows signs of gradual learning. Moreover, the agent was able to reach a peak performance at around episode 150 and is the best performing agent out of the DQN agents so far due to its consistently high performance. 
+Figure \ref{fig:DQN_badge_count} shows the badge count of each agent and shows that none of the agents were able to collect the first badge. This suggests that the agents were not able to explore the environment effectively to reach the first gym badge. This is further confirmed by the total reward of each agent, as the difference in total reward between the start and end of training was not significant. Therefore, either value-based methods are not effective at training agents to explore multi-objective environments or the reward function was not able to guide the agents to the first gym badge.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/DQN-4_TotalReward.png}
-    \caption{Total Reward of DQN Agent 4}
-    \label{fig:agent_eval_dqn_4}
-\end{figure}
+\subsubsection*{DQN Conclusion}
 
-Figure \ref{fig:agent_eval_dqn_4} shows the performance of the fourth DQN agent of total\_reward against episode. The figure shows that the agent shows weak signs of an understanding of the environment due to its low performance throughout the training. The agent did not show any signs of consistently high performance as drops in performance always followed high peaks. This highly suggests that the agent was still exploring the environment and never reached a point where it was able to exploit the environment using its already known information.
-
-In conclusion, the best performing DQN agent from the list of 4 agents is agent 3 because of its consistently high performance throughout the training. The agent was able to learn the environment and exploit the environment using its already known information, which is evident from the inital low amount of reward followed by a strong growth in average reward. This further suggests that the agent shows signs of being able to go through cycles of learning and exploiting before reaching the optimal policy. 
+In conclusion, the best performing DQN agent from the list of 4 agents is DQN-3 because of its relatively consistently high performance throughout the training. The agent showed signs of exploration at the start of training through its gradual growth in total reward throughout training. Moreover, the agent had consistently low loss values throughout training. However, the fact that DQN-3 nor the other agents were able to collect the first gym badge suggests that the agents were not able to explore the environment effectively to reach the first gym badge. This suggests that the reward function was not able to guide the agents to the first gym badge and DQN is not an effective algorithm for multi-objective RL.
 
 \subsection{QR-DQN}
 
-The training script used to train all 4 agents can be found within the research paper's GitHub repository under ``run\_baseline\_QRDQN.py''. A total of 8 parallel instances of the environment was trained at the same time to train for 3,333 episodes total, where each episode is 1,500 steps long. This totals up to 39,996,000 steps in total. The performance of the 4 agents can be seen on figure \ref{fig:agent_eval_all_qrdqn} . 
+\begin{center}
+    \begin{tabular}{ |c|c| } 
+     \hline
+     Hyperparameter & Value \\ 
+     \hline
+     Total Timesteps & 39,996,000 \\
+     Number of Episodes &  3,333 \\
+     Episode Length & 1,500 \\ 
+     Parallel Instances & 8 \\
+     Policy Model & MultiInputPolicy \\
+     Gamma & 0.99 \\  
+     Batch Size & 32 \\
+     \hline
+    \end{tabular}
+    \end{center}
+
+The training script used to train all 4 agents can be found within the research paper's GitHub repository under ``run\_baseline\_QRDQN.py''. A total of 8 parallel instances of the environment was trained at the same time to train for 3,333 episodes total, where each episode is 1,500 steps long. This totals up to 39,996,000 steps in total. The performance of the 4 agents can be seen on figure \ref{fig:QRDQN_total_reward} . 
+
+\subsubsection*{Total Reward}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/QRDQN_TotalReward.png}
-    \caption{Total Reward of All QRDQN Agents}
-    \label{fig:agent_eval_all_qrdqn}
+    \subfigure[QRDQN-1]{\includegraphics[width=0.49\textwidth]{figures/QRDQN/QRDQN1_Total_Reward.png}} 
+    \subfigure[QRDQN-2]{\includegraphics[width=0.49\textwidth]{figures/QRDQN/QRDQN2_Total_Reward.png}} 
+    \subfigure[QRDQN-3]{\includegraphics[width=0.49\textwidth]{figures/QRDQN/QRDQN3_Total_Reward.png}}
+    \subfigure[QRDQN-4]{\includegraphics[width=0.49\textwidth]{figures/QRDQN/QRDQN4_Total_Reward.png}}
+    \caption{Total Reward of all QRDQN Agents}
+    \label{fig:QRDQN_total_reward}
 \end{figure}
 
-Compared to the DQN agents, the QR-DQN agents show a more promising performance in terms of total reward. The figure above shows the performance of all 4 QR-DQN agents of total\_reward against episode and shows that all 4 agents had a very similar but consistent growth in performance. Between episodes 0 and 200, all 4 agents had a similar amount of performance, but after episode 200, the agents started to diverge. QRDQN agent 3 and 4 had similar amounts of performance, where both agents had a very flat but consistently positive amount of growth. QRDQN agent 2 had a dramatic fall in performance from episode 270 to 370, but was able to swiftly recover and reach a peak performance at episode 400 but not enough data is available to determine if the agent would consistently kept this level of performance. QRDQN agent 1 spiked in performance and was able to maintain a high level of performance throughout the training, despite the sharp but short falls in performance every 50 episodes between episode 300 and 400. 
+Compared to the DQN agents, the QR-DQN agents show a more promising performance. Figure \ref{fig:QRDQN_total_reward} shows the performance of all 4 QR-DQN agents of total reward against global steps and shows that all 4 agents had a very similar but consistent growth in performance. It is far more promising than the DQN agents, as the agents were able to increase their total reward consistently throughout training.
 
-Despite the graph implying that QRDQN agent 1 is the best performing agent, only looking at the average total reward is not enough to come to this conclusion. Therefore, the graph below showing the average loss of each agent will be used to determine the best performing agent.
+Figure \ref{fig:QRDQN_total_reward} (a) shows the performance of QRDQN-1, which shows that the agent had a very consistent growth in performance, but had a sharp fall in performance at the end of training. The sharp fall in performance was just at the end of the 40 million training steps, which is why it is difficult to determine if the agent would have been able to recover from the fall in performance. However, the agent was able to reach a peak performance of 220,490 total reward at around 34 million timesteps. 
+
+Figure \ref{fig:QRDQN_total_reward} (b) shows the performance of QRDQN-2, similarly to QRDQN-1, the agent had a very consistent growth in performance followed by a steep fall in performance towards the end of training. After 28 million timesteps, the agent was able to reach a peak performance of 220,470 total reward. However, at 310 million timesteps, the agent had a sharp fall in performance. After this fall in performance, the agent was never able to recover and reach the same level of performance. Despite the fall in performance, the fall in total reward was only 20, which is insignificant compared to the total reward of 220,470 peak.
+
+Figure \ref{fig:QRDQN_total_reward} (c) shows the performance of QRDQN-3, which had a consistent constant growth in performance throughout training. There were no falls in performance with the exception of a large downwards spike at around 27 million timesteps, which it recovered from. QRDQN-3 had a peak performance of 220,471 total reward at around 34 million timesteps.
+
+Figure \ref{fig:QRDQN_total_reward} (d) shows the performance of QRDQN-4, which again had consistent growth in performance throughout training. The agent had no surprising falls or spikes in growth and had a peak performance of 220,472 total reward at around 38 million timesteps.
+
+\subsubsection*{Loss}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/QRDQN_Loss.png}
-    \caption{Loss of All QRDQN Agents}
-    \label{fig:agent_eval_all_qrdqn_loss}
+    \subfigure[QRDQN-1]{\includegraphics[width=0.49\textwidth]{figures/QRDQN/QRDQN1_Training_Loss.png}} 
+    \subfigure[QRDQN-2]{\includegraphics[width=0.49\textwidth]{figures/QRDQN/QRDQN2_Training_Loss.png}} 
+    \subfigure[QRDQN-3]{\includegraphics[width=0.49\textwidth]{figures/QRDQN/QRDQN3_Training_Loss.png}}
+    \subfigure[QRDQN-4]{\includegraphics[width=0.49\textwidth]{figures/QRDQN/QRDQN4_Training_Loss.png}}
+    \caption{Training Loss of all QRDQN Agents}
+    \label{fig:QRDQN_training_loss}
 \end{figure}
 
-Figure \ref{fig:agent_eval_all_qrdqn_loss} showing the training loss of each agent shows that all 4 agents showed consistently low loss values with QRDQN agent 1 and 4 having large spikes of loss values of 8 and above. However, all agents had consistently low loss values with consistent random spikes, which further suggests that the best performing agent is QRDQN agent 1.
+Figure \ref{fig:QRDQN_training_loss} shows the training loss of each agent shows that all 4 agents showed consistently low loss values with all agents having random spikes throughout training. QRDQN-1 and QRDQN-4 had large spikes of loss values of 8 and above. However, neither of these random spikes were visible on the total reward graphs in figure \ref{fig:QRDQN_total_reward}. Despite QRDQN's better performance compared to DQN, the instability reflected by the relatively higher average loss values compared to DQN suggests that QRDQN's learning process was more inconsistent but better compared to DQN. The interesting thing about QRDQN-3's loss graph is that the agent had an increase in loss value between 10 and 20 million timesteps, which was reflected in its total reward graph by an increase in performance. This suggests that an increase in loss value can both be a sign of unexpectly good or bad performance.
+
+\subsubsection*{Badge Count}
+
+\begin{figure}[H]
+    \centering
+    \subfigure[QRDQN-1]{\includegraphics[width=0.49\textwidth]{figures/QRDQN/QRDQN1_Badge_Count.png}} 
+    \subfigure[QRDQN-2]{\includegraphics[width=0.49\textwidth]{figures/QRDQN/QRDQN2_Badge_Count.png}} 
+    \subfigure[QRDQN-3]{\includegraphics[width=0.49\textwidth]{figures/QRDQN/QRDQN3_Badge_Count.png}} 
+    \subfigure[QRDQN-4]{\includegraphics[width=0.49\textwidth]{figures/QRDQN/QRDQN4_Badge_Count.png}} 
+    \caption{Badge Count of all QRDQN Agents}
+    \label{fig:QRDQN_badge_count}
+\end{figure}
+
+Figure \ref{fig:QRDQN_badge_count} shows the badge count of each agent and shows that none of the agents were able to collect the first badge. This suggests that the agents were not able to explore the environment effectively to reach the first gym badge. Despite there being a graduale increase in total reward of each agent throughout training, it was not enough to guide the agent to collect the first badge. 
+
+\subsubsection*{QRDQN Conclusion}
+
+In conclusion, the best performing QRDQN agent from the list of 4 agents is QRDQN-4 because of its both high total reward and lack of any spikes in loss. All 4 QRDQN agents had a consistent growth in performance throughout training, but all other agents had more spikes in loss compared to QRDQN-4. All 4 agents were not able to collect the first gym badge, which further proves that value-based methods are not effective at training agents to explore multi-objective environments. However, the difference between peaks and troughs of total reward suggest that the reward function is not a good guide to completing the objective of the environment.
 
 \subsection{PPO}
 
-The training script used to train all 4 agents can be found within the research paper's GitHub repository under ``run\_baseline\_PPO.py''. A total of 14 parallel instances of the environment was trained at the same time to train for 1,905 episodes total, where each episode is 1,500 steps long. This totals up to 40,005,000 steps in total. The performance of the 4 agents can be seen in the graph below. 
+\begin{center}
+    \begin{tabular}{ |c|c| } 
+     \hline
+     Hyperparameter & Value \\ 
+     \hline
+     Total Timesteps & 40,05,000 \\
+     Number of Episodes &  1,905 \\
+     Episode Length & 1,500 \\ 
+     Parallel Instances & 14 \\
+     Policy Model & MultiInputPolicy \\
+     Gamma & 0.99 \\  
+     Batch Size & 64 \\
+     \hline
+    \end{tabular}
+    \end{center}
+
+The training script used to train all 4 agents can be found within the research paper's GitHub repository under ``run\_baseline\_PPO.py''. A total of 14 parallel instances of the environment was trained at the same time to train for 1,905 episodes total, where each episode is 1,500 steps long. This totals up to 40,005,000 steps in total. The performance of the 4 agents can be seen on figure \ref{fig:PPO_total_reward}. 
+
+\subsubsection*{Total Reward}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/PPO_TotalReward.png}
-    \caption{Total Reward of All PPO Agents}
-    \label{fig:agent_eval_all_ppo}
+    \subfigure[PPO-1]{\includegraphics[width=0.49\textwidth]{figures/PPO/PPO1_Total_Reward.png}} 
+    \subfigure[PPO-2]{\includegraphics[width=0.49\textwidth]{figures/PPO/PPO2_Total_Reward.png}} 
+    \subfigure[PPO-3]{\includegraphics[width=0.49\textwidth]{figures/PPO/PPO3_Total_Reward.png}}
+    \subfigure[PPO-4]{\includegraphics[width=0.49\textwidth]{figures/PPO/PPO4_Total_Reward.png}}
+    \caption{Total Reward of all PPO Agents}
+    \label{fig:PPO_total_reward}
 \end{figure}
 
-Looking at the performance of all 4 PPO agents, all the agents showed very strong signs of learning the environment and reaching the optimal policy. All agents maintained a gradual and strong growth in performance throughout training and all agents did not have any drops or sharp falls in total reward. Deciding the best performing agent among the 4 is difficult because all agents have very similar positive trajectories in performance. However, figure \ref{fig:agent_eval_all_ppo_loss}, below, showing the average loss of each agent will be used to find more information on the best performing agent.
+Looking at the performance of all 4 PPO agents, all the agents showed very strong signs of learning the environment and reaching the optimal policy. All agents started off with a steep growth in total reward before maintained a gradual growth throughout training and all agents did not have any drops or sharp falls in total reward. Deciding the best performing agent among the 4 is difficult because all agents have very similar positive trajectories in performance. 
 
+Figure \ref{fig:PPO_total_reward} (a) shows the performance of PPO-1, which shows steady growth through out the first 26 million timesteps, before experincing a sudden drop in total reward before recovering and growing again to a peak of 220529 total reward at 40 million timesteps.
+
+Figure \ref{fig:PPO_total_reward} (b) shows the performance of PPO-2, which shows steady but inconsistent growth throughout the training. The agent was able to consistently improve its total reward throughout training, but experienced many random positive and negative spikes in performance.
+
+Figure \ref{fig:PPO_total_reward} (c) shows the performance of PPO-3, which had visibly the slowest growth in performance compared to the other agents. However, was still able to achieve the highest reward of 220,616 total reward at 40 million timesteps.
+
+Figure \ref{fig:PPO_total_reward} (d) shows the performance of PPO-4, which shows a very straight growth in performance throughout training. The consistency of the growth is so consistent a straight line can be drawn through the graph. The agent was able to reach a peak of 220,610 total reward at 35 million timesteps.
+
+\subsubsection*{Loss}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/PPO_loss.png}
-    \caption{Loss of All PPO Agents}
-    \label{fig:agent_eval_all_ppo_loss}
+    \subfigure[PPO-1]{\includegraphics[width=0.49\textwidth]{figures/PPO/PPO1_Training_Loss.png}} 
+    \subfigure[PPO-2]{\includegraphics[width=0.49\textwidth]{figures/PPO/PPO2_Training_Loss.png}} 
+    \subfigure[PPO-3]{\includegraphics[width=0.49\textwidth]{figures/PPO/PPO3_Training_Loss.png}}
+    \subfigure[PPO-4]{\includegraphics[width=0.49\textwidth]{figures/PPO/PPO4_Training_Loss.png}}
+    \caption{Trianing Loss of all PPO Agents}
+    \label{fig:PPO_training_loss}
 \end{figure}
 
-The figure above shows the training loss of each agent and shows that all 4 agents had consistently low loss values throughout the training with the exception of PPO agent 1, which had a large spike in loss at episode 100. Despite the spike in loss, the agent was able to recover and maintain a low loss value. However, the graph does not provide enough information to conclude the best performing agent, only that agent 1 experienced a large unexplanable spike in expected to experienced outcome. 
+Figure \ref{fig:PPO_training_loss} shows the training loss of each agent and shows that all 4 agents had consistently low loss values throughout the training. All agents had a singular large spike in loss value but were able to recover from it. However, PPO-1's spike was of a value of 2.5 compared to the other agents, which had spikes of 0.15 to 0.5. This suggests that PPO-1 had a more inconsistent training process compared to the other agents. 
 
+\subsubsection*{Badge Count}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/PPO_Badge.png}
-    \caption{Badge Count of All PPO Agents}
-    \label{fig:agent_eval_all_ppo_badge}
+    \subfigure[PPO-1]{\includegraphics[width=0.49\textwidth]{figures/PPO/PPO1_Badge_Count.png}} 
+    \subfigure[PPO-2]{\includegraphics[width=0.49\textwidth]{figures/PPO/PPO2_Badge_Count.png}} 
+    \subfigure[PPO-3]{\includegraphics[width=0.49\textwidth]{figures/PPO/PPO3_Badge_Count.png}}
+    \subfigure[PPO-4]{\includegraphics[width=0.49\textwidth]{figures/PPO/PPO4_Badge_Count.png}}
+    \caption{Badge Count of all PPO Agents}
+    \label{fig:PPO_badge_count}
 \end{figure}
 
-To come to a conclusion as to which PPO agent is the best performing agent, figure \ref{fig:agent_eval_all_ppo_badge} showing the badge count of each agent will be used to determine which agent was able to complete the objective of this research the best by collecting the first gym badge the most consistently. The graph shows that all 4 agents were able to explore the environment enough to collect the first badge, however, PPO agent 2 was the agent to collect the first badge the earliest during training at episode 76. This is interesting as around the same episode, PPO agent 4 had a higher total\_reward than PPO agent 2. This suggests that the environment was explored differently by each agent and that the environment's reward function was not able to effectively guide the agent to reach the goal of collecting the first gym badge. Another interesting piece of information the graph confirms, is that agent 1 is the worst performing agent, as it was the second slowest agent to have one of the 10 instances collect the first gym, but also the agent with the least amount of consistency of instance of agents collecting the first gym badge. 
+Figure \ref{fig:PPO_badge_count} shows the badge count of each agent and shows that all 4 agents were able to collect the first gym badge. This is already considerably better results than DQN and QRDQN and suggests that the agents were able to explore the environment effectively to reach the first gym badge. This is further confirmed by the total reward of each agent, as the difference in total reward between the start and end of training was significant. 
 
-The most striking piece of information from the graph shows that agent 3 was the last to collect the first gym badge, but was the agent with the most consistent amount of instances to collect the first gym badge. With a peak of 80\% of the instances collecting the first gym badge by the end of training. This confirms that agent 3 is the best performing agent out of the 4 PPO agents.
+Figure \ref{fig:PPO_badge_count} (a) shows that the agent PPO-1 was able to collect its first badge after 36 million timesteps. Despite PPO-1 being able to collect a badge, the agent was the second slowest agent to collect the first gym badge. Moreover, the agent was also not the most consistent agent to collect the first gym badge.
+
+Figure \ref{fig:PPO_badge_count} (b) shows that the agent PPO-2 was able to collect its first gym badge after 23 million timesteps. PPO-2 was the first agent to collect the first gym badge, which suggests that the agent was able to explore the environment the most effectively out of the 4 agents. However, it was not able to consistently collect the first gym badge.
+
+Figure \ref{fig:PPO_badge_count} (c) shows that the agent PPO-3 was able to collect its first gym badge after 37 million timesteps. PPO-3 was the slowest agent to collect the first gym badge, but was the most consistent agent to collect the first gym badge. At 39 million timesteps, 80\% of the instances of PPO-3 were able to collect the first gym badge.
+
+Figure \ref{fig:PPO_badge_count} (d) shows that the agent PPO-4 was able to collect its first gym badge after 32 million timesteps. PPO-4 was the second fastest agent to collect the first gym badge. In addition, after collecting its first gym badge, the subsequent episodes were able to collect the first gym badge consistently. However, only 10\% of the instances of PPO-4 were able to occasionally collect the first gym badge.
+
+\subsubsection*{PPO Conclusion} 
+
+To come to a conclusion as to which PPO agent is the best performing agent, figure \ref{fig:PPO_badge_count} showing the badge count of each agent will be used to determine which agent was able to complete the objective of this research the best by collecting the first gym badge the most consistently. The graph shows that all 4 agents were able to explore the environment enough to collect the first badge, however, PPO-2 was the agent to collect the first badge the earliest during training at episode 76. This is interesting as around the same episode, PPO-4 had a higher total\_reward than PPO-2. This suggests that the environment was explored differently by each agent and that the environment's reward function was not able to effectively guide the agent to reach the goal of collecting the first gym badge. Another interesting piece of information the graph confirms, is that agent 1 is the worst performing agent, as it was the second slowest agent to have one of the 10 instances collect the first gym, but also the agent with the least amount of consistency of instance of agents collecting the first gym badge. 
+
+The most striking piece of information from the graph shows that PPO-3 was the last to collect the first gym badge, but was the agent with the most consistent amount of instances to collect the first gym badge. With a peak of 80\% of the instances collecting the first gym badge by the end of training. This confirms that PPO-3 is the best performing agent out of the 4 PPO agents.
 
 \subsection{Algorithm Comparison}
 
