@@ -107,7 +107,7 @@ if __name__ == "__main__":
         import wandb
         from wandb.integration.sb3 import WandbCallback
         run = wandb.init(
-            project="FYP-RL-DATA",
+            project="pokemon-red-train",
             id=f"{algorithm}-{mil_timestep}m-{episode_length_per_cpu}EP-rewS({reward_scale})_expS({explore_weight})_batS({battle_weight})_{sess_id}", #PPO-40m-1500EP-rewS:1.0_expS:0.5_batS:4
             config=env_config,
             sync_tensorboard=True,  
