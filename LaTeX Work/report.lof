@@ -4,18 +4,18 @@
 \contentsline {figure}{\numberline {4}{\ignorespaces Example of a Pokémon Numerical Values}}{12}{figure.4}%
 \contentsline {figure}{\numberline {5}{\ignorespaces Pokémon World Map}}{12}{figure.5}%
 \contentsline {figure}{\numberline {6}{\ignorespaces Jett Wang's Agent's ELO Rating Over 200 Games}}{18}{figure.6}%
-\contentsline {figure}{\numberline {7}{\ignorespaces GPU percentage usage while training an agent}}{30}{figure.7}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Total CPU usage while training an agent}}{30}{figure.8}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Total RAM usage while training an agent}}{31}{figure.9}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Total Reward of all DQN Agents}}{34}{figure.10}%
-\contentsline {figure}{\numberline {11}{\ignorespaces Training Loss of all DQN Agents}}{35}{figure.11}%
-\contentsline {figure}{\numberline {12}{\ignorespaces Badge Count of all DQN Agents}}{36}{figure.12}%
-\contentsline {figure}{\numberline {13}{\ignorespaces Total Reward of all QRDQN Agents}}{37}{figure.13}%
-\contentsline {figure}{\numberline {14}{\ignorespaces Training Loss of all QRDQN Agents}}{38}{figure.14}%
-\contentsline {figure}{\numberline {15}{\ignorespaces Badge Count of all QRDQN Agents}}{39}{figure.15}%
-\contentsline {figure}{\numberline {16}{\ignorespaces Total Reward of all PPO Agents}}{40}{figure.16}%
-\contentsline {figure}{\numberline {17}{\ignorespaces Trianing Loss of all PPO Agents}}{41}{figure.17}%
-\contentsline {figure}{\numberline {18}{\ignorespaces Badge Count of all PPO Agents}}{42}{figure.18}%
-\contentsline {figure}{\numberline {19}{\ignorespaces }}{43}{figure.19}%
-\contentsline {figure}{\numberline {20}{\ignorespaces }}{44}{figure.20}%
-\contentsline {figure}{\numberline {21}{\ignorespaces }}{44}{figure.21}%
+\contentsline {figure}{\numberline {7}{\ignorespaces GPU percentage usage while training an agent}}{31}{figure.7}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Total CPU usage while training an agent}}{31}{figure.8}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Total RAM usage while training an agent}}{32}{figure.9}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Total Reward of all DQN Agents}}{35}{figure.10}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Training Loss of all DQN Agents}}{36}{figure.11}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Badge Count of all DQN Agents}}{37}{figure.12}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Total Reward of all QRDQN Agents}}{38}{figure.13}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Training Loss of all QRDQN Agents}}{39}{figure.14}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Badge Count of all QRDQN Agents}}{40}{figure.15}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Total Reward of all PPO Agents}}{41}{figure.16}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Trianing Loss of all PPO Agents}}{42}{figure.17}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Badge Count of all PPO Agents}}{43}{figure.18}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Total Reward comparison of all agents}}{44}{figure.19}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Badge Count comparison of all agents}}{45}{figure.20}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Trianing Loss comparison of all agents}}{45}{figure.21}%
