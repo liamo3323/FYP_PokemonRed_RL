@@ -2,7 +2,7 @@
 
 > Implementation code for dissertation 'Reinforcement Learning in Pokémon Red to Explore Multi-Objective Environments'
 
-![](image/README/example_good.mp4)
+![](example_good.mp4)
 
 ## Getting Started
 
