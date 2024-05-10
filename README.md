@@ -87,3 +87,5 @@ Liam O'Driscoll
 Distributed under the MIT license. See `LICENSE` for more information.
 
 [https://github.com/FYP_PokemonRed_RL](https://github.com/liamo3323/FYP_PokemonRed_RL)
+
+This project is a modification of PWiddy's work [https://github.com/PokemonRedExperiments](https://github.com/PWhiddy/PokemonRedExperiments)
