@@ -10,7 +10,6 @@ Sessions*
 *.ps
 *.bbl
 *.pdf
-*.state
 __pycache__
 *.outX
 *.xml
